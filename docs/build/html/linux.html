@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introducción &#8212; documentación de Call me by your reads - 0.0.1</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Call me by your reads</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Introducción</a></li>
+<li><a class="reference internal" href="#consideraciones-y-conceptos">Consideraciones y conceptos</a><ul>
+<li><a class="reference internal" href="#shell">Shell</a></li>
+<li><a class="reference internal" href="#terminal">Terminal</a></li>
+<li><a class="reference internal" href="#prompt"><em>Prompt</em></a></li>
+<li><a class="reference internal" href="#comando">Comando</a></li>
+<li><a class="reference internal" href="#opcion">Opción</a></li>
+<li><a class="reference internal" href="#argumento">Argumento</a></li>
+<li><a class="reference internal" href="#path"><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code></a></li>
+<li><a class="reference internal" href="#uso-de-mayusculas-y-minusculas">Uso de mayúsculas y minúsculas</a></li>
+<li><a class="reference internal" href="#uso-de-caracteres-especiales">Uso de caracteres especiales</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#comandos-basicos">Comandos básicos</a><ul>
+<li><a class="reference internal" href="#whoami"><code class="code docutils literal notranslate"><span class="pre">whoami</span></code></a></li>
+<li><a class="reference internal" href="#pwd"><code class="code docutils literal notranslate"><span class="pre">pwd</span></code></a></li>
+<li><a class="reference internal" href="#ls"><code class="code docutils literal notranslate"><span class="pre">ls</span></code></a></li>
+<li><a class="reference internal" href="#cd"><code class="code docutils literal notranslate"><span class="pre">cd</span></code></a></li>
+<li><a class="reference internal" href="#mkdir"><code class="code docutils literal notranslate"><span class="pre">mkdir</span></code></a></li>
+<li><a class="reference internal" href="#cp"><code class="code docutils literal notranslate"><span class="pre">cp</span></code></a></li>
+<li><a class="reference internal" href="#mv"><code class="code docutils literal notranslate"><span class="pre">mv</span></code></a></li>
+<li><a class="reference internal" href="#rm"><code class="code docutils literal notranslate"><span class="pre">rm</span></code></a></li>
+<li><a class="reference internal" href="#cat"><code class="code docutils literal notranslate"><span class="pre">cat</span></code></a></li>
+<li><a class="reference internal" href="#less"><code class="code docutils literal notranslate"><span class="pre">less</span></code></a></li>
+<li><a class="reference internal" href="#head"><code class="code docutils literal notranslate"><span class="pre">head</span></code></a></li>
+<li><a class="reference internal" href="#tail"><code class="code docutils literal notranslate"><span class="pre">tail</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scp"><code class="code docutils literal notranslate"><span class="pre">scp</span></code></a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/linux.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <div class="section" id="introduccion">
+<h1>Introducción<a class="headerlink" href="#introduccion" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Existen múltiples programas para el llamado de variantes, no obstante la gran mayoria no puede ser ejecutada en ambientes windows. En consecuencia, es importante estar familiarizado con el uso de sistemas unix/linux como puede ser Mac-OSX o Ubuntu linux.</p>
+<p>Adicionalmente, muchos de los programas para el llamado de variantes no cuenta con una interfáz gráfica de usuario, por ello, es importante aprender a usar la línea de comandos con fluidez</p>
+</div>
+<div class="section" id="consideraciones-y-conceptos">
+<h1>Consideraciones y conceptos<a class="headerlink" href="#consideraciones-y-conceptos" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Para el uso óptimo de la línea de comandos debemos tener en consideración las siguientes definiciones y precauciones</p>
+</div>
+<div class="section" id="shell">
+<h2>Shell<a class="headerlink" href="#shell" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es el intérprete entre el usuario y las aplicaciones</p>
+<ul class="simple">
+<li><p>El shell recibe una entrada a manera de comandos</p></li>
+<li><p>Estos comandos operan a través de aplicaciones</p></li>
+<li><p>Las aplicaciones interactuan con el <em>kernel</em> controlando el procesador, la memoria RAM y el disco de la máquina</p></li>
+</ul>
+</div>
+<div class="section" id="terminal">
+<h2>Terminal<a class="headerlink" href="#terminal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La terminal o línea de comandos es una interfáz no gráfica con la cúal el usuario puede interactuar con el sistema</p>
+<p>A pesar de su simpleza es una interfaz sumamente poderosa y eficiente, ya que nos permite ver que es lo que está ocurriendo tras bambalinas mientras un programa se está ejecutando</p>
+<p>Es un estándar en el cómputo y seguirá siendolo por mucho tiempo más</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/commitstrip_cli.jpg"><img alt="Your friendly neighbour the terminal" src="_images/commitstrip_cli.jpg" style="height: 150px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="prompt">
+<h2><em>Prompt</em><a class="headerlink" href="#prompt" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl>
+<dt>El <em>prompt</em> es la linea en la terminal que nos indica que nuestra consola está responsiva y que puede aceptar comandos del usuario</dt><dd><div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>Si no hay prompt no podemos mandar comandos</p>
+</div>
+<a class="reference internal image-reference" href="_images/prompt.png"><img alt="No prompt, no soup for you!" src="_images/prompt.png" style="height: 150px;" /></a>
+</dd>
+</dl>
+</div>
+<div class="section" id="comando">
+<h2>Comando<a class="headerlink" href="#comando" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un comando es la primera palabra que va después del prompt (o después de un pipe &quot;|&quot;, eso lo veremos en parseo ), un comando es esencialmente un elemento ejecutable que puede ser un programa binario o un script</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>El comando debe estar presente en el <code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> para que la terminal lo pueda ejecutar</p>
+</div>
+</div></blockquote>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/command_01.png"><img alt="command" src="_images/command_01.png" style="height: 150px;" /></a></p></td>
+<td rowspan="2"><p><a class="reference internal" href="_images/command_02.png"><img alt="command" src="_images/command_02.png" style="height: 150px;" /></a></p></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="opcion">
+<h2>Opción<a class="headerlink" href="#opcion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Ciertos comandos y programas pueden comportarse distinto si le pasamos una o más opciones, las opciones se especifican con el signo “-” o con los signos “--”</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/option_01.png"><img alt="option" src="_images/option_01.png" style="height: 150px;" /></a></p></td>
+<td rowspan="2"><p><a class="reference internal" href="_images/option_02.png"><img alt="option" src="_images/option_02.png" style="height: 150px;" /></a></p></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="argumento">
+<h2>Argumento<a class="headerlink" href="#argumento" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un argumento es una o más palabras que vienen después de un comando, pueden ir antes o después de una opción (o no llevar opciones incluso)</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/argument_01.png"><img alt="argument" src="_images/argument_01.png" style="height: 150px;" /></a></p></td>
+<td rowspan="2"><p><a class="reference internal" href="_images/argument_02.png"><img alt="argument" src="_images/argument_02.png" style="height: 150px;" /></a></p></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+<blockquote>
+<div><div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p><strong>Un argumento no lleva el signo “-”</strong></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="path">
+<h2><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code><a class="headerlink" href="#path" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En unix/linux la variable de entorno <code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> contiene el conjunto de directorios que alberga aplicaciones en nuestro sistema</p>
+<p>Al hacer <code class="code docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$PATH&quot;</span></code></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/path.png"><img alt="path" src="_images/path.png" style="height: 150px;" /></a>
+<p>Veremos que los programas de mi computadora, residen en alguna de las siguientes carpetas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">mpi</span><span class="o">/</span><span class="n">gcc</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="nb">bin</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span>
+<span class="o">/</span><span class="nb">bin</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mit</span><span class="o">/</span><span class="n">sbin</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">local_scripts</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="nb">bin</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">rmblast</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">augustus</span><span class="o">-</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">scripts</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">augustus</span><span class="o">-</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="nb">bin</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Adicionalmente, si queremos instalar un programa nuevo, lo podemos colocar en cualquiera de las carpetas enlistadas anteriormente y lo podemos invocar desde cualquier sitio en nuestra terminal</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="uso-de-mayusculas-y-minusculas">
+<h2>Uso de mayúsculas y minúsculas<a class="headerlink" href="#uso-de-mayusculas-y-minusculas" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>Los sistemas unix/linux son sensibles al uso de mayúsculas y minúsculas!</p>
+<p>Es importante revisar lo que se ingresa en la terminal antes de mandar cualquier instrucción</p>
+</div>
+<p>En nuestro sistema windows en un mismo directorio no pueden existir los siguientes archivos:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>&quot;A.pdf&quot;</strong></p></li>
+<li><p><strong>&quot;a.pdf&quot;</strong></p></li>
+</ul>
+</div></blockquote>
+<p>Sin embargo, en nuestro sistema unix/linux podemos tener dentro de un mismo directorio los siguientes archivos:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>&quot;abcD.pdf&quot;</strong></p></li>
+<li><p><strong>&quot;Abcd.pdf&quot;</strong></p></li>
+<li><p><strong>&quot;aBcd.pdf&quot;</strong></p></li>
+<li><p><strong>&quot;abCd.pdf&quot;</strong></p></li>
+<li><p><strong>&quot;ABCd.pdf&quot;</strong></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="uso-de-caracteres-especiales">
+<h2>Uso de caracteres especiales<a class="headerlink" href="#uso-de-caracteres-especiales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Existen caracteres con un significado específico del sistema, en consecuencia, se deben tratar de forma especial.</p>
+<p>Estos caracteres son los siguientes y por lo general los ubicas en tu teclado en la barra numérica:</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p>&#64;</p></td>
+<td rowspan="2"><p>#</p></td>
+<td rowspan="2"><p>$</p></td>
+<td rowspan="2"><p>%</p></td>
+<td rowspan="2"><p>^</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>&amp;</p></td>
+<td rowspan="2"><p>*</p></td>
+<td rowspan="2"><p>-</p></td>
+<td rowspan="2"><p>+</p></td>
+<td rowspan="2"><p>=</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>( )</p></td>
+<td rowspan="2"><p>{ }</p></td>
+<td rowspan="2"><p>[ ]</p></td>
+<td rowspan="2"><p>;</p></td>
+<td rowspan="2"><p>:</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>,</p></td>
+<td rowspan="2"><p>'</p></td>
+<td rowspan="2"><p>&quot;</p></td>
+<td rowspan="2"><p>&lt;</p></td>
+<td rowspan="2"><p>&gt;</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>.</p></td>
+<td rowspan="2"><p>/</p></td>
+<td rowspan="2"><p>?</p></td>
+<td rowspan="2"><p>\</p></td>
+<td rowspan="2"><p>|</p></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si alguno de nuestros archivos tiene espacios en su nombre (o caracteres especiales), la terminal necesita saber que estos espacios son parte del mismo argumento</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat mi archivo.txt
+cat: mi: No such file or directory
+cat: archivo.txt: No such file or directory
+</pre></div>
+</div>
+</div>
+<p>Cuando hicimos el comando <code class="code docutils literal notranslate"><span class="pre">cat</span> <span class="pre">mi</span> <span class="pre">archivo.txt</span></code>, lo que está ocurriendo es que <code class="code docutils literal notranslate"><span class="pre">cat</span></code> espera dos archivos, un archivo llamado &quot;mi&quot;, y un archivo llamado &quot;archivo.txt&quot;.</p>
+<p>Al no existir estos archivos, la terminal nos arroja un mensaje de error</p>
+<p>Esto lo solucionamos de dos formas:</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<ul>
+<li><p>Encerrando 'mi archivo.txt' entre comillas (dobles o sencillas):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat &quot;mi archivo.txt&quot;
+Hola mundo!
+</pre></div>
+</div>
+</li>
+<li><p><em>Escapando</em> el espacio con el simbolo “\”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat mi\ archivo.txt
+Hola mundo
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Ambas soluciones hacen que «mi archivo.txt» sea un solo argumento en vez de dos.</p>
+<p>Estas soluciones funcionan también para el resto de los caracteres especiales.</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="comandos-basicos">
+<h1>Comandos básicos<a class="headerlink" href="#comandos-basicos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En esta sección encontraremos comandos básicos para el manejo de archivos, es indispensable que tengamos familiaridad con estos comandos antes de continuar con la manipulación de archivos</p>
+<div class="section" id="whoami">
+<h2><code class="code docutils literal notranslate"><span class="pre">whoami</span></code><a class="headerlink" href="#whoami" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><em>Who am I?</em> Nos indica con qué nombre de usuario estamos trabajando:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ whoami
+vflorelo
+</pre></div>
+</div>
+</div>
+<div class="section" id="pwd">
+<h2><code class="code docutils literal notranslate"><span class="pre">pwd</span></code><a class="headerlink" href="#pwd" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><em>Print working directory</em> nos indica en que directorio estamos trabajando:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+/home/vflorelo
+</pre></div>
+</div>
+</div>
+<div class="section" id="ls">
+<h2><code class="code docutils literal notranslate"><span class="pre">ls</span></code><a class="headerlink" href="#ls" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>List, nos indica que elementos hay en el directorio actual</p>
+<blockquote>
+<div><div class="toggle admonition">
+<p class="admonition-title">Opciones de <code class="code docutils literal notranslate"><span class="pre">ls</span></code></p>
+<ul>
+<li><p>Listado de los archivos en formato extendido ( <code class="code docutils literal notranslate"><span class="pre">-l</span></code> ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l
+total 4
+-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
+</pre></div>
+</div>
+</li>
+<li><p>Listado de los archivos en formato extendido en lenguaje humano ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span></code> ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
+total 4.0K
+-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
+</pre></div>
+</div>
+</li>
+<li><p>Listado de los archivos incluido archivos ocultos ( <code class="code docutils literal notranslate"><span class="pre">-a</span></code> ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -a
+.   ..  &#39;mi archivo.txt&#39;
+</pre></div>
+</div>
+</li>
+<li><p>Listado de los archivos en orden cronológico ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-t</span></code> ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
+total 4.0K
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
+-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
+
+$ ls -l -h -t
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
+-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
+</pre></div>
+</div>
+</li>
+<li><p>Listado de los archivos en orden alfanumérico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span></code> ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
+total 4.0K
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
+-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
+
+$ ls -l -h -r
+total 4.0K
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
+-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
+</pre></div>
+</div>
+</li>
+<li><p>Listado de los archivos en orden cronológico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span> <span class="pre">-t</span></code> ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
+total 4.0K
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
+-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
+
+$ ls -l -h -r -t
+total 4.0K
+-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
+-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="cd">
+<h2><code class="code docutils literal notranslate"><span class="pre">cd</span></code><a class="headerlink" href="#cd" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><em>Change Directory</em> nos cambia al directorio que le indiquemos</p>
+<div class="toggle admonition">
+<p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">cd</span></code></p>
+<ul>
+<li><p>Dirigirse a un directorio dentro del directorio actual:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+/home/vflorelo
+
+$ ls
+dia_01
+
+$ cd dia_01
+
+$ pwd
+/home/vflorelo/dia_01
+
+$ ls
+Homo_sapiens_GRCh38.fasta.fai
+test_data_variants.tsv
+test_data_variants.vcf
+</pre></div>
+</div>
+</li>
+<li><p>Dirigirse a un directorio usando una ruta absoluta:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+/home/vflorelo
+
+$ cd /home/vflorelo/dia_01
+
+$ pwd
+/home/vflorelo/dia_01
+
+$ cd /usr/local/bioinformatics
+
+$ pwd
+/usr/local/bioinformatics
+
+$ ls
+bcftools
+bin
+bwa
+data
+htslib
+include
+lib
+libexec
+samtools
+share
+
+$ cd /home/vflorelo/dia_01
+
+$ pwd
+/home/vflorelo/dia_01
+</pre></div>
+</div>
+</li>
+<li><p>Dirigirse al directorio superior:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+/home/vflorelo/dia_01
+
+$ cd ..
+
+$ pwd
+/home/vflorelo
+</pre></div>
+</div>
+</li>
+<li><p>Dirigirse a un directorio usando una ruta relativa:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+/home/vflorelo/dia_01
+
+$ cd ../dia_02
+
+$ pwd
+/home/vflorelo/dia_02
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="mkdir">
+<h2><code class="code docutils literal notranslate"><span class="pre">mkdir</span></code><a class="headerlink" href="#mkdir" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Make Directory, crea un directorio con el nombre que le indiquemos</p>
+<div class="toggle admonition">
+<p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">mkdir</span></code></p>
+<ul>
+<li><p>Crear a un directorio dentro del directorio actual:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+/home/vflorelo
+
+$ ls
+dia_01
+
+$ mkdir dia_02
+
+$ ls
+dia_01
+dia_02
+</pre></div>
+</div>
+</li>
+<li><p>Crear un directorio usando una ruta absoluta:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+/home/vflorelo
+
+$ mkdir /home/vflorelo/dia_03
+
+$ pwd
+/home/vflorelo
+
+$ ls
+dia_01
+dia_02
+dia_03
+</pre></div>
+</div>
+</li>
+<li><p>Crear un directorio usando una ruta relativa:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
+/home/vflorelo/dia_01
+
+$ mkdir ../dia_04
+
+$ cd ..
+
+$ pwd
+/home/vflorelo
+
+$ ls
+dia_01
+dia_02
+dia_03
+dia_04
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="cp">
+<h2><code class="code docutils literal notranslate"><span class="pre">cp</span></code><a class="headerlink" href="#cp" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Copy, copia un archivo a un directorio (o al mismo directorio pero con nombre diferente)</p>
+<blockquote>
+<div><div class="toggle admonition">
+<p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">cp</span></code></p>
+<ul>
+<li><p>Copiar el contenido de un archivo a otro archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp mi_archivo.txt mi_nuevo_archivo.txt
+$ cat mi_nuevo_archivo.txt
+Hola mundo!
+</pre></div>
+</div>
+</li>
+<li><p>Copiar el archivo desde el directorio actual a otro directorio:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+mi_archivo.txt otro_directorio
+$ ls otro_directorio
+
+$ cp mi_archivo.txt otro_directorio
+$ ls otro_directorio
+mi_archivo.txt
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si no existe el directorio “otro_directorio”, cp creará un nuevo <strong>archivo</strong> llamado “otro_directorio”</p>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="mv">
+<h2><code class="code docutils literal notranslate"><span class="pre">mv</span></code><a class="headerlink" href="#mv" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Move, mueve un archivo de un lugar a otro (o le cambia el nombre al archivo)</p>
+<blockquote>
+<div><div class="toggle admonition">
+<p class="admonition-title">Modos de operacion de <code class="code docutils literal notranslate"><span class="pre">mv</span></code></p>
+<ul>
+<li><p>Cambia el nombre de un archivo a otro archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv mi_archivo.txt mi_nuevo_archivo.txt
+
+$ cat mi_nuevo_archivo.txt
+Hola mundo!
+
+$ cat mi_archivo.txt
+cat: mi_archivo.txt: No such file or directory
+</pre></div>
+</div>
+</li>
+<li><p>Mover el archivo desde el directorio actual a otro directorio:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+mi_archivo.txt otro_directorio
+
+$ ls otro_directorio
+
+$ mv mi_archivo.txt otro_directorio
+
+$ ls
+otro_directorio
+
+$ ls otro_directorio
+mi_archivo.txt
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si no existe el directorio «otro_directorio», mv le cambiará el nombre a “mi_archivo.txt” y se llamará “otro_directorio”, “mi_archivo.txt” no existirá más</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>Si ya existe un <strong>archivo</strong> con el nombre que le indiquemos a <code class="code docutils literal notranslate"><span class="pre">mv</span></code> como destino, perderemos la información del archivo destino:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+archivo_equis.txt
+tesis_final.docx
+
+$ cat archivo_equis.txt
+Este archivo contiene basura
+
+$ mv archivo_equis.txt tesis_final.docx
+
+$ ls
+tesis_final.docx
+
+$ cat tesis_final.docx
+Este archivo contiene basura
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="rm">
+<h2><code class="code docutils literal notranslate"><span class="pre">rm</span></code><a class="headerlink" href="#rm" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Remove, elimina el archivo o directorio indicado</p>
+<blockquote>
+<div><div class="toggle admonition">
+<p class="admonition-title">Modos de operacion de <code class="code docutils literal notranslate"><span class="pre">rm</span></code></p>
+<ul>
+<li><p>elimina un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+mi_archivo.txt mi_nuevo_archivo.txt
+
+$ rm mi_archivo.txt
+
+$ ls
+mi_nuevo_archivo.txt
+</pre></div>
+</div>
+</li>
+<li><p>Elimina un directorio con todos sus elementos:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+otro_directorio
+
+$ ls otro_directorio
+mi_archivo.txt
+
+$ rm -r otro_directorio
+
+$ ls otro_directorio
+ls: cannot access &#39;otro_directorio&#39;: No such file or directory
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p><code class="code docutils literal notranslate"><span class="pre">rm</span></code> es un comando destructivo, si se borran los archivos <strong>no son recuperables</strong></p>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="cat">
+<h2><code class="code docutils literal notranslate"><span class="pre">cat</span></code><a class="headerlink" href="#cat" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Concatenate, nos muestra el contenido de un archivo, o archivos</p>
+</div>
+<div class="section" id="less">
+<h2><code class="code docutils literal notranslate"><span class="pre">less</span></code><a class="headerlink" href="#less" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Less nos muestra el contenido de un archivo, pero nos lo muestra, una pantalla a la vez</p>
+</div>
+<div class="section" id="head">
+<h2><code class="code docutils literal notranslate"><span class="pre">head</span></code><a class="headerlink" href="#head" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl>
+<dt>Head, nos da las primeras N líneas de un archivo</dt><dd><div class="toggle admonition">
+<p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">head</span></code></p>
+<ul>
+<li><p>Muestra las primeras 10 líneas de un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head Homo_sapiens_GRCh38.fasta.fai
+1       248956422       16      70      71
+2       242193529       252512975       70      71
+3       198295559       498166428       70      71
+4       190214555       699294797       70      71
+5       181538259       892226719       70      71
+6       170805979       1076358398      70      71
+7       159345973       1249604479      70      71
+8       145138636       1411226840      70      71
+9       138394717       1558438902      70      71
+10      133797422       1698810704      70      71
+</pre></div>
+</div>
+</li>
+<li><p>Muestra las primeras 2 líneas de un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n2 Homo_sapiens_GRCh38.fasta.fai
+1       248956422       16      70      71
+2       242193529       252512975       70      71
+</pre></div>
+</div>
+</li>
+<li><p>Muestra las primeras líneas de un archivo exceptuando las ultimas 2 líneas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n-2 Homo_sapiens_GRCh38.fasta.fai
+1       248956422       16      70      71
+2       242193529       252512975       70      71
+3       198295559       498166428       70      71
+4       190214555       699294797       70      71
+5       181538259       892226719       70      71
+6       170805979       1076358398      70      71
+7       159345973       1249604479      70      71
+8       145138636       1411226840      70      71
+9       138394717       1558438902      70      71
+10      133797422       1698810704      70      71
+11      135086622       1834519535      70      71
+12      133275309       1971535983      70      71
+13      114364328       2106715242      70      71
+14      107043718       2222713363      70      71
+15      101991189       2331286294      70      71
+16      90338345        2434734517      70      71
+17      83257441        2526363427      70      71
+18      80373285        2610810278      70      71
+19      58617616        2692331770      70      71
+20      64444167        2751786798      70      71
+21      46709983        2817151612      70      71
+22      50818468        2864528898      70      71
+X       156040895       2916073361      70      71
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="tail">
+<h2><code class="code docutils literal notranslate"><span class="pre">tail</span></code><a class="headerlink" href="#tail" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Tail, nos da las últimas N líneas de un archivo</p>
+<div class="toggle admonition">
+<p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">tail</span></code></p>
+<ul>
+<li><p>Muestra las últimas 10 líneas de un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail Homo_sapiens_GRCh38.fasta.fai
+16      90338345        2434734517      70      71
+17      83257441        2526363427      70      71
+18      80373285        2610810278      70      71
+19      58617616        2692331770      70      71
+20      64444167        2751786798      70      71
+21      46709983        2817151612      70      71
+22      50818468        2864528898      70      71
+X       156040895       2916073361      70      71
+Y       57227415        3074343428      70      71
+MT      16569   3132388394      70      71
+</pre></div>
+</div>
+</li>
+<li><p>Muestra las últimas 2 lineas de un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n2 Homo_sapiens_GRCh38.fasta.fai
+Y       57227415        3074343428      70      71
+MT      16569   3132388394      70      71
+</pre></div>
+</div>
+</li>
+<li><p>Muestra las últimas líneas de un archivo exceptuando las primeras 2 líneas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n+2 Homo_sapiens_GRCh38.fasta.fai
+3       198295559       498166428       70      71
+4       190214555       699294797       70      71
+5       181538259       892226719       70      71
+6       170805979       1076358398      70      71
+7       159345973       1249604479      70      71
+8       145138636       1411226840      70      71
+9       138394717       1558438902      70      71
+10      133797422       1698810704      70      71
+11      135086622       1834519535      70      71
+12      133275309       1971535983      70      71
+13      114364328       2106715242      70      71
+14      107043718       2222713363      70      71
+15      101991189       2331286294      70      71
+16      90338345        2434734517      70      71
+17      83257441        2526363427      70      71
+18      80373285        2610810278      70      71
+19      58617616        2692331770      70      71
+20      64444167        2751786798      70      71
+21      46709983        2817151612      70      71
+22      50818468        2864528898      70      71
+X       156040895       2916073361      70      71
+Y       57227415        3074343428      70      71
+MT      16569   3132388394      70      71
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">wc</span></code>
+Word count, nos indica el número de líneas, palabras y caracteres de un archivo o de un <em>string</em></p>
+<div class="toggle admonition">
+<p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">wc</span></code></p>
+<ul>
+<li><p>Nos da un resumen del contenido de un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc Homo_sapiens_GRCh38.fasta.fai
+ 25 125 715 Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</li>
+<li><p>Cuenta el número de líneas en un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -l Homo_sapiens_GRCh38.fasta.fai
+ 25 Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</li>
+<li><p>Cuenta el número de palabras en un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -w Homo_sapiens_GRCh38.fasta.fai
+ 125 Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</li>
+<li><p>Cuenta el número de caracteres en un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -c Homo_sapiens_GRCh38.fasta.fai
+ 715 Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="scp">
+<h1><code class="code docutils literal notranslate"><span class="pre">scp</span></code><a class="headerlink" href="#scp" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>El comando <code class="code docutils literal notranslate"><span class="pre">scp</span></code> nos permite al igual que <code class="code docutils literal notranslate"><span class="pre">cp</span></code>, copiar archivos desde un origen hacia un destino, no obstante, lo hace a través de servidores remotos.</p>
+<p>Este comando combina las bondades de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> con los protocolos de seguridad de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code></p>
+<p>Por ello, el uso de <code class="code docutils literal notranslate"><span class="pre">scp</span></code> es muy similar al de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> y al de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ scp -i atg.pem vflorelo@atgenomics.ddns.net:/home/vflorelo/dia_01/Homo_sapiens_GRCh38.fasta.fai .
+</pre></div>
+</div>
+<p>La construcción anterior nos permite copiar el archivo <cite>Homo_sapiens_GRCh38.fasta.fai</cite> desde el directorio <cite>/home/vflorelo/dia_01</cite> ubicado en el servidor <cite>atgenomics.ddns.net</cite> utilizando la llave <cite>atg.pem</cite></p>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>A dónde lo va a copiar?</p>
+<p>Noten al final de la construcción, el punto <code class="code docutils literal notranslate"><span class="pre">.</span></code> el cual especifica que copiará el archivo <cite>Homo_sapiens_GRCh38.fasta.fai</cite> hacia el directorio actual</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .admonition-title").show();
+        $(".toggle .admonition-title").click(function() {
+            $(this).parent().children().not(".admonition-title").toggle(400);
+            $(this).parent().children(".admonition-title").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introducción &#8212; documentación de Call me by your reads - 0.0.1</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          Call me by your reads</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Introducción</a></li>
+<li><a class="reference internal" href="#grep"><code class="code docutils literal notranslate"><span class="pre">grep</span></code></a></li>
+<li><a class="reference internal" href="#cut"><code class="code docutils literal notranslate"><span class="pre">cut</span></code></a></li>
+<li><a class="reference internal" href="#sort"><code class="code docutils literal notranslate"><span class="pre">sort</span></code></a></li>
+<li><a class="reference internal" href="#redireccion">Redirección: <code class="code docutils literal notranslate"><span class="pre">|</span></code></a></li>
+<li><a class="reference internal" href="#id1">Redirección: <code class="code docutils literal notranslate"><span class="pre">&gt;</span></code> &amp; <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></a></li>
+<li><a class="reference internal" href="#avanzado-awk">Avanzado: <code class="code docutils literal notranslate"><span class="pre">awk</span></code></a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/parsing.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary">
+<form action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <div class="section" id="introduccion">
+<h1>Introducción<a class="headerlink" href="#introduccion" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>La finalidad de este curso es obtener un archivo de llamado de variantes (<em>Variant Calling File</em> por sus siglas en inglés) que tiene la siguiente estructura:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  g204</span>
+<span class="mi">1</span>       <span class="mi">13417</span>   <span class="n">rs777038595</span>     <span class="n">C</span>       <span class="n">CGAGA</span>   <span class="mf">324.73</span>  <span class="n">PASS</span>    <span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">BaseQRankSum</span><span class="o">=</span><span class="mf">0.583</span><span class="p">;</span><span class="n">DB</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">26</span><span class="p">;</span><span class="n">ExcessHet</span><span class="o">=</span><span class="mf">3.0103</span><span class="p">;</span><span class="n">FS</span><span class="o">=</span><span class="mf">0.000</span><span class="p">;</span><span class="n">MLEAC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MLEAF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mf">22.21</span><span class="p">;</span><span class="n">MQRankSum</span><span class="o">=-</span><span class="mf">0.032</span><span class="p">;</span><span class="n">QD</span><span class="o">=</span><span class="mf">12.49</span><span class="p">;</span><span class="n">ReadPosRankSum</span><span class="o">=-</span><span class="mf">2.185</span><span class="p">;</span><span class="n">SOR</span><span class="o">=</span><span class="mf">0.446</span><span class="p">;</span><span class="n">VQSLOD</span><span class="o">=</span><span class="mf">0.698</span><span class="p">;</span><span class="n">culprit</span><span class="o">=</span><span class="n">ReadPosRankSum</span> <span class="n">GT</span><span class="p">:</span><span class="n">AD</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">GQ</span><span class="p">:</span><span class="n">PL</span>  <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">99</span><span class="p">:</span><span class="mi">362</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">634</span>
+</pre></div>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Descripción extendida del formato vcf</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 11%" />
+<col style="width: 85%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p>1: CHROM</p></td>
+<td rowspan="2"><p>1</p></td>
+<td rowspan="2"><p>Cromosoma en dónde se ubica la variante</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>2: POS</p></td>
+<td rowspan="2"><p>1053827</p></td>
+<td rowspan="2"><p>Posición de la variante en el cromosoma</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>3: ID</p></td>
+<td rowspan="2"><p>rs74685771</p></td>
+<td rowspan="2"><p>Identificador de la variante</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>4: REF</p></td>
+<td rowspan="2"><p>G</p></td>
+<td rowspan="2"><p>Alelo de referencia</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>5: ALT</p></td>
+<td rowspan="2"><p>C</p></td>
+<td rowspan="2"><p>Alelo encontrado en la muestra</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>6: QUAL</p></td>
+<td rowspan="2"><p>856.77</p></td>
+<td rowspan="2"><p>Score de calidad de la variante</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>7: FILTER</p></td>
+<td rowspan="2"><p>PASS</p></td>
+<td rowspan="2"><p>Flag de calidad de la variante</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="34"><p>8:INFO</p></td>
+<td rowspan="2"><p>AC=1;</p></td>
+<td rowspan="2"><p>Número de alelos alternos encontrados</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>AF=0.500;</p></td>
+<td rowspan="2"><p>Frecuencia alelica (alelo alterno)</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>AN=2;</p></td>
+<td rowspan="2"><p>Número total de alelos para una variante</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>BaseQRankSum=-2.129</p></td>
+<td rowspan="2"><p>Z-score de la calidad de las bases mapeadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>ClippingRankSum=-0.286;</p></td>
+<td rowspan="2"><p>Z-score del número de lecturas con calidad de mapeo bajas para el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>DB;</p></td>
+<td rowspan="2"><p>Indica si la variante pertenece a una base de datos (dbSNP)</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>DP=63;</p></td>
+<td rowspan="2"><p>número de lecturas mapeadas en la posición de la variante</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>FS=0;</p></td>
+<td rowspan="2"><p>P-value ajustado para determinar sesgo hacía una cadena de DNA empleando una prueba exacta de Fisher</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>MLEAC=1;</p></td>
+<td rowspan="2"><p>Máxima verosimilitud esperada para el número de alelos observados (depende del número de muestras).</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>MLEAF=0.500;</p></td>
+<td rowspan="2"><p>Máxima verosimilitud esperada para las frecuencias alélicas (depende del número de muestras).</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>MQ=60.00;</p></td>
+<td rowspan="2"><p>Calidad media de mapeo en la posición de la variante.</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>MQRankSum=-0.0.635;</p></td>
+<td rowspan="2"><p>Z-score de la calidad de mapeo las bases alíneadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>QD=13.60;</p></td>
+<td rowspan="2"><p>Confianza del alelo observado (Quality over depth)</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>ReadPosRankSum=0.621;</p></td>
+<td rowspan="2"><p>Z-score del sesgo posicional (con respecto de la longitud de la lectura) del alelo alternativo vs el alelo de referencia (depende del número de muestras)</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>SOR=0.768;</p></td>
+<td rowspan="2"><p>Suma simétrica de la razón de momios del número de lecturas que presentan la variante cerca del final de la lectura, vs las lecturas que la presentan cerca del inicio de la lectura.</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>VQSLOD=3.39;</p></td>
+<td rowspan="2"><p>Logaritmo de la razón de momios de que la variante sea verdadera vs que sea un falso positivo.</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>culprit=qd</p></td>
+<td rowspan="2"><p>El descriptor que presentó la métrica más desfavorable</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="10"><p>9:FORMAT</p></td>
+<td rowspan="2"><p>GT</p></td>
+<td rowspan="2"><p>Genotipo</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>AD</p></td>
+<td rowspan="2"><p>Profundidad de los alelos observados (Ref,Alt)</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>DP</p></td>
+<td rowspan="2"><p>Profundidad total (número de lecturas</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>GQ</p></td>
+<td rowspan="2"><p>Calidad del genotipado</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>PL</p></td>
+<td rowspan="2"><p>Verosimilitud de genotipos (Obs,Nul,Alt)</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="10"><p>10:g204</p></td>
+<td rowspan="2"><p>0/1</p></td>
+<td rowspan="2"><p>Heterocigoto</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>37,26</p></td>
+<td rowspan="2"><p>(G)37 reads + (C)26 reads</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>63</p></td>
+<td rowspan="2"></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>99</p></td>
+<td rowspan="2"></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>885,0,1386</p></td>
+<td rowspan="2"></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+<p>Aquí un ejemplo real de un archivo <a class="reference external" href="https://raw.githubusercontent.com/vflorelo/better_call_ATG/docs/source/test_data_variants.vcf">vcf</a> de exoma</p>
+<p>A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes</p>
+<p>Para los ejercicios de este bloque vamos a procesar un archivo llamado <code class="code docutils literal notranslate"><span class="pre">Homo_sapiens_GRCh38.fasta.fai</span></code>.</p>
+<p>Este archivo es un índice de la secuencia del genoma humano en formato fasta, sin ahondar en detalles, este archivo viene del comando</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>samtools faidx Homo_sapiens_GRCh38.fasta
+</pre></div>
+</div>
+<p>Y esencialmente es un archivo que consta de 5 columnas</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>NAME</p></th>
+<th class="head" rowspan="2"><p>LENGTH</p></th>
+<th class="head" rowspan="2"><p>OFFSET</p></th>
+<th class="head" rowspan="2"><p>LINEBASES</p></th>
+<th class="head" rowspan="2"><p>LINEWIDTH</p></th>
+</tr>
+<tr class="row-even"></tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p>1</p></td>
+<td rowspan="2"><p>248956422</p></td>
+<td rowspan="2"><p>16</p></td>
+<td rowspan="2"><p>70</p></td>
+<td rowspan="2"><p>71</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>2</p></td>
+<td rowspan="2"><p>242193529</p></td>
+<td rowspan="2"><p>252512975</p></td>
+<td rowspan="2"><p>70</p></td>
+<td rowspan="2"><p>71</p></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+<p>Con los siguientes comandos podemos obtener información de este archivo sin tener que verlo todo, desde luego, este archivo es pequeño y podemos verlo en un excel, pero los archivos de llamado de variantes constan de decenas de miles de filas y de tantas columnas como muestras tengamos en nuestro estudio, de modo que visualizarlas en excel no es particularmente útil ni fácil</p>
+</div>
+<div class="section" id="grep">
+<h1><code class="code docutils literal notranslate"><span class="pre">grep</span></code><a class="headerlink" href="#grep" title="Enlazar permanentemente con este título">¶</a></h1>
+<p><strong>G</strong> lobally search for a <strong>R</strong> egular <strong>E</strong> xpression and <strong>P</strong> rint matching lines</p>
+<p>Como su nombre lo indica, grep busca un patrón (o expresión regular) y nos entrega las líneas que contengan dicho patrón de búsqueda</p>
+<blockquote>
+<div><div class="toggle admonition">
+<p class="admonition-title">Opciones <code class="code docutils literal notranslate"><span class="pre">grep</span></code></p>
+<ul>
+<li><p>Buscar un patrón en un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep X Homo_sapiens_GRCh38.fasta.fai
+X       156040895       2916073361      70      71
+</pre></div>
+</div>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">-w</span></code> Buscar un patrón en un archivo <em>si y solo si</em>, ocurre como <strong>palabra completa</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep 2 Homo_sapiens_GRCh38.fasta.fai
+1       248956422       16      70      71
+2       242193529       252512975       70      71
+3       198295559       498166428       70      71
+4       190214555       699294797       70      71
+5       181538259       892226719       70      71
+7       159345973       1249604479      70      71
+8       145138636       1411226840      70      71
+9       138394717       1558438902      70      71
+10      133797422       1698810704      70      71
+11      135086622       1834519535      70      71
+12      133275309       1971535983      70      71
+13      114364328       2106715242      70      71
+14      107043718       2222713363      70      71
+15      101991189       2331286294      70      71
+16      90338345        2434734517      70      71
+17      83257441        2526363427      70      71
+18      80373285        2610810278      70      71
+19      58617616        2692331770      70      71
+20      64444167        2751786798      70      71
+21      46709983        2817151612      70      71
+22      50818468        2864528898      70      71
+X       156040895       2916073361      70      71
+Y       57227415        3074343428      70      71
+MT      16569   3132388394      70      71
+
+$ grep -w 2 Homo_sapiens_GRCh38.fasta.fai
+2       242193529       252512975       70      71
+</pre></div>
+</div>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">-c</span></code> Buscar un patrón en un archivo pero en vez de entregar las líneas que contienen el patrón, entrega el <strong>número de líneas que contiene el patrón</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -c 2 Homo_sapiens_GRCh38.fasta.fai
+24
+</pre></div>
+</div>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">-m</span></code> Buscar un patrón en un archivo y entregar como maximo m líneas</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -m2 2 Homo_sapiens_GRCh38.fasta.fai
+1       248956422       16      70      71
+2       242193529       252512975       70      71
+</pre></div>
+</div>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">-n</span></code> Buscar un patrón en un archivo y mostrar el <strong>número de línea</strong> en la que ocurre el patrón de búsqueda:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -n X Homo_sapiens_GRCh38.fasta.fai
+23:X    156040895       2916073361      70      71
+</pre></div>
+</div>
+</li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">-v</span></code> Buscar un patrón en un archivo y muestra las líneas <strong>que no contengan</strong> el patrón de búsqueda:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -v 2 Homo_sapiens_GRCh38.fasta.fai
+6       170805979       1076358398      70      71
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>grep puede procesar muchos archivos, pero solo un patrón de búsqueda a la vez</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>La siguiente construcción es correcta:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep patrón archivo_1 archivo_2 archivo_3
+</pre></div>
+</div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>La siguiente construcción es incorrecta:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep patrón_1 patrón_2 patrón_3 archivo_1
+</pre></div>
+</div>
+<p>En esta ultima construcción, grep interpretará <code class="code docutils literal notranslate"><span class="pre">patrón_2</span></code> &amp; <code class="code docutils literal notranslate"><span class="pre">patrón_3</span></code> como archivos, no como patrónes de búsqueda</p>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Las opciones de <code class="code docutils literal notranslate"><span class="pre">grep</span></code> son combinables, de modo que podemos tener:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -wv termino archivo
+
+$ grep -wn termino archivo
+
+$ grep -wc termino archivo
+</pre></div>
+</div>
+<p>O las que se te ocurran, siempre y cuando tengan sentido ;)</p>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="cut">
+<h1><code class="code docutils literal notranslate"><span class="pre">cut</span></code><a class="headerlink" href="#cut" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Cut es una utilidad para separar columnas de un archivo tabular (como el vcf!)</p>
+<p>Para linux todo es una tabla, sabiéndola separar, aquí una pequeña introducción, tomemos el siguiente texto:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">|</span><span class="n">b</span><span class="o">|</span><span class="n">c</span>
+<span class="n">d</span><span class="o">|</span><span class="n">e</span><span class="o">|</span><span class="n">f</span>
+<span class="n">g</span><span class="o">|</span><span class="n">h</span><span class="o">|</span><span class="n">i</span>
+</pre></div>
+</div>
+<p>Podemos leerlo como una tabla de 3 filas y 3 columnas, separado por el signo “|”</p>
+<p>Otro ejemplo, si copipegamos una tabla de excel a nuestro bloc de notas, tendremos un texto con la siguiente estructura:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>       <span class="n">b</span>       <span class="n">c</span>
+<span class="n">d</span>       <span class="n">e</span>       <span class="n">f</span>
+<span class="n">g</span>       <span class="n">h</span>       <span class="n">i</span>
+</pre></div>
+</div>
+<p>Nuevamente podemos leerlo como una tabla de 3 filas y 3 columnas, separado por el signo invisible “\t”</p>
+<p>Ahora si, habiendo tenido esta breve introducción:</p>
+<blockquote>
+<div><div class="toggle admonition">
+<p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">cut</span></code></p>
+<ul>
+<li><p>Obtener la primera columna de un archivo tabular:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 Homo_sapiens_GRCh38.fasta.fai
+1
+2
+3
+4
+5
+6
+7
+8
+9
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+X
+Y
+MT
+</pre></div>
+</div>
+</li>
+<li><p>Obtener las primeras dos columnas de un archivo tabular:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1,2 Homo_sapiens_GRCh38.fasta.fai
+1       248956422
+2       242193529
+3       198295559
+4       190214555
+5       181538259
+6       170805979
+7       159345973
+8       145138636
+9       138394717
+10      133797422
+11      135086622
+12      133275309
+13      114364328
+14      107043718
+15      101991189
+16      90338345
+17      83257441
+18      80373285
+19      58617616
+20      64444167
+21      46709983
+22      50818468
+X       156040895
+Y       57227415
+MT      16569
+</pre></div>
+</div>
+</li>
+<li><p>Obtener las primeras tres columnas de un archivo tabular</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>podemos usar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1,2,3 Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>o podemos usar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1-3 Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Obtener las columnas 2 y 3 de un archivo tabular</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>podemos usar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f2,3 Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>o podemos usar:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 --complement Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Obtener todas las columnas de un archivo empezando por la segunda</p>
+<blockquote>
+<div><div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Podemos hacerlo pidiendo un intervalo abierto:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f2- Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+<p>O podemos hacerlo excluyendo la columna que nos estorba:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 --complement Homo_sapiens_GRCh38.fasta.fai
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p><code class="code docutils literal notranslate"><span class="pre">cut</span></code> usa por default el tabulador (“\t”) como separador de campo. Qué pasa si mi tabla no está separada por tabuladores?</p>
+<p>En ese escenario, podemos especificarle a <code class="code docutils literal notranslate"><span class="pre">cut</span></code> que use caracteres específicos como separadores de campo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat file_1
+a|b|c
+d|e|f
+g|h|i
+
+$ cut -d\| -f2
+b
+e
+h
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Al igual que con <code class="code docutils literal notranslate"><span class="pre">grep</span></code>, las opciones de <code class="code docutils literal notranslate"><span class="pre">cut</span></code> pueden ser combinables para tener un mejor control de lo que nos va a entregar nuestra terminal</p>
+<p>De este modo, las siguientes construcciones nos van a dar unicamente las columnas 2 y 6 de un archivo separado por comas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -d, -f2,6
+
+$ cut -d, -f1,3-5 --complement
+</pre></div>
+</div>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Reto!</p>
+<p>Cúal seria el resultado de las siguientes construcciones? El archivo lo encuentras en tu carpeta del dia_01. Mandanos por correo tus respuestas (y su explicación) y podrás ganar una sorpresa (limitado a 3 ganadores):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat archivo
+A,B     C       D       E       F       G       H       I       J       K       L       M       N       O,P     Q       R,S,T   U       V       W       X
+
+$ cut -f1,4-9,10,14,18- archivo
+
+$ cut -f1,4-9,10,14,18- --complement archivo
+
+$ cut -d, -f2,3 archivo
+
+$ cut -d, -f2,3- archivo
+
+$ cut -d, -f2,3 --complement archivo
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="sort">
+<h1><code class="code docutils literal notranslate"><span class="pre">sort</span></code><a class="headerlink" href="#sort" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Sort puede ordenar un conjunto de líneas empleando algún criterio.</p>
+<blockquote>
+<div><div class="toggle admonition">
+<p class="admonition-title">Modos de operacion de <code class="code docutils literal notranslate"><span class="pre">sort</span></code></p>
+<div class="toggle admonition">
+<p class="admonition-title">Ordenar un conjunto de líneas alfanumericamente</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort Homo_sapiens_GRCh38.fasta.fai
+10      133797422       1698810704      70      71
+11      135086622       1834519535      70      71
+12      133275309       1971535983      70      71
+1       248956422       16      70      71
+13      114364328       2106715242      70      71
+14      107043718       2222713363      70      71
+15      101991189       2331286294      70      71
+16      90338345        2434734517      70      71
+17      83257441        2526363427      70      71
+18      80373285        2610810278      70      71
+19      58617616        2692331770      70      71
+20      64444167        2751786798      70      71
+21      46709983        2817151612      70      71
+2       242193529       252512975       70      71
+22      50818468        2864528898      70      71
+3       198295559       498166428       70      71
+4       190214555       699294797       70      71
+5       181538259       892226719       70      71
+6       170805979       1076358398      70      71
+7       159345973       1249604479      70      71
+8       145138636       1411226840      70      71
+9       138394717       1558438902      70      71
+MT      16569   3132388394      70      71
+X       156040895       2916073361      70      71
+Y       57227415        3074343428      70      71
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>En cómputo, el orden alfanumérico es algo truculento, 100 va antes que 10, y 10 va antes que 1.</p>
+<p>De modo que ordenar líneas no es una tarea trivial</p>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Ordenar un conjunto de líneas numericamente</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -n Homo_sapiens_GRCh38.fasta.fai
+MT      16569   3132388394      70      71
+X       156040895       2916073361      70      71
+Y       57227415        3074343428      70      71
+1       248956422       16      70      71
+2       242193529       252512975       70      71
+3       198295559       498166428       70      71
+4       190214555       699294797       70      71
+5       181538259       892226719       70      71
+6       170805979       1076358398      70      71
+7       159345973       1249604479      70      71
+8       145138636       1411226840      70      71
+9       138394717       1558438902      70      71
+10      133797422       1698810704      70      71
+11      135086622       1834519535      70      71
+12      133275309       1971535983      70      71
+13      114364328       2106715242      70      71
+14      107043718       2222713363      70      71
+15      101991189       2331286294      70      71
+16      90338345        2434734517      70      71
+17      83257441        2526363427      70      71
+18      80373285        2610810278      70      71
+19      58617616        2692331770      70      71
+20      64444167        2751786798      70      71
+21      46709983        2817151612      70      71
+22      50818468        2864528898      70      71
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>En cómputo, el orden numérico es sensible a la presencia de caracteres alfabéticos, por lo que para ordenar líneas adecuadamente se requiere limpiar los datos (que unicamente contengan un tipo de datos por columna o por campo) o de emplear otra estrategia</p>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Ordenar un conjunto de líneas como versionado de software</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -V Homo_sapiens_GRCh38.fasta.fai
+1       248956422       16      70      71
+2       242193529       252512975       70      71
+3       198295559       498166428       70      71
+4       190214555       699294797       70      71
+5       181538259       892226719       70      71
+6       170805979       1076358398      70      71
+7       159345973       1249604479      70      71
+8       145138636       1411226840      70      71
+9       138394717       1558438902      70      71
+10      133797422       1698810704      70      71
+11      135086622       1834519535      70      71
+12      133275309       1971535983      70      71
+13      114364328       2106715242      70      71
+14      107043718       2222713363      70      71
+15      101991189       2331286294      70      71
+16      90338345        2434734517      70      71
+17      83257441        2526363427      70      71
+18      80373285        2610810278      70      71
+19      58617616        2692331770      70      71
+20      64444167        2751786798      70      71
+21      46709983        2817151612      70      71
+22      50818468        2864528898      70      71
+MT      16569   3132388394      70      71
+X       156040895       2916073361      70      71
+Y       57227415        3074343428      70      71
+</pre></div>
+</div>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Ordenar de forma descendente un conjunto de líneas</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -r Homo_sapiens_GRCh38.fasta.fai
+Y       57227415        3074343428      70      71
+X       156040895       2916073361      70      71
+MT      16569   3132388394      70      71
+9       138394717       1558438902      70      71
+8       145138636       1411226840      70      71
+7       159345973       1249604479      70      71
+6       170805979       1076358398      70      71
+5       181538259       892226719       70      71
+4       190214555       699294797       70      71
+3       198295559       498166428       70      71
+22      50818468        2864528898      70      71
+2       242193529       252512975       70      71
+21      46709983        2817151612      70      71
+20      64444167        2751786798      70      71
+19      58617616        2692331770      70      71
+18      80373285        2610810278      70      71
+17      83257441        2526363427      70      71
+16      90338345        2434734517      70      71
+15      101991189       2331286294      70      71
+14      107043718       2222713363      70      71
+13      114364328       2106715242      70      71
+1       248956422       16      70      71
+12      133275309       1971535983      70      71
+11      135086622       1834519535      70      71
+10      133797422       1698810704      70      71
+</pre></div>
+</div>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Ordenar con base en alguna columna específica</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -k2 Homo_sapiens_GRCh38.fasta.fai
+15      101991189       2331286294      70      71
+14      107043718       2222713363      70      71
+13      114364328       2106715242      70      71
+12      133275309       1971535983      70      71
+10      133797422       1698810704      70      71
+11      135086622       1834519535      70      71
+9       138394717       1558438902      70      71
+8       145138636       1411226840      70      71
+X       156040895       2916073361      70      71
+7       159345973       1249604479      70      71
+MT      16569   3132388394      70      71
+6       170805979       1076358398      70      71
+5       181538259       892226719       70      71
+4       190214555       699294797       70      71
+3       198295559       498166428       70      71
+2       242193529       252512975       70      71
+1       248956422       16      70      71
+21      46709983        2817151612      70      71
+22      50818468        2864528898      70      71
+Y       57227415        3074343428      70      71
+19      58617616        2692331770      70      71
+20      64444167        2751786798      70      71
+18      80373285        2610810278      70      71
+17      83257441        2526363427      70      71
+16      90338345        2434734517      70      71
+</pre></div>
+</div>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Ordenar con opciones múltiples</p>
+<p><code class="code docutils literal notranslate"><span class="pre">sort</span></code> al igual que <code class="code docutils literal notranslate"><span class="pre">cut</span></code> o <code class="code docutils literal notranslate"><span class="pre">grep</span></code> permite combinar opciones, siempre y cuando estas tengan sentido:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -n -r -k3 Homo_sapiens_GRCh38.fasta.fai
+MT      16569   3132388394      70      71
+Y       57227415        3074343428      70      71
+X       156040895       2916073361      70      71
+22      50818468        2864528898      70      71
+21      46709983        2817151612      70      71
+20      64444167        2751786798      70      71
+19      58617616        2692331770      70      71
+18      80373285        2610810278      70      71
+17      83257441        2526363427      70      71
+16      90338345        2434734517      70      71
+15      101991189       2331286294      70      71
+14      107043718       2222713363      70      71
+13      114364328       2106715242      70      71
+12      133275309       1971535983      70      71
+11      135086622       1834519535      70      71
+10      133797422       1698810704      70      71
+9       138394717       1558438902      70      71
+8       145138636       1411226840      70      71
+7       159345973       1249604479      70      71
+6       170805979       1076358398      70      71
+5       181538259       892226719       70      71
+4       190214555       699294797       70      71
+3       198295559       498166428       70      71
+2       242193529       252512975       70      71
+1       248956422       16      70
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="redireccion">
+<h1>Redirección: <code class="code docutils literal notranslate"><span class="pre">|</span></code><a class="headerlink" href="#redireccion" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Una de las principales utilidades de la línea de comandos es la posibilidad de concatenar comandos, es decir, tomar el resultado de un comando y pasarselo al siguiente comando</p>
+<p>Para ello debemos considerar que cuando ejecutamos un programa o comando, este nos arroja <em>standard streams</em>, dentro de las cuales tenemos dos muy importantes</p>
+<div class="toggle admonition">
+<p class="admonition-title">STDOUT</p>
+<p>La salida estandar (STDOUT) es lo que arroja un comando o un programa a la terminal, contiene unicamente el resultado del proceso que haya realizado un comando o programa</p>
+<p>En el siguiente ejemplo, <code class="code docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">world!&quot;</span></code> es la salida estándar del comando <code class="code docutils literal notranslate"><span class="pre">echo</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">STDERR</p>
+<p>El error estándar (STDERR) es también lo que arroja un comando o un programa a la terminal pero que contiene diagnósticos internos e información del proceso que haya realizado un comando o programa (no necesariamente el resultado)</p>
+<p>En el siguiente ejemplo, <code class="code docutils literal notranslate"><span class="pre">&quot;Hola</span> <span class="pre">mundo!&quot;</span></code> es la salida estándar del comando <code class="code docutils literal notranslate"><span class="pre">cat</span></code>, no obstante, al no haber encontrado el archivo <code class="code docutils literal notranslate"><span class="pre">mi_otro_archivo.txt</span></code>, nos manda el mensaje de <em>error</em> (STDERR) <code class="code docutils literal notranslate"><span class="pre">cat:</span> <span class="pre">mi_archivo.txt</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ cat mi_archivo.txt mi_otro_archivo.txt
+cat: mi_otro_archivo.txt No such file or directory
+Hola mundo!
+</pre></div>
+</div>
+</div>
+<p>Teniendo esto en mente, veremos que los pipes “<code class="code docutils literal notranslate"><span class="pre">|</span></code>” toman el <code class="code docutils literal notranslate"><span class="pre">STDOUT</span></code> y lo convierten en otro <em>standard stream</em> llamado entrada estandar (STDIN)</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>De modo natural, nuestros programas y comandos generan <code class="code docutils literal notranslate"><span class="pre">STDOUT</span></code>, los pipes toman este stream y lo pueden pasar a otro comando</p>
+<p>Aunque nosotros no vemos el <code class="code docutils literal notranslate"><span class="pre">STDIN</span></code>, el siguiente comando si puede verlo y procesarlo como si se tratara de un archivo</p>
+<p>El siguiente comando también generará <code class="code docutils literal notranslate"><span class="pre">STDOUT</span></code> y <code class="code docutils literal notranslate"><span class="pre">STDERR</span></code> y podemos seguir transformando el <code class="code docutils literal notranslate"><span class="pre">STDOUT</span></code> resultante <em>ad infinitum</em> &amp; <em>ad nauseam</em></p>
+<p>En teoria podríamos concatenar tantos comandos como queramos, siempre y cuando la construcción tenga sentido</p>
+<img alt="_images/stdin_stderr.png" src="_images/stdin_stderr.png" />
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ seq <span class="m">1</span> <span class="m">3</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+
+$ seq <span class="m">1</span> <span class="m">3</span> <span class="p">|</span> grep <span class="m">2</span>
+<span class="m">2</span>
+
+$ seq <span class="m">1</span> <span class="m">12</span> <span class="p">|</span> grep <span class="m">1</span>
+<span class="m">1</span>
+<span class="m">10</span>
+<span class="m">11</span>
+<span class="m">12</span>
+
+$ seq <span class="m">1</span> <span class="m">12</span> <span class="p">|</span> grep <span class="m">1</span> <span class="p">|</span> grep <span class="m">2</span>
+<span class="m">12</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h1>Redirección: <code class="code docutils literal notranslate"><span class="pre">&gt;</span></code> &amp; <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code><a class="headerlink" href="#id1" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Ya vimos como dirigir la salida de nuestros comandos y verla en una terminal, pero ahora. Qué pasa si queremos mandar esos resultados a un archivo?</p>
+<p>Para ello usaremos los operadores <code class="code docutils literal notranslate"><span class="pre">&gt;</span></code> &amp; <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>El operador <code class="code docutils literal notranslate"><span class="pre">&gt;</span></code> nos permite mandar la salida estándar de un comando o una serie de comandos a un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+
+$ seq 1 12 | grep 1 | grep 2
+12
+
+$ seq 1 12 | grep 1 | grep 2 &gt; archivo_1
+
+$ ls
+archivo_1
+
+$ cat archivo_1
+12
+</pre></div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>El operador <code class="code docutils literal notranslate"><span class="pre">&gt;</span></code> puede ser muy destructivo si no se emplea adecuadamente:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;blablabla&quot;</span> <span class="o">&gt;</span> <span class="n">tesis_final</span><span class="o">.</span><span class="n">docx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>El operador <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> nos permite <strong>agregar</strong> la salida estándar de un comando o una serie de comandos a un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ seq 1 12 | grep 1 | grep 2 &gt; archivo_1
+
+$ cat archivo_1
+12
+
+$ seq 1 12 | grep 1
+1
+10
+11
+12
+
+$ seq 1 12 | grep 1 &gt;&gt; archivo_1
+
+$ cat archivo_1
+12
+1
+10
+11
+12
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="avanzado-awk">
+<h1>Avanzado: <code class="code docutils literal notranslate"><span class="pre">awk</span></code><a class="headerlink" href="#avanzado-awk" title="Enlazar permanentemente con este título">¶</a></h1>
+<p><code class="code docutils literal notranslate"><span class="pre">awk</span></code> por si mismo es un lenguaje de programación, no obstante tiene aplicación en la línea de comandos como un programa de uso general</p>
+<dl class="simple">
+<dt><code class="code docutils literal notranslate"><span class="pre">awk</span></code> sirve para:</dt><dd><ul class="simple">
+<li><p>seleccionar columnas</p></li>
+<li><p>seleccionar filas</p></li>
+<li><p>realizar operaciones aritméticas</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Antes de lanzarnos al uso de <code class="code docutils literal notranslate"><span class="pre">awk</span></code> una pequeña introducción</p>
+<ul>
+<li><p>awk opera por bloques delimitados con “{}”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ awk &#39;{print $0}&#39;
+</pre></div>
+</div>
+</li>
+<li><p>awk puede procesar archivos de forma directa y también puede procesar <code class="code docutils literal notranslate"><span class="pre">STDIN</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ awk &#39;{print $0}&#39; mi_archivo.txt
+
+$ seq 1 12 | awk &#39;{print $1}&#39;
+</pre></div>
+</div>
+</li>
+<li><dl>
+<dt>Para awk todo puede ser una tabla</dt><dd><ul>
+<li><dl class="simple">
+<dt>awk puede usar delimitadores de campo tal como lo haria cut</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>Las variables FS, IFS &amp; OFS son usadas como delimitadores de campo (field separator)</dt><dd><ul>
+<li><p>FS  -&gt; field separator</p></li>
+<li><p>IFS -&gt; input field separator</p></li>
+<li><p>OFS -&gt; output field separator</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Los campos para awk son representados con el signo “$”, de modo que el primer campo es “$1”</p></li>
+<li><dl class="simple">
+<dt>Hay dos campos intrínsecos con notación especial</dt><dd><ul class="simple">
+<li><p>NR -&gt; number of rows</p></li>
+<li><p>$0 -&gt; all fields</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Tomando en consideración lo anterior, las siguientes construcciones son similares</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n3 archivo_1.csv
+a,b,c,d
+e,f,g,h
+i,j,k,l
+
+$ cut -d, -f1,2 archivo_1.csv | head -n3
+a,b
+e,f
+i,j
+
+$ awk &#39;BEGIN{FS=&quot;,&quot;;OFS=&quot;,&quot;}{print $1 OFS $2}&#39; archivo_1.csv | head -n3
+a,b
+e,f
+i,j
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<dl class="simple">
+<dt>Estamos listos para usar awk?</dt><dd><p>Estamos listos para usar awk!</p>
+</dd>
+</dl>
+<p>En la siguiente <a class="reference external" href="https://raw.githubusercontent.com/vflorelo/better_call_ATG/master/docs/source/test_data_variants.tsv">tabla</a> están las variantes encontradas en un experimento de secuenciación de exoma, veamos que le podemos hacer con awk (o con cualquier otro programa)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Chr</span><span class="o">.</span>    <span class="n">Position</span>        <span class="n">ID</span>      <span class="n">Ref</span><span class="o">.</span> <span class="n">allele</span>     <span class="n">Alt</span><span class="o">.</span> <span class="n">allele</span>     <span class="n">Genotype</span>        <span class="n">Gene</span>    <span class="n">HGVS</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>        <span class="n">HGVS</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>        <span class="n">Effect</span>  <span class="n">TOPMED</span>  <span class="n">ExAC</span>    <span class="n">gnomADx</span> <span class="n">gnomADg</span> <span class="mi">1000</span><span class="n">G</span>   <span class="n">PolyPhen</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>     <span class="n">PolyPhen</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>     <span class="n">SIFT</span>    <span class="n">FATHMM</span>  <span class="n">MutAssessor</span>     <span class="n">MutTaster</span>       <span class="n">PROVEAN</span> <span class="n">LRT</span>     <span class="n">MetaSVM</span> <span class="n">MetaLR</span>  <span class="n">FATHMM_MKL</span>      <span class="n">VEST3</span>   <span class="n">REVEL</span>   <span class="n">CADD</span>    <span class="n">DANN</span>    <span class="n">ClinVar</span> <span class="n">InterPro</span>        <span class="n">AF_verdict</span>
+<span class="mi">2</span>       <span class="mi">71668784</span>        <span class="n">rs145832952</span>     <span class="n">C</span>       <span class="n">T</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.438596</span><span class="p">)</span> <span class="n">DYSF</span>    <span class="n">c</span><span class="o">.</span><span class="mi">5488</span><span class="n">C</span><span class="o">&gt;</span><span class="n">T</span>       <span class="n">p</span><span class="o">.</span><span class="n">Pro1830Ser</span>    <span class="n">missense_variant</span>        <span class="mf">0.99989</span> <span class="mf">0.00009</span> <span class="mf">0.00012</span> <span class="mf">0.00003</span> <span class="mf">0.00060</span> <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">4</span>       <span class="mi">832</span>     <span class="n">Uncertain_significance</span>  <span class="mi">1</span>       <span class="n">LF</span>
+<span class="mi">4</span>       <span class="mi">119150952</span>       <span class="n">rs758181218</span>     <span class="n">C</span>       <span class="n">G</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.441176</span><span class="p">)</span> <span class="n">MYOZ2</span>   <span class="n">c</span><span class="o">.</span><span class="mi">157</span><span class="n">C</span><span class="o">&gt;</span><span class="n">G</span>        <span class="n">p</span><span class="o">.</span><span class="n">Arg53Gly</span>      <span class="n">missense_variant</span>        <span class="mf">0.99999</span> <span class="mf">0.00001</span> <span class="mf">0.00001</span>                 <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">0</span>       <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">432</span>     <span class="n">Uncertain_significance</span>  <span class="mi">0</span>       <span class="n">PLF</span>
+<span class="mi">17</span>      <span class="mi">41479481</span>        <span class="n">rs138303882</span>     <span class="n">G</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.391304</span><span class="p">)</span> <span class="n">KRT35</span>   <span class="n">c</span><span class="o">.</span><span class="mi">577</span><span class="n">C</span><span class="o">&gt;</span><span class="n">T</span>        <span class="n">p</span><span class="o">.</span><span class="n">Arg193Trp</span>     <span class="n">missense_variant</span>        <span class="mf">0.99811</span> <span class="mf">0.00051</span> <span class="mf">0.00044</span> <span class="mf">0.00162</span> <span class="mf">0.00140</span> <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">0</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">832</span>     <span class="n">none</span>    <span class="mi">0</span>       <span class="n">LF</span>
+<span class="mi">1</span>       <span class="mi">232514192</span>       <span class="n">rs770896568</span>     <span class="n">C</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.517241</span><span class="p">)</span> <span class="n">SIPA1L2</span> <span class="n">c</span><span class="o">.</span><span class="mi">1148</span><span class="n">G</span><span class="o">&gt;</span><span class="n">T</span>       <span class="n">p</span><span class="o">.</span><span class="n">Ser383Ile</span>     <span class="n">missense_variant</span>        <span class="mf">0.99999</span> <span class="mf">0.00001</span> <span class="mf">0.00000</span> <span class="mf">0.00003</span>         <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">8</span>       <span class="mi">0</span>       <span class="mi">232</span>     <span class="n">none</span>    <span class="mi">0</span>       <span class="n">PLF</span>
+<span class="mi">17</span>      <span class="mi">20297028</span>        <span class="n">test_data_novel140</span>      <span class="n">C</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.342105</span><span class="p">)</span> <span class="n">SPECC1</span>  <span class="n">c</span><span class="o">.</span><span class="mi">3008</span><span class="n">C</span><span class="o">&gt;</span><span class="n">A</span>       <span class="n">p</span><span class="o">.</span><span class="n">Thr1003Asn</span>    <span class="n">missense_variant</span>        <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">2</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">1</span>       <span class="mi">0</span>       <span class="mi">4</span>       <span class="mi">32</span>      <span class="n">none</span>    <span class="mi">1</span>       <span class="n">LF</span>
+<span class="mi">3</span>       <span class="mi">38126203</span>        <span class="n">rs140127056</span>     <span class="n">A</span>       <span class="n">G</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.506329</span><span class="p">)</span> <span class="n">ACAA1</span>   <span class="n">c</span><span class="o">.</span><span class="mi">956</span><span class="n">T</span><span class="o">&gt;</span><span class="n">C</span>        <span class="n">p</span><span class="o">.</span><span class="n">Ile319Thr</span>     <span class="n">missense_variant</span>        <span class="mf">0.99802</span> <span class="mf">0.00055</span> <span class="mf">0.00042</span> <span class="mf">0.00175</span> <span class="mf">0.00240</span> <span class="mi">32</span>      <span class="mi">16</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">0</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">8</span>       <span class="mi">232</span>     <span class="n">none</span>    <span class="mi">2</span>       <span class="n">LF</span>
+<span class="mi">1</span>       <span class="mi">119514197</span>       <span class="n">rs774738158</span>     <span class="n">A</span>       <span class="n">G</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>      <span class="n">HSD3B1</span>  <span class="n">c</span><span class="o">.</span><span class="mi">674</span><span class="n">A</span><span class="o">&gt;</span><span class="n">G</span>        <span class="n">p</span><span class="o">.</span><span class="n">Tyr225Cys</span>     <span class="n">missense_variant</span>                <span class="mf">0.00040</span> <span class="mf">0.00013</span> <span class="mf">0.00045</span>         <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">0</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">16</span>      <span class="mi">2</span>       <span class="mi">32</span><span class="n">none</span>  <span class="mi">1</span>       <span class="n">pLF</span>
+<span class="mi">1</span>       <span class="mi">152313385</span>       <span class="n">rs61816761</span>      <span class="n">G</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.435115</span><span class="p">)</span> <span class="n">FLG</span>     <span class="n">c</span><span class="o">.</span><span class="mi">1501</span><span class="n">C</span><span class="o">&gt;</span><span class="n">T</span>       <span class="n">p</span><span class="o">.</span><span class="n">Arg501</span><span class="o">*</span>       <span class="n">stop_gained</span>     <span class="mf">0.98844</span> <span class="mf">0.00873</span> <span class="mf">0.00937</span> <span class="mf">0.00940</span> <span class="mf">0.00339</span> <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">2</span>       <span class="mi">8</span><span class="n">Pathogenic</span>     <span class="mi">0</span>       <span class="n">PLF</span>
+<span class="mi">4</span>       <span class="mi">169713231</span>       <span class="n">rs770732784</span>     <span class="n">A</span>       <span class="n">G</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.323529</span><span class="p">)</span> <span class="n">CLCN3</span>   <span class="n">c</span><span class="o">.</span><span class="mi">2302</span><span class="n">A</span><span class="o">&gt;</span><span class="n">G</span>       <span class="n">p</span><span class="o">.</span><span class="n">Met768Val</span>     <span class="n">missense_variant</span>        <span class="mf">0.99997</span> <span class="mf">0.00008</span> <span class="mf">0.00008</span>                 <span class="mi">4</span>       <span class="mi">2</span>       <span class="mi">16</span>      <span class="mi">16</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">16</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">8</span>       <span class="mi">8</span>       <span class="mi">232</span>     <span class="n">Uncertain_significance</span>  <span class="mi">1</span>       <span class="n">PLF</span>
+<span class="mi">19</span>      <span class="mi">9996220</span> <span class="n">rs148417859</span>     <span class="n">G</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.436364</span><span class="p">)</span> <span class="n">COL5A3</span>  <span class="n">c</span><span class="o">.</span><span class="mi">1465</span><span class="n">C</span><span class="o">&gt;</span><span class="n">T</span>       <span class="n">p</span><span class="o">.</span><span class="n">Arg489Cys</span>     <span class="n">missense_variant</span>        <span class="mf">0.99959</span> <span class="mf">0.00016</span> <span class="mf">0.00015</span> <span class="mf">0.00019</span>         <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">2</span>       <span class="mi">32</span><span class="n">none</span>  <span class="mi">0</span>       <span class="n">PLF</span>
+</pre></div>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Condicionales en <code class="code docutils literal notranslate"><span class="pre">awk</span></code></p>
+<p>Con awk podemos emplear condicionales simples que nos permiten obtener segmentos específicos de un archivo o de un stream</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;BEGIN{FS=&quot;\t&quot;}{if($1==1 &amp;&amp; $2&gt;=1000000 &amp;&amp; $2&lt;=2000000){print $0}}&#39;</span> variant_table.tsv
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Desglosemos esta construcción:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="code docutils literal notranslate"><span class="pre">awk</span> <span class="pre">'BEGIN{FS=&quot;\t&quot;}'</span></code></dt><dd><p>Este segmento inicia el proceso de lectura del archivo (<code class="code docutils literal notranslate"><span class="pre">BEGIN</span></code>) y le indica a awk que el separador de campo es un tabulador “\t”</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="code docutils literal notranslate"><span class="pre">{if($1==1</span> <span class="pre">&amp;&amp;</span> <span class="pre">$2&gt;=1000000</span> <span class="pre">&amp;&amp;</span> <span class="pre">$2&lt;=2000000}</span></code></dt><dd><p>Esta condicional (<code class="code docutils literal notranslate"><span class="pre">if(condition){actions}</span></code>) se lee como:</p>
+<ul>
+<li><dl class="simple">
+<dt>Si se cumplen las siguientes condiciones:</dt><dd><ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$1=='1'</span></code> la primera columna es igual a 1</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y además</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$2&gt;='1000000'</span></code> la segunda columna es mayor o igual a 1,000,000</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y además</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$2&lt;='2000000'</span></code> la segunda columna es menor o igual a 2,000,000</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>entonces:</dt><dd><ul>
+<li><p><code class="code docutils literal notranslate"><span class="pre">{print</span> <span class="pre">$0}</span></code> muestrame en pantalla todas las columnas</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Y en términos biológicos:</dt><dd><p><strong>Dame todas las variantes del cromosoma 1, del nucleótido 1000000 al nucleótido 2000000</strong></p>
+</dd>
+</dl>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Es importante diferenciar los signos <code class="code docutils literal notranslate"><span class="pre">=</span></code> &amp; <code class="code docutils literal notranslate"><span class="pre">==</span></code></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">=</span></code> es un operador de asignación, por lo que no lo podemos usar en condicionales</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">==</span></code> es un operador de comparación, ideal para usarlo en condicionales</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Las condicionales son sumamente útiles en cualquier lenguaje de programación, sin embargo antes de ejecutarlas debemos verificar que tengan sentido:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{if($1==1 &amp;&amp; $2&lt;=1000000 &amp;&amp; $2&gt;=2000000}
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Esta construcción no tiene sentido, ya que esencialmente le estaremos pidiendo a awk que nos entregue filas en dónde se cumplen las siguientes condiciones:</dt><dd><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">$1=='1'</span></code> la primera columna sea igual a 1</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y además</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$2&lt;='1000000'</span></code> la segunda columna sea menor o igual a 1,000,000</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y además</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$2&gt;='2000000'</span></code> la segunda columna sea mayor o igual a 2,000,000</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Reto!</p>
+<p>Mandanos por correo los comandos que usarias para:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Obtener las variantes que se ubiquen en el gen <em>DMD</em></p></li>
+<li><p>Obtener las variantes sinónimas del cromosoma 4</p></li>
+<li><p>Obtener las variantes no sinónimas heterocigotas del cromosoma 16</p></li>
+<li><p>Obtener las variantes no sinónimas heterocigotas del cromosoma 1 que tengan una frecuencia alélica en el proyecto 1000 Genomas de menos de 0.01</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .admonition-title").show();
+        $(".toggle .admonition-title").click(function() {
+            $(this).parent().children().not(".admonition-title").toggle(400);
+            $(this).parent().children(".admonition-title").toggleClass("open");
+        })
+    });
+</script>
+
+  </body>
+</html>
