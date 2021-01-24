@@ -164,7 +164,7 @@
 <h1>Introducción<a class="headerlink" href="#introduccion" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>La finalidad de este curso es obtener un archivo de llamado de variantes (<em>Variant Calling File</em> por sus siglas en inglés) que tiene la siguiente estructura:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  g204</span>
-<span class="mi">1</span>       <span class="mi">13417</span>   <span class="n">rs777038595</span>     <span class="n">C</span>       <span class="n">CGAGA</span>   <span class="mf">324.73</span>  <span class="n">PASS</span>    <span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">BaseQRankSum</span><span class="o">=</span><span class="mf">0.583</span><span class="p">;</span><span class="n">DB</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">26</span><span class="p">;</span><span class="n">ExcessHet</span><span class="o">=</span><span class="mf">3.0103</span><span class="p">;</span><span class="n">FS</span><span class="o">=</span><span class="mf">0.000</span><span class="p">;</span><span class="n">MLEAC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MLEAF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mf">22.21</span><span class="p">;</span><span class="n">MQRankSum</span><span class="o">=-</span><span class="mf">0.032</span><span class="p">;</span><span class="n">QD</span><span class="o">=</span><span class="mf">12.49</span><span class="p">;</span><span class="n">ReadPosRankSum</span><span class="o">=-</span><span class="mf">2.185</span><span class="p">;</span><span class="n">SOR</span><span class="o">=</span><span class="mf">0.446</span><span class="p">;</span><span class="n">VQSLOD</span><span class="o">=</span><span class="mf">0.698</span><span class="p">;</span><span class="n">culprit</span><span class="o">=</span><span class="n">ReadPosRankSum</span> <span class="n">GT</span><span class="p">:</span><span class="n">AD</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">GQ</span><span class="p">:</span><span class="n">PL</span>  <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">99</span><span class="p">:</span><span class="mi">362</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">634</span>
+        <span class="n">chr1</span>       <span class="mi">13417</span>   <span class="n">rs777038595</span>     <span class="n">C</span>       <span class="n">CGAGA</span>   <span class="mf">324.73</span>  <span class="n">PASS</span>    <span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">BaseQRankSum</span><span class="o">=</span><span class="mf">0.583</span><span class="p">;</span><span class="n">DB</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">26</span><span class="p">;</span><span class="n">ExcessHet</span><span class="o">=</span><span class="mf">3.0103</span><span class="p">;</span><span class="n">FS</span><span class="o">=</span><span class="mf">0.000</span><span class="p">;</span><span class="n">MLEAC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MLEAF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mf">22.21</span><span class="p">;</span><span class="n">MQRankSum</span><span class="o">=-</span><span class="mf">0.032</span><span class="p">;</span><span class="n">QD</span><span class="o">=</span><span class="mf">12.49</span><span class="p">;</span><span class="n">ReadPosRankSum</span><span class="o">=-</span><span class="mf">2.185</span><span class="p">;</span><span class="n">SOR</span><span class="o">=</span><span class="mf">0.446</span><span class="p">;</span><span class="n">VQSLOD</span><span class="o">=</span><span class="mf">0.698</span><span class="p">;</span><span class="n">culprit</span><span class="o">=</span><span class="n">ReadPosRankSum</span> <span class="n">GT</span><span class="p">:</span><span class="n">AD</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">GQ</span><span class="p">:</span><span class="n">PL</span>  <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">99</span><span class="p">:</span><span class="mi">362</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">634</span>
 </pre></div>
 </div>
 <div class="toggle admonition">
@@ -178,32 +178,31 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td rowspan="2"><p>1: CHROM</p></td>
-<td rowspan="2"><p>1</p></td>
+<td rowspan="2"><p>chr1</p></td>
 <td rowspan="2"><p>Cromosoma en dónde se ubica la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>2: POS</p></td>
-<td rowspan="2"><p>1053827</p></td>
+<td rowspan="2"><p>13417</p></td>
 <td rowspan="2"><p>Posición de la variante en el cromosoma</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>3: ID</p></td>
-<td rowspan="2"><p>rs74685771</p></td>
-<td rowspan="2"><p>Identificador de la variante</p></td>
+<td colspan="2" rowspan="2"><p>rs777038595             +Identificador de la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>4: REF</p></td>
-<td rowspan="2"><p>G</p></td>
+<td rowspan="2"><p>C</p></td>
 <td rowspan="2"><p>Alelo de referencia</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>5: ALT</p></td>
-<td rowspan="2"><p>C</p></td>
+<td rowspan="2"><p>CGAGA</p></td>
 <td rowspan="2"><p>Alelo encontrado en la muestra</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>6: QUAL</p></td>
-<td rowspan="2"><p>856.77</p></td>
+<td rowspan="2"><p>324.73</p></td>
 <td rowspan="2"><p>Score de calidad de la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
@@ -225,23 +224,23 @@
 <td rowspan="2"><p>Número total de alelos para una variante</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>BaseQRankSum=-2.129</p></td>
+<tr class="row-odd"><td rowspan="2"><p>BaseQRankSum=0.583</p></td>
 <td rowspan="2"><p>Z-score de la calidad de las bases mapeadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
-</tr>
-<tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>ClippingRankSum=-0.286;</p></td>
-<td rowspan="2"><p>Z-score del número de lecturas con calidad de mapeo bajas para el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>DB;</p></td>
 <td rowspan="2"><p>Indica si la variante pertenece a una base de datos (dbSNP)</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>DP=63;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>DP=26;</p></td>
 <td rowspan="2"><p>número de lecturas mapeadas en la posición de la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>FS=0;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>ExcessHet=3.0103;</p></td>
+<td rowspan="2"><p>p-value en escala Phred para una prueba exacta de exceso de heterocigosidad</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>FS=0.000;</p></td>
 <td rowspan="2"><p>P-value ajustado para determinar sesgo hacía una cadena de DNA empleando una prueba exacta de Fisher</p></td>
 </tr>
 <tr class="row-even"></tr>
@@ -253,31 +252,31 @@
 <td rowspan="2"><p>Máxima verosimilitud esperada para las frecuencias alélicas (depende del número de muestras).</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>MQ=60.00;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>MQ=22.21;</p></td>
 <td rowspan="2"><p>Calidad media de mapeo en la posición de la variante.</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>MQRankSum=-0.0.635;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>MQRankSum=-0.032;</p></td>
 <td rowspan="2"><p>Z-score de la calidad de mapeo las bases alíneadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>QD=13.60;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>QD=12.49;</p></td>
 <td rowspan="2"><p>Confianza del alelo observado (Quality over depth)</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>ReadPosRankSum=0.621;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>ReadPosRankSum=-2.185;</p></td>
 <td rowspan="2"><p>Z-score del sesgo posicional (con respecto de la longitud de la lectura) del alelo alternativo vs el alelo de referencia (depende del número de muestras)</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>SOR=0.768;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>SOR=0.446;</p></td>
 <td rowspan="2"><p>Suma simétrica de la razón de momios del número de lecturas que presentan la variante cerca del final de la lectura, vs las lecturas que la presentan cerca del inicio de la lectura.</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>VQSLOD=3.39;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>VQSLOD=0.698;</p></td>
 <td rowspan="2"><p>Logaritmo de la razón de momios de que la variante sea verdadera vs que sea un falso positivo.</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>culprit=qd</p></td>
+<tr class="row-odd"><td rowspan="2"><p>culprit=ReadPosRankSum</p></td>
 <td rowspan="2"><p>El descriptor que presentó la métrica más desfavorable</p></td>
 </tr>
 <tr class="row-even"></tr>
@@ -307,11 +306,11 @@
 <td rowspan="2"><p>Heterocigoto</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>37,26</p></td>
-<td rowspan="2"><p>(G)37 reads + (C)26 reads</p></td>
+<tr class="row-odd"><td rowspan="2"><p>15,11</p></td>
+<td rowspan="2"><p>(C)15 reads + (CGAGA)11 reads</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>63</p></td>
+<tr class="row-odd"><td rowspan="2"><p>26</p></td>
 <td rowspan="2"></td>
 </tr>
 <tr class="row-even"></tr>
@@ -319,7 +318,7 @@
 <td rowspan="2"></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>885,0,1386</p></td>
+<tr class="row-odd"><td rowspan="2"><p>362,0,634</p></td>
 <td rowspan="2"></td>
 </tr>
 <tr class="row-even"></tr>
@@ -327,49 +326,9 @@
 </table>
 </div></blockquote>
 </div>
-<p>Aquí un ejemplo real de un archivo <a class="reference external" href="https://raw.githubusercontent.com/vflorelo/better_call_ATG/docs/source/test_data_variants.vcf">vcf</a> de exoma</p>
-<p>A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes</p>
-<p>Para los ejercicios de este bloque vamos a procesar un archivo llamado <code class="code docutils literal notranslate"><span class="pre">Homo_sapiens_GRCh38.fasta.fai</span></code>.</p>
-<p>Este archivo es un índice de la secuencia del genoma humano en formato fasta, sin ahondar en detalles, este archivo viene del comando</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>samtools faidx Homo_sapiens_GRCh38.fasta
-</pre></div>
-</div>
-<p>Y esencialmente es un archivo que consta de 5 columnas</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head" rowspan="2"><p>NAME</p></th>
-<th class="head" rowspan="2"><p>LENGTH</p></th>
-<th class="head" rowspan="2"><p>OFFSET</p></th>
-<th class="head" rowspan="2"><p>LINEBASES</p></th>
-<th class="head" rowspan="2"><p>LINEWIDTH</p></th>
-</tr>
-<tr class="row-even"></tr>
-</thead>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p>1</p></td>
-<td rowspan="2"><p>248956422</p></td>
-<td rowspan="2"><p>16</p></td>
-<td rowspan="2"><p>70</p></td>
-<td rowspan="2"><p>71</p></td>
-</tr>
-<tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>2</p></td>
-<td rowspan="2"><p>242193529</p></td>
-<td rowspan="2"><p>252512975</p></td>
-<td rowspan="2"><p>70</p></td>
-<td rowspan="2"><p>71</p></td>
-</tr>
-<tr class="row-even"></tr>
-</tbody>
-</table>
-<p>Con los siguientes comandos podemos obtener información de este archivo sin tener que verlo todo, desde luego, este archivo es pequeño y podemos verlo en un excel, pero los archivos de llamado de variantes constan de decenas de miles de filas y de tantas columnas como muestras tengamos en nuestro estudio, de modo que visualizarlas en excel no es particularmente útil ni fácil</p>
+<p>A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes
+Para comenzar, vamos a descargar un archivo con el que podamos trabajar
+<code class="code docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://github.com/vflorelo/Call-me-by-your-reads/</span></code></p>
 </div>
 <div class="section" id="grep">
 <h1><code class="code docutils literal notranslate"><span class="pre">grep</span></code><a class="headerlink" href="#grep" title="Enlazar permanentemente con este título">¶</a></h1>

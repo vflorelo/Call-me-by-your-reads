@@ -97,21 +97,21 @@
 </li>
 <li><a class="reference internal" href="#linux"><span class="xref std std-doc">Linux</span></a><ul>
 <li><a class="reference internal" href="#id1">Introducción</a></li>
+<li><a class="reference internal" href="#la-bendita-instancia">La bendita instancia</a></li>
 <li><a class="reference internal" href="#consideraciones-y-conceptos">Consideraciones y conceptos</a><ul>
-<li><a class="reference internal" href="#shell">Shell</a></li>
-<li><a class="reference internal" href="#terminal">Terminal</a></li>
+<li><a class="reference internal" href="#shell"><em>Shell</em></a></li>
+<li><a class="reference internal" href="#terminal"><em>Terminal</em></a></li>
 <li><a class="reference internal" href="#prompt"><em>Prompt</em></a></li>
-<li><a class="reference internal" href="#comando">Comando</a></li>
-<li><a class="reference internal" href="#opcion">Opción</a></li>
-<li><a class="reference internal" href="#argumento">Argumento</a></li>
+<li><a class="reference internal" href="#comando"><em>Comando</em></a></li>
+<li><a class="reference internal" href="#opcion"><em>Opción</em></a></li>
+<li><a class="reference internal" href="#argumento"><em>Argumento</em></a></li>
+<li><a class="reference internal" href="#combinaciones"><em>Combinaciones</em></a></li>
 <li><a class="reference internal" href="#path"><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code></a></li>
-<li><a class="reference internal" href="#uso-de-mayusculas-y-minusculas">Uso de mayúsculas y minúsculas</a></li>
-<li><a class="reference internal" href="#uso-de-caracteres-especiales">Uso de caracteres especiales</a></li>
+<li><a class="reference internal" href="#uso-de-mayusculas-y-minusculas"><em>Uso de</em> <strong>mayúsculas</strong> <em>y</em> <strong>minúsculas</strong></a></li>
+<li><a class="reference internal" href="#uso-de-caracteres-especiales"><em>Uso de caracteres especiales</em></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#comandos-basicos">Comandos básicos</a><ul>
-<li><a class="reference internal" href="#whoami"><code class="code docutils literal notranslate"><span class="pre">whoami</span></code></a></li>
-<li><a class="reference internal" href="#pwd"><code class="code docutils literal notranslate"><span class="pre">pwd</span></code></a></li>
 <li><a class="reference internal" href="#ls"><code class="code docutils literal notranslate"><span class="pre">ls</span></code></a></li>
 <li><a class="reference internal" href="#cd"><code class="code docutils literal notranslate"><span class="pre">cd</span></code></a></li>
 <li><a class="reference internal" href="#mkdir"><code class="code docutils literal notranslate"><span class="pre">mkdir</span></code></a></li>
@@ -122,9 +122,10 @@
 <li><a class="reference internal" href="#less"><code class="code docutils literal notranslate"><span class="pre">less</span></code></a></li>
 <li><a class="reference internal" href="#head"><code class="code docutils literal notranslate"><span class="pre">head</span></code></a></li>
 <li><a class="reference internal" href="#tail"><code class="code docutils literal notranslate"><span class="pre">tail</span></code></a></li>
+<li><a class="reference internal" href="#wc"><code class="code docutils literal notranslate"><span class="pre">wc</span></code></a></li>
+<li><a class="reference internal" href="#scp"><code class="code docutils literal notranslate"><span class="pre">scp</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#scp"><code class="code docutils literal notranslate"><span class="pre">scp</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#parseando"><span class="xref std std-doc">Parseando</span></a><ul>
@@ -249,13 +250,14 @@
 <li><p>En <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/32814806/">plantas</a> se puede realizar la genotipificación de variedades específicas para selección y mejoramiento de cultivos (como en trigo, maíz, chile y frijol)</p></li>
 </ul>
 </dd>
-<dt>El procedimiento general consiste en:</dt><dd><ol class="arabic simple" start="0">
-<li><dl class="simple">
+<dt>El procedimiento general consiste en:</dt><dd><ol class="arabic" start="0">
+<li><dl>
 <dt>Un experimento de secuenciación</dt><dd><ul class="simple">
 <li><p>Puede ser secuenciación de genoma completo</p></li>
 <li><p>Puede ser secuenciación de regiones específicas</p></li>
 <li><p>Puede ser secuenciación de regiones aleatorias</p></li>
 </ul>
+<img alt="_images/GBS.png" src="_images/GBS.png" />
 </dd>
 </dl>
 </li>
@@ -274,20 +276,20 @@
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
+<li><dl>
 <dt>Genotipificación y faseo de los alelos</dt><dd><ul class="simple">
 <li><p>Construcción de haplotipos basado en secuenciación (usando <em>long reads</em>)</p></li>
 <li><p>Construcción de haplotipos basado en relaciones interindividuales (usando árboles genealógicos)</p></li>
 </ul>
+<img alt="_images/data_flow.png" src="_images/data_flow.png" />
 </dd>
 </dl>
 </li>
 </ol>
-<img alt="_images/GBS.png" src="_images/GBS.png" />
 </dd>
 <dt>En este curso aprenderás a usar comandos básicos de linux y <a class="reference external" href="https://gatk.broadinstitute.org/">GATK4</a> para el llamado de variantes genómicas a partir de datos de secuenciación masiva obtenidos de muestras humanas por individuo</dt><dd><ul class="simple">
-<li><p>La documentación de todo el curso estará disponible conforme avance el curso en <a class="reference external" href="https://better_call_ATG.readthedocs.io/es/latest/">readthedocs.org</a></p></li>
-<li><p>Mándanos tus preguntas, comentarios, sugerencias y quejas a nuestro canal en <a class="reference external" href="https://discord.com/channels/724665563212939285/757304924835938354">discord</a></p></li>
+<li><p>La documentación de todo el curso estará disponible conforme avance el curso en <a class="reference external" href="https://call-me-by-your-reads.readthedocs.io/en/latest/">readthedocs.org</a></p></li>
+<li><p>Mándanos tus preguntas, comentarios, sugerencias y quejas a nuestro canal en <a class="reference external" href="https://discord.com/channels/724665563212939285/798223051253874709">discord</a></p></li>
 </ul>
 </dd>
 </dl>
@@ -300,6 +302,68 @@
 <p>Existen múltiples programas para el llamado de variantes, no obstante la gran mayoria no puede ser ejecutada en ambientes windows. En consecuencia, es importante estar familiarizado con el uso de sistemas unix/linux como puede ser Mac-OSX o Ubuntu linux.</p>
 <p>Adicionalmente, muchos de los programas para el llamado de variantes no cuenta con una interfáz gráfica de usuario, por ello, es importante aprender a usar la línea de comandos con fluidez</p>
 </div>
+<div class="section" id="la-bendita-instancia">
+<h2>La bendita instancia<a class="headerlink" href="#la-bendita-instancia" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En esta ocasión te preparamos una máquina especial a la que puedes accesar en el horario del curso. Es una instancia en Amazon Web Services y de ahora en adelante nos referiremos a esta máquina como «la instancia»
+Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo «atg.pem». <strong>no necesitas abrir este archivo</strong>, solamente debes ponerlo en tu carpeta personal</p>
+<ul>
+<li><p>Si usas windows, así puedes accesar a tu carpeta personal:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Abre un explorador de archivos</p></li>
+<li><p>Ve a la carpeta «Este equipo»</p></li>
+<li><p>Ve a la carpeta «C:\»</p></li>
+<li><p>Ve a la carpeta «Users» (o usuarios, dependiendo de tu equipo)</p></li>
+<li><p>Ve a la carpeta con tu nombre de usuario</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/dianolasa_home.jpg"><img alt="&quot;Así se ve el home de &#64;dianolasa&quot;" src="_images/dianolasa_home.jpg" style="width: 600px;" /></a>
+</div></blockquote>
+</li>
+<li><p>Si usas linux, así puedes accesar a tu carpeta personal:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Abre un explorador de archivos</p></li>
+<li><p>En la barra lateral podrás encontrar tu carpeta personal con el icono de una casa</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/vflorelo_home.png"><img alt="&quot;Así se ve el home de &#64;vflorelo&quot;" src="_images/vflorelo_home.png" style="width: 600px;" /></a>
+</div></blockquote>
+</li>
+<li><p>Si usas mac, así puedes accesar a tu carpeta personal:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Abre tu explorador de archivos (Finder)</p></li>
+<li><p>Dirigete a la carpeta marcada con el icono de una casa</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/zorbax_home.jpg"><img alt="&quot;Así se ve el home de &#64;zorbax&quot;" src="_images/zorbax_home.jpg" style="width: 600px;" /></a>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>No siempre está habilitado el directorio home en finder, de modo que si no lo ves, checa la configuración de finder</p>
+<a class="reference internal image-reference" href="_images/zorbax_finder_opts.jpg"><img alt="&quot;Checa tu finder si no encuentras tu home&quot;" src="_images/zorbax_finder_opts.jpg" style="height: 200px;" /></a>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>Ya que tengas tu archivo atg.pem en tu carpeta personal, no la muevas ni le cambies el nombre.
+Ahora vamos a abrir la terminal</p>
+<ul class="simple">
+<li><p>Si usas windows, inicia una sesión con mobaxterm</p></li>
+<li><p>Si usas linux, abre tu terminal</p></li>
+<li><p>Si usas mac, abre tu terminal en Aplicaciones -&gt; Utilidades -&gt; Terminal</p></li>
+</ul>
+<p>A continuación vamos a blindar nuestra llave para que funcione adecuadamente</p>
+<p><code class="code docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">400</span> <span class="pre">atg.pem</span></code></p>
+<p>Una vez hecho esto, vamos a iniciar sesión en la instancia (<strong>recuerda cambiar «vflorelo» por tu nombre de usuario</strong>)</p>
+<p><code class="code docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-i</span> <span class="pre">atg.pem</span> <span class="pre">vflorelo&#64;atgenomics.ddns.net</span></code></p>
+<div class="admonition-nota admonition">
+<p class="admonition-title">Nota</p>
+<p>Es importante que distingas:</p>
+<ul class="simple">
+<li><p>Cuando estás trabajando en la instancia, la barrita en la terminal dice atgenomics</p></li>
+<li><p>Cuando estás trabajando en una terminal local, la barrita no dice atgenomics</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/local_remote.png"><img alt="&quot;Recuerda, el prompt es tu amigo&quot;" src="_images/local_remote.png" style="width: 600px;" /></a>
+</div>
+</div>
 <div class="section" id="consideraciones-y-conceptos">
 <h2>Consideraciones y conceptos<a class="headerlink" href="#consideraciones-y-conceptos" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="admonition important">
@@ -307,7 +371,7 @@
 <p>Para el uso óptimo de la línea de comandos debemos tener en consideración las siguientes definiciones y precauciones</p>
 </div>
 <div class="section" id="shell">
-<h3>Shell<a class="headerlink" href="#shell" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><em>Shell</em><a class="headerlink" href="#shell" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Es el intérprete entre el usuario y las aplicaciones</p>
 <ul class="simple">
 <li><p>El shell recibe una entrada a manera de comandos</p></li>
@@ -316,12 +380,10 @@
 </ul>
 </div>
 <div class="section" id="terminal">
-<h3>Terminal<a class="headerlink" href="#terminal" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>La terminal o línea de comandos es una interfáz no gráfica con la cúal el usuario puede interactuar con el sistema</p>
-<p>A pesar de su simpleza es una interfaz sumamente poderosa y eficiente, ya que nos permite ver que es lo que está ocurriendo tras bambalinas mientras un programa se está ejecutando</p>
-<p>Es un estándar en el cómputo y seguirá siendolo por mucho tiempo más</p>
+<h3><em>Terminal</em><a class="headerlink" href="#terminal" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La terminal o línea de comandos es una interfáz no gráfica con la cúal el usuario puede interactuar con el sistema. A pesar de su simpleza es una interfaz sumamente poderosa y eficiente, ya que nos permite ver que es lo que está ocurriendo tras bambalinas mientras un programa se está ejecutando. Es un estándar en el cómputo y seguirá siendolo por mucho tiempo más.</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/commitstrip_cli.jpg"><img alt="Your friendly neighbour the terminal" src="_images/commitstrip_cli.jpg" style="height: 150px;" /></a>
+<div><a class="reference internal image-reference" href="_images/commitstrip_cli.jpg"><img alt="Your friendly neighbour the terminal" src="_images/commitstrip_cli.jpg" style="width: 600px;" /></a>
 </div></blockquote>
 </div>
 <div class="section" id="prompt">
@@ -331,122 +393,79 @@
 <p class="admonition-title">Peligro</p>
 <p>Si no hay prompt no podemos mandar comandos</p>
 </div>
-<a class="reference internal image-reference" href="_images/prompt.png"><img alt="No prompt, no soup for you!" src="_images/prompt.png" style="height: 150px;" /></a>
+<a class="reference internal image-reference" href="_images/terminal_01_prompt.png"><img alt="No prompt, no soup for you!" src="_images/terminal_01_prompt.png" style="width: 600px;" /></a>
 </dd>
 </dl>
 </div>
 <div class="section" id="comando">
-<h3>Comando<a class="headerlink" href="#comando" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><em>Comando</em><a class="headerlink" href="#comando" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Un comando es la primera palabra que va después del prompt (o después de un pipe &quot;|&quot;, eso lo veremos en parseo ), un comando es esencialmente un elemento ejecutable que puede ser un programa binario o un script</p>
 <blockquote>
 <div><div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
 <p>El comando debe estar presente en el <code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> para que la terminal lo pueda ejecutar</p>
 </div>
+<a class="reference internal image-reference" href="_images/terminal_02_command.png"><img alt="_images/terminal_02_command.png" src="_images/terminal_02_command.png" style="width: 600px;" /></a>
 </div></blockquote>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/command_01.png"><img alt="command" src="_images/command_01.png" style="height: 150px;" /></a></p></td>
-<td rowspan="2"><p><a class="reference internal" href="_images/command_02.png"><img alt="command" src="_images/command_02.png" style="height: 150px;" /></a></p></td>
-</tr>
-<tr class="row-even"></tr>
-</tbody>
-</table>
 </div>
 <div class="section" id="opcion">
-<h3>Opción<a class="headerlink" href="#opcion" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Ciertos comandos y programas pueden comportarse distinto si le pasamos una o más opciones, las opciones se especifican con el signo “-” o con los signos “--”</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/option_01.png"><img alt="option" src="_images/option_01.png" style="height: 150px;" /></a></p></td>
-<td rowspan="2"><p><a class="reference internal" href="_images/option_02.png"><img alt="option" src="_images/option_02.png" style="height: 150px;" /></a></p></td>
-</tr>
-<tr class="row-even"></tr>
-</tbody>
-</table>
+<h3><em>Opción</em><a class="headerlink" href="#opcion" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Ciertos comandos y programas pueden comportarse distinto si le pasamos una o más opciones.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Las opciones se especifican con el signo “-” o con los signos “--”</p>
+</div>
+<a class="reference internal image-reference" href="_images/terminal_03_option.png"><img alt="option" src="_images/terminal_03_option.png" style="width: 600px;" /></a>
+</div></blockquote>
 </div>
 <div class="section" id="argumento">
-<h3>Argumento<a class="headerlink" href="#argumento" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><em>Argumento</em><a class="headerlink" href="#argumento" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Un argumento es una o más palabras que vienen después de un comando, pueden ir antes o después de una opción (o no llevar opciones incluso)</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/argument_01.png"><img alt="argument" src="_images/argument_01.png" style="height: 150px;" /></a></p></td>
-<td rowspan="2"><p><a class="reference internal" href="_images/argument_02.png"><img alt="argument" src="_images/argument_02.png" style="height: 150px;" /></a></p></td>
-</tr>
-<tr class="row-even"></tr>
-</tbody>
-</table>
 <blockquote>
-<div><div class="admonition tip">
-<p class="admonition-title">Truco</p>
-<p><strong>Un argumento no lleva el signo “-”</strong></p>
+<div><div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Los argumentos no llevan “-” ni “--” y en ocasiones conviene delimitarlos con comillas</p>
 </div>
+<a class="reference internal image-reference" href="_images/terminal_04_argument.png"><img alt="argument" src="_images/terminal_04_argument.png" style="width: 600px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="combinaciones">
+<h3><em>Combinaciones</em><a class="headerlink" href="#combinaciones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>En muchas ocasiones necesitaremos de opciones y de argumentos de modo que es indispensable saber como combinarlos</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>El orden de las opciones y argumentos es fundamental en la ejecución de los comandos que usaremos a partir del día 3</p>
+</div>
+<a class="reference internal image-reference" href="_images/terminal_05_opt_arg.png"><img alt="combination" src="_images/terminal_05_opt_arg.png" style="width: 600px;" /></a>
 </div></blockquote>
 </div>
 <div class="section" id="path">
 <h3><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code><a class="headerlink" href="#path" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>En unix/linux la variable de entorno <code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> contiene el conjunto de directorios que alberga aplicaciones en nuestro sistema</p>
-<p>Al hacer <code class="code docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$PATH&quot;</span></code></p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/path.png"><img alt="path" src="_images/path.png" style="height: 150px;" /></a>
-<p>Veremos que los programas de mi computadora, residen en alguna de las siguientes carpetas:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">mpi</span><span class="o">/</span><span class="n">gcc</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mit</span><span class="o">/</span><span class="n">sbin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">local_scripts</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">rmblast</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">augustus</span><span class="o">-</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">scripts</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">augustus</span><span class="o">-</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="nb">bin</span>
-</pre></div>
+<div><div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>Es una variable muy sensible, y moverla sin conocimiento puede tener consecuencias que afecten la sesión del usuario, hay que modificarla lo menos posible</p>
 </div>
+<a class="reference internal image-reference" href="_images/path.png"><img alt="path" src="_images/path.png" style="width: 600px;" /></a>
 <div class="admonition tip">
 <p class="admonition-title">Truco</p>
-<p>Adicionalmente, si queremos instalar un programa nuevo, lo podemos colocar en cualquiera de las carpetas enlistadas anteriormente y lo podemos invocar desde cualquier sitio en nuestra terminal</p>
+<p>Si queremos instalar un programa nuevo, lo podemos colocar en cualquiera de las carpetas enlistadas anteriormente y lo podemos invocar desde cualquier sitio en nuestra terminal</p>
 </div>
 </div></blockquote>
 </div>
 <div class="section" id="uso-de-mayusculas-y-minusculas">
-<h3>Uso de mayúsculas y minúsculas<a class="headerlink" href="#uso-de-mayusculas-y-minusculas" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><em>Uso de</em> <strong>mayúsculas</strong> <em>y</em> <strong>minúsculas</strong><a class="headerlink" href="#uso-de-mayusculas-y-minusculas" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="admonition danger">
 <p class="admonition-title">Peligro</p>
-<p>Los sistemas unix/linux son sensibles al uso de mayúsculas y minúsculas!</p>
-<p>Es importante revisar lo que se ingresa en la terminal antes de mandar cualquier instrucción</p>
+<p>Los sistemas unix/linux son sensibles al uso de <strong>mayúsculas</strong> y <strong>minúsculas</strong>!</p>
+<p>Es importante revisar siempre lo que ingresas en la terminal antes de mandar cualquier instrucción</p>
 </div>
-<p>En nuestro sistema windows en un mismo directorio no pueden existir los siguientes archivos:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><strong>&quot;A.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;a.pdf&quot;</strong></p></li>
-</ul>
-</div></blockquote>
-<p>Sin embargo, en nuestro sistema unix/linux podemos tener dentro de un mismo directorio los siguientes archivos:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><strong>&quot;abcD.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;Abcd.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;aBcd.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;abCd.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;ABCd.pdf&quot;</strong></p></li>
-</ul>
-</div></blockquote>
 </div>
 <div class="section" id="uso-de-caracteres-especiales">
-<h3>Uso de caracteres especiales<a class="headerlink" href="#uso-de-caracteres-especiales" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><em>Uso de caracteres especiales</em><a class="headerlink" href="#uso-de-caracteres-especiales" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Existen caracteres con un significado específico del sistema, en consecuencia, se deben tratar de forma especial.</p>
 <p>Estos caracteres son los siguientes y por lo general los ubicas en tu teclado en la barra numérica:</p>
 <blockquote>
@@ -533,96 +552,20 @@ Hola mundo
 <div class="section" id="comandos-basicos">
 <h2>Comandos básicos<a class="headerlink" href="#comandos-basicos" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>En esta sección encontraremos comandos básicos para el manejo de archivos, es indispensable que tengamos familiaridad con estos comandos antes de continuar con la manipulación de archivos</p>
-<div class="section" id="whoami">
-<h3><code class="code docutils literal notranslate"><span class="pre">whoami</span></code><a class="headerlink" href="#whoami" title="Enlazar permanentemente con este título">¶</a></h3>
-<p><em>Who am I?</em> Nos indica con qué nombre de usuario estamos trabajando:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ whoami
-vflorelo
-</pre></div>
-</div>
-</div>
-<div class="section" id="pwd">
-<h3><code class="code docutils literal notranslate"><span class="pre">pwd</span></code><a class="headerlink" href="#pwd" title="Enlazar permanentemente con este título">¶</a></h3>
-<p><em>Print working directory</em> nos indica en que directorio estamos trabajando:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-/home/vflorelo
-</pre></div>
-</div>
-</div>
 <div class="section" id="ls">
 <h3><code class="code docutils literal notranslate"><span class="pre">ls</span></code><a class="headerlink" href="#ls" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>List, nos indica que elementos hay en el directorio actual</p>
-<blockquote>
-<div><div class="toggle admonition">
+<div class="toggle admonition">
 <p class="admonition-title">Opciones de <code class="code docutils literal notranslate"><span class="pre">ls</span></code></p>
-<ul>
-<li><p>Listado de los archivos en formato extendido ( <code class="code docutils literal notranslate"><span class="pre">-l</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l
-total 4
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos en formato extendido en lenguaje humano ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos incluido archivos ocultos ( <code class="code docutils literal notranslate"><span class="pre">-a</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -a
-.   ..  &#39;mi archivo.txt&#39;
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos en orden cronológico ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-t</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
-
-$ ls -l -h -t
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos en orden alfanumérico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
-
-$ ls -l -h -r
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos en orden cronológico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span> <span class="pre">-t</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
-
-$ ls -l -h -r -t
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-</pre></div>
-</div>
-</li>
+<ul class="simple">
+<li><p>Listado de los archivos en formato extendido ( <code class="code docutils literal notranslate"><span class="pre">-l</span></code> )</p></li>
+<li><p>Listado de los archivos en formato extendido en lenguaje humano ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span></code> )</p></li>
+<li><p>Listado de los archivos incluido archivos ocultos ( <code class="code docutils literal notranslate"><span class="pre">-a</span></code> )</p></li>
+<li><p>Listado de los archivos en orden cronológico ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-t</span></code> )</p></li>
+<li><p>Listado de los archivos en orden alfanumérico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span></code> )</p></li>
+<li><p>Listado de los archivos en orden cronológico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span> <span class="pre">-t</span></code> )</p></li>
 </ul>
 </div>
-</div></blockquote>
 </div>
 <div class="section" id="cd">
 <h3><code class="code docutils literal notranslate"><span class="pre">cd</span></code><a class="headerlink" href="#cd" title="Enlazar permanentemente con este título">¶</a></h3>
@@ -1028,8 +971,10 @@ MT      16569   3132388394      70      71
 </li>
 </ul>
 </div>
-<p><code class="code docutils literal notranslate"><span class="pre">wc</span></code>
-Word count, nos indica el número de líneas, palabras y caracteres de un archivo o de un <em>string</em></p>
+</div>
+<div class="section" id="wc">
+<h3><code class="code docutils literal notranslate"><span class="pre">wc</span></code><a class="headerlink" href="#wc" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Word count, nos indica el número de líneas, palabras y caracteres de un archivo o de un <em>string</em></p>
 <div class="toggle admonition">
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">wc</span></code></p>
 <ul>
@@ -1060,9 +1005,8 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 </ul>
 </div>
 </div>
-</div>
 <div class="section" id="scp">
-<h2><code class="code docutils literal notranslate"><span class="pre">scp</span></code><a class="headerlink" href="#scp" title="Enlazar permanentemente con este título">¶</a></h2>
+<h3><code class="code docutils literal notranslate"><span class="pre">scp</span></code><a class="headerlink" href="#scp" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>El comando <code class="code docutils literal notranslate"><span class="pre">scp</span></code> nos permite al igual que <code class="code docutils literal notranslate"><span class="pre">cp</span></code>, copiar archivos desde un origen hacia un destino, no obstante, lo hace a través de servidores remotos.</p>
 <p>Este comando combina las bondades de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> con los protocolos de seguridad de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code></p>
 <p>Por ello, el uso de <code class="code docutils literal notranslate"><span class="pre">scp</span></code> es muy similar al de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> y al de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code>:</p>
@@ -1077,13 +1021,14 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="parseando">
 <h1><a class="reference internal" href="parsing.html"><span class="doc">Parseando</span></a><a class="headerlink" href="#parseando" title="Enlazar permanentemente con este título">¶</a></h1>
 <div class="section" id="id2">
 <h2>Introducción<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>La finalidad de este curso es obtener un archivo de llamado de variantes (<em>Variant Calling File</em> por sus siglas en inglés) que tiene la siguiente estructura:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  g204</span>
-<span class="mi">1</span>       <span class="mi">13417</span>   <span class="n">rs777038595</span>     <span class="n">C</span>       <span class="n">CGAGA</span>   <span class="mf">324.73</span>  <span class="n">PASS</span>    <span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">BaseQRankSum</span><span class="o">=</span><span class="mf">0.583</span><span class="p">;</span><span class="n">DB</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">26</span><span class="p">;</span><span class="n">ExcessHet</span><span class="o">=</span><span class="mf">3.0103</span><span class="p">;</span><span class="n">FS</span><span class="o">=</span><span class="mf">0.000</span><span class="p">;</span><span class="n">MLEAC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MLEAF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mf">22.21</span><span class="p">;</span><span class="n">MQRankSum</span><span class="o">=-</span><span class="mf">0.032</span><span class="p">;</span><span class="n">QD</span><span class="o">=</span><span class="mf">12.49</span><span class="p">;</span><span class="n">ReadPosRankSum</span><span class="o">=-</span><span class="mf">2.185</span><span class="p">;</span><span class="n">SOR</span><span class="o">=</span><span class="mf">0.446</span><span class="p">;</span><span class="n">VQSLOD</span><span class="o">=</span><span class="mf">0.698</span><span class="p">;</span><span class="n">culprit</span><span class="o">=</span><span class="n">ReadPosRankSum</span> <span class="n">GT</span><span class="p">:</span><span class="n">AD</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">GQ</span><span class="p">:</span><span class="n">PL</span>  <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">99</span><span class="p">:</span><span class="mi">362</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">634</span>
+        <span class="n">chr1</span>       <span class="mi">13417</span>   <span class="n">rs777038595</span>     <span class="n">C</span>       <span class="n">CGAGA</span>   <span class="mf">324.73</span>  <span class="n">PASS</span>    <span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">BaseQRankSum</span><span class="o">=</span><span class="mf">0.583</span><span class="p">;</span><span class="n">DB</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">26</span><span class="p">;</span><span class="n">ExcessHet</span><span class="o">=</span><span class="mf">3.0103</span><span class="p">;</span><span class="n">FS</span><span class="o">=</span><span class="mf">0.000</span><span class="p">;</span><span class="n">MLEAC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MLEAF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mf">22.21</span><span class="p">;</span><span class="n">MQRankSum</span><span class="o">=-</span><span class="mf">0.032</span><span class="p">;</span><span class="n">QD</span><span class="o">=</span><span class="mf">12.49</span><span class="p">;</span><span class="n">ReadPosRankSum</span><span class="o">=-</span><span class="mf">2.185</span><span class="p">;</span><span class="n">SOR</span><span class="o">=</span><span class="mf">0.446</span><span class="p">;</span><span class="n">VQSLOD</span><span class="o">=</span><span class="mf">0.698</span><span class="p">;</span><span class="n">culprit</span><span class="o">=</span><span class="n">ReadPosRankSum</span> <span class="n">GT</span><span class="p">:</span><span class="n">AD</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">GQ</span><span class="p">:</span><span class="n">PL</span>  <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">99</span><span class="p">:</span><span class="mi">362</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">634</span>
 </pre></div>
 </div>
 <div class="toggle admonition">
@@ -1097,32 +1042,31 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 </colgroup>
 <tbody>
 <tr class="row-odd"><td rowspan="2"><p>1: CHROM</p></td>
-<td rowspan="2"><p>1</p></td>
+<td rowspan="2"><p>chr1</p></td>
 <td rowspan="2"><p>Cromosoma en dónde se ubica la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>2: POS</p></td>
-<td rowspan="2"><p>1053827</p></td>
+<td rowspan="2"><p>13417</p></td>
 <td rowspan="2"><p>Posición de la variante en el cromosoma</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>3: ID</p></td>
-<td rowspan="2"><p>rs74685771</p></td>
-<td rowspan="2"><p>Identificador de la variante</p></td>
+<td colspan="2" rowspan="2"><p>rs777038595             +Identificador de la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>4: REF</p></td>
-<td rowspan="2"><p>G</p></td>
+<td rowspan="2"><p>C</p></td>
 <td rowspan="2"><p>Alelo de referencia</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>5: ALT</p></td>
-<td rowspan="2"><p>C</p></td>
+<td rowspan="2"><p>CGAGA</p></td>
 <td rowspan="2"><p>Alelo encontrado en la muestra</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>6: QUAL</p></td>
-<td rowspan="2"><p>856.77</p></td>
+<td rowspan="2"><p>324.73</p></td>
 <td rowspan="2"><p>Score de calidad de la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
@@ -1144,23 +1088,23 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 <td rowspan="2"><p>Número total de alelos para una variante</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>BaseQRankSum=-2.129</p></td>
+<tr class="row-odd"><td rowspan="2"><p>BaseQRankSum=0.583</p></td>
 <td rowspan="2"><p>Z-score de la calidad de las bases mapeadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
-</tr>
-<tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>ClippingRankSum=-0.286;</p></td>
-<td rowspan="2"><p>Z-score del número de lecturas con calidad de mapeo bajas para el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>DB;</p></td>
 <td rowspan="2"><p>Indica si la variante pertenece a una base de datos (dbSNP)</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>DP=63;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>DP=26;</p></td>
 <td rowspan="2"><p>número de lecturas mapeadas en la posición de la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>FS=0;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>ExcessHet=3.0103;</p></td>
+<td rowspan="2"><p>p-value en escala Phred para una prueba exacta de exceso de heterocigosidad</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>FS=0.000;</p></td>
 <td rowspan="2"><p>P-value ajustado para determinar sesgo hacía una cadena de DNA empleando una prueba exacta de Fisher</p></td>
 </tr>
 <tr class="row-even"></tr>
@@ -1172,31 +1116,31 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 <td rowspan="2"><p>Máxima verosimilitud esperada para las frecuencias alélicas (depende del número de muestras).</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>MQ=60.00;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>MQ=22.21;</p></td>
 <td rowspan="2"><p>Calidad media de mapeo en la posición de la variante.</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>MQRankSum=-0.0.635;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>MQRankSum=-0.032;</p></td>
 <td rowspan="2"><p>Z-score de la calidad de mapeo las bases alíneadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>QD=13.60;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>QD=12.49;</p></td>
 <td rowspan="2"><p>Confianza del alelo observado (Quality over depth)</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>ReadPosRankSum=0.621;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>ReadPosRankSum=-2.185;</p></td>
 <td rowspan="2"><p>Z-score del sesgo posicional (con respecto de la longitud de la lectura) del alelo alternativo vs el alelo de referencia (depende del número de muestras)</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>SOR=0.768;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>SOR=0.446;</p></td>
 <td rowspan="2"><p>Suma simétrica de la razón de momios del número de lecturas que presentan la variante cerca del final de la lectura, vs las lecturas que la presentan cerca del inicio de la lectura.</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>VQSLOD=3.39;</p></td>
+<tr class="row-odd"><td rowspan="2"><p>VQSLOD=0.698;</p></td>
 <td rowspan="2"><p>Logaritmo de la razón de momios de que la variante sea verdadera vs que sea un falso positivo.</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>culprit=qd</p></td>
+<tr class="row-odd"><td rowspan="2"><p>culprit=ReadPosRankSum</p></td>
 <td rowspan="2"><p>El descriptor que presentó la métrica más desfavorable</p></td>
 </tr>
 <tr class="row-even"></tr>
@@ -1226,11 +1170,11 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 <td rowspan="2"><p>Heterocigoto</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>37,26</p></td>
-<td rowspan="2"><p>(G)37 reads + (C)26 reads</p></td>
+<tr class="row-odd"><td rowspan="2"><p>15,11</p></td>
+<td rowspan="2"><p>(C)15 reads + (CGAGA)11 reads</p></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>63</p></td>
+<tr class="row-odd"><td rowspan="2"><p>26</p></td>
 <td rowspan="2"></td>
 </tr>
 <tr class="row-even"></tr>
@@ -1238,7 +1182,7 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 <td rowspan="2"></td>
 </tr>
 <tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>885,0,1386</p></td>
+<tr class="row-odd"><td rowspan="2"><p>362,0,634</p></td>
 <td rowspan="2"></td>
 </tr>
 <tr class="row-even"></tr>
@@ -1246,49 +1190,9 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 </table>
 </div></blockquote>
 </div>
-<p>Aquí un ejemplo real de un archivo <a class="reference external" href="https://raw.githubusercontent.com/vflorelo/better_call_ATG/docs/source/test_data_variants.vcf">vcf</a> de exoma</p>
-<p>A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes</p>
-<p>Para los ejercicios de este bloque vamos a procesar un archivo llamado <code class="code docutils literal notranslate"><span class="pre">Homo_sapiens_GRCh38.fasta.fai</span></code>.</p>
-<p>Este archivo es un índice de la secuencia del genoma humano en formato fasta, sin ahondar en detalles, este archivo viene del comando</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>samtools faidx Homo_sapiens_GRCh38.fasta
-</pre></div>
-</div>
-<p>Y esencialmente es un archivo que consta de 5 columnas</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head" rowspan="2"><p>NAME</p></th>
-<th class="head" rowspan="2"><p>LENGTH</p></th>
-<th class="head" rowspan="2"><p>OFFSET</p></th>
-<th class="head" rowspan="2"><p>LINEBASES</p></th>
-<th class="head" rowspan="2"><p>LINEWIDTH</p></th>
-</tr>
-<tr class="row-even"></tr>
-</thead>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p>1</p></td>
-<td rowspan="2"><p>248956422</p></td>
-<td rowspan="2"><p>16</p></td>
-<td rowspan="2"><p>70</p></td>
-<td rowspan="2"><p>71</p></td>
-</tr>
-<tr class="row-even"></tr>
-<tr class="row-odd"><td rowspan="2"><p>2</p></td>
-<td rowspan="2"><p>242193529</p></td>
-<td rowspan="2"><p>252512975</p></td>
-<td rowspan="2"><p>70</p></td>
-<td rowspan="2"><p>71</p></td>
-</tr>
-<tr class="row-even"></tr>
-</tbody>
-</table>
-<p>Con los siguientes comandos podemos obtener información de este archivo sin tener que verlo todo, desde luego, este archivo es pequeño y podemos verlo en un excel, pero los archivos de llamado de variantes constan de decenas de miles de filas y de tantas columnas como muestras tengamos en nuestro estudio, de modo que visualizarlas en excel no es particularmente útil ni fácil</p>
+<p>A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes
+Para comenzar, vamos a descargar un archivo con el que podamos trabajar
+<code class="code docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://github.com/vflorelo/Call-me-by-your-reads/</span></code></p>
 </div>
 <div class="section" id="grep">
 <h2><code class="code docutils literal notranslate"><span class="pre">grep</span></code><a class="headerlink" href="#grep" title="Enlazar permanentemente con este título">¶</a></h2>

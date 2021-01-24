@@ -4,23 +4,23 @@ Introducción
 La finalidad de este curso es obtener un archivo de llamado de variantes (*Variant Calling File* por sus siglas en inglés) que tiene la siguiente estructura::
 
 	#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  g204
-	1       13417   rs777038595     C       CGAGA   324.73  PASS    AC=1;AF=0.500;AN=2;BaseQRankSum=0.583;DB;DP=26;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.21;MQRankSum=-0.032;QD=12.49;ReadPosRankSum=-2.185;SOR=0.446;VQSLOD=0.698;culprit=ReadPosRankSum GT:AD:DP:GQ:PL  0/1:15,11:26:99:362,0,634
+		chr1       13417   rs777038595     C       CGAGA   324.73  PASS    AC=1;AF=0.500;AN=2;BaseQRankSum=0.583;DB;DP=26;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.21;MQRankSum=-0.032;QD=12.49;ReadPosRankSum=-2.185;SOR=0.446;VQSLOD=0.698;culprit=ReadPosRankSum GT:AD:DP:GQ:PL  0/1:15,11:26:99:362,0,634
 
 .. admonition:: Descripción extendida del formato vcf
 	:class: toggle
 
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+1: CHROM +1                      +Cromosoma en dónde se ubica la variante                                                                                                                                              +
+		+1: CHROM +chr1                   +Cromosoma en dónde se ubica la variante                                                                                                                                              +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+2: POS   +1053827                +Posición de la variante en el cromosoma                                                                                                                                              +
+		+2: POS   +13417                  +Posición de la variante en el cromosoma                                                                                                                                              +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+3: ID    +rs74685771             +Identificador de la variante                                                                                                                                                         +
+		+3: ID    +rs777038595             +Identificador de la variante                                                                                                                                                        +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+4: REF   +G                      +Alelo de referencia                                                                                                                                                                  +
+		+4: REF   +C                      +Alelo de referencia                                                                                                                                                                  +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+5: ALT   +C                      +Alelo encontrado en la muestra                                                                                                                                                       +
+		+5: ALT   +CGAGA                  +Alelo encontrado en la muestra                                                                                                                                                       +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+6: QUAL  +856.77                 +Score de calidad de la variante                                                                                                                                                      +
+		+6: QUAL  +324.73                 +Score de calidad de la variante                                                                                                                                                      +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+7: FILTER+PASS                   +Flag de calidad de la variante                                                                                                                                                       +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -30,33 +30,33 @@ La finalidad de este curso es obtener un archivo de llamado de variantes (*Varia
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+         +AN=2;                  +Número total de alelos para una variante                                                                                                                                             +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +BaseQRankSum=-2.129    +Z-score de la calidad de las bases mapeadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon                                                           +
-		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +ClippingRankSum=-0.286;+Z-score del número de lecturas con calidad de mapeo bajas para el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon                                           +
+		+         +BaseQRankSum=0.583     +Z-score de la calidad de las bases mapeadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon                                                           +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+         +DB;                    +Indica si la variante pertenece a una base de datos (dbSNP)                                                                                                                          +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +DP=63;                 +número de lecturas mapeadas en la posición de la variante                                                                                                                            +
+		+         +DP=26;                 +número de lecturas mapeadas en la posición de la variante                                                                                                                            +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +FS=0;                  +P-value ajustado para determinar sesgo hacía una cadena de DNA empleando una prueba exacta de Fisher                                                                                 +
+		+         +ExcessHet=3.0103;      + p-value en escala Phred para una prueba exacta de exceso de heterocigosidad                                                                                                         +
+		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+		+         +FS=0.000;              +P-value ajustado para determinar sesgo hacía una cadena de DNA empleando una prueba exacta de Fisher                                                                                 +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+         +MLEAC=1;               +Máxima verosimilitud esperada para el número de alelos observados (depende del número de muestras).                                                                                  +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+         +MLEAF=0.500;           +Máxima verosimilitud esperada para las frecuencias alélicas (depende del número de muestras).                                                                                        +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +MQ=60.00;              +Calidad media de mapeo en la posición de la variante.                                                                                                                                +
+		+         +MQ=22.21;              +Calidad media de mapeo en la posición de la variante.                                                                                                                                +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +MQRankSum=-0.0.635;    +Z-score de la calidad de mapeo las bases alíneadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon                                                    +
+		+         +MQRankSum=-0.032;      +Z-score de la calidad de mapeo las bases alíneadas en el alelo alterno vs el alelo de referencia empleando una prueba de Wilcoxon                                                    +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +QD=13.60;              +Confianza del alelo observado (Quality over depth)                                                                                                                                   +
+		+         +QD=12.49;              +Confianza del alelo observado (Quality over depth)                                                                                                                                   +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +ReadPosRankSum=0.621;  +Z-score del sesgo posicional (con respecto de la longitud de la lectura) del alelo alternativo vs el alelo de referencia (depende del número de muestras)                            +
+		+         +ReadPosRankSum=-2.185; +Z-score del sesgo posicional (con respecto de la longitud de la lectura) del alelo alternativo vs el alelo de referencia (depende del número de muestras)                            +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +SOR=0.768;             +Suma simétrica de la razón de momios del número de lecturas que presentan la variante cerca del final de la lectura, vs las lecturas que la presentan cerca del inicio de la lectura.+
+		+         +SOR=0.446;             +Suma simétrica de la razón de momios del número de lecturas que presentan la variante cerca del final de la lectura, vs las lecturas que la presentan cerca del inicio de la lectura.+
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +VQSLOD=3.39;           +Logaritmo de la razón de momios de que la variante sea verdadera vs que sea un falso positivo.                                                                                       +
+		+         +VQSLOD=0.698;          +Logaritmo de la razón de momios de que la variante sea verdadera vs que sea un falso positivo.                                                                                       +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +culprit=qd             +El descriptor que presentó la métrica más desfavorable                                                                                                                               +
+		+         +culprit=ReadPosRankSum +El descriptor que presentó la métrica más desfavorable                                                                                                                               +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+9:FORMAT +GT                     +Genotipo                                                                                                                                                                             +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -70,38 +70,18 @@ La finalidad de este curso es obtener un archivo de llamado de variantes (*Varia
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+10:g204  +0/1                    +Heterocigoto                                                                                                                                                                         +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +37,26                  +(G)37 reads \+ (C)26 reads                                                                                                                                                           +
+		+         +15,11                  +(C)15 reads \+ (CGAGA)11 reads                                                                                                                                                       +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +63                     +                                                                                                                                                                                     +
+		+         +26                     +                                                                                                                                                                                     +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+         +99                     +                                                                                                                                                                                     +
 		+         +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+         +885,0,1386             +                                                                                                                                                                                     +
+		+         +362,0,634              +                                                                                                                                                                                     +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Aquí un ejemplo real de un archivo `vcf`_ de exoma
-
 A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes
-
-Para los ejercicios de este bloque vamos a procesar un archivo llamado :code:`Homo_sapiens_GRCh38.fasta.fai`.
-
-Este archivo es un índice de la secuencia del genoma humano en formato fasta, sin ahondar en detalles, este archivo viene del comando
-
-.. code-block:: sh
-
-	samtools faidx Homo_sapiens_GRCh38.fasta
-
-Y esencialmente es un archivo que consta de 5 columnas
-
-+----+---------+---------+---------+---------+
-+NAME+LENGTH   +OFFSET   +LINEBASES+LINEWIDTH+
-+====+=========+=========+=========+=========+
-+1   +248956422+16       +70       +71       +
-+----+---------+---------+---------+---------+
-+2   +242193529+252512975+70       +71       +
-+----+---------+---------+---------+---------+
-
-Con los siguientes comandos podemos obtener información de este archivo sin tener que verlo todo, desde luego, este archivo es pequeño y podemos verlo en un excel, pero los archivos de llamado de variantes constan de decenas de miles de filas y de tantas columnas como muestras tengamos en nuestro estudio, de modo que visualizarlas en excel no es particularmente útil ni fácil
+Para comenzar, vamos a descargar un archivo con el que podamos trabajar
+:code:`wget https://github.com/vflorelo/Call-me-by-your-reads/`
 
 :code:`grep`
 ------------

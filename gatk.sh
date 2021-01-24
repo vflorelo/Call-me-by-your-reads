@@ -1,0 +1,67 @@
+#!/bin/bash
+cd $HOME
+mkdir 00_other 01_reads 02_qc 03_bam 04_gatk 05_snpeff
+
+cd 00_other
+wget https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/trusight/trusight-one-expanded-file-for-ucsc-browser-v2-0-bed.zip
+wget ftp://hgdownload.soe.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz
+unzip trusight-one-expanded-file-for-ucsc-browser-v2-0-bed.zip
+gunzip hg19ToHg38.over.chain.gz
+liftOver "TSOne Expanded BED v2.0.txt" hg19ToHg38.over.chain TSO_xt_hg38.bed unmapped
+
+cd $HOME/snpEff
+java -jar snpEff.jar download GRCh38.99
+
+cd $HOME
+mkdir -p $HOME/snpEff/db/GRCh38/clinvar
+mkdir -p $HOME/snpEff/db/GRCh38/dbSnp/
+
+cd $HOME/snpEff/db/GRCh38/clinvar
+ln -s /usr/local/bioinformatics/db/GRCh38/clinvar/clinvar.vcf.gz .
+bgzip --reindex clinvar.vcf.gz
+tabix -p vcf clinvar.vcf.gz
+
+cd $HOME/snpEff/db/GRCh38/dbSnp
+ln -s /usr/local/bioinformatics/db/GRCh38/dbSnp/00-All.vcf.gz .
+bgzip --reindex 00-All.vcf.gz
+tabix -p vcf 00-All.vcf.gz
+
+cd $HOME
+mkdir $HOME/bundle
+cd $HOME/bundle
+ln -s /usr/local/bioinformatics/bundle/* .
+
+cd $HOME/01_reads
+cp /usr/local/bioinformatics/reads/* .
+
+cd $HOME/02_qc
+ln -s $HOME/01_reads/*.gz .
+fastqc *
+
+cd $HOME/03_bam
+cat $HOME/01_reads/*R1*.gz > fwd_reads.fastq.gz
+cat $HOME/01_reads/*R2*.gz > rev_reads.fastq.gz
+cp $HOME/00_other/TSO_xt_hg38.bed .
+bwa mem -M -t 4 $HOME/bundle/Homo_sapiens_assembly38.fasta fwd_reads.fastq.gz rev_reads.fastq.gz > S3.sam
+samtools view -@ 4 -b -h -o S3.tmp.bam -f 3 -L TSO_xt_hg38.bed S3.sam
+samtools sort -l 9 -@ 4 -o S3.bam S3.tmp.bam
+samtools index S3.bam
+
+cd $HOME/04_gatk
+cp $HOME/00_other/TSO_xt_hg38.bed .
+ln -s $HOME/03_bam/S3.bam .
+ln -s $HOME/03_bam/S3.bam.bai .
+gatk AddOrReplaceReadGroups --INPUT S3.bam --OUTPUT S3.rg.bam --RGLB S3 --RGID S3 --RGPL Illumina --RGSM S3 --RGPU S3
+gatk SortSam --INPUT S3.rg.bam --OUTPUT S3.sorted.bam --SORT_ORDER coordinate
+gatk MarkDuplicates --INPUT S3.sorted.bam --OUTPUT S3.dupmarked.bam --METRICS_FILE S3.dupmarked.txt --CREATE_INDEX true
+gatk BaseRecalibrator --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --input S3.dupmarked.bam --known-sites $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf --known-sites $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz --output S3_recal-data.table --intervals TSO_xt_hg38.bed
+gatk ApplyBQSR --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --input S3.dupmarked.bam --bqsr-recal-file S3_recal-data.table --output S3_recal-reads.bam --intervals TSO_xt_hg38.bed
+gatk BaseRecalibrator --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --input S3_recal-reads.bam --known-sites $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf --known-sites $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz --output S3_post-recal-data.table --intervals TSO_xt_hg38.bed
+gatk AnalyzeCovariates --before-report-file S3_recal-data.table --after-report-file S3_post-recal-data.table --plots-report-file S3_recal-plots.pdf
+gatk HaplotypeCaller --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --input S3_recal-reads.bam --intervals TSO_xt_hg38.bed --stand-call-conf 10.0 --output S3_raw-vars.vcf
+gatk VariantRecalibrator --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --variant S3_raw-vars.vcf --intervals TSO_xt_hg38.bed --resource:hapmap,known=false,training=true,truth=true,prior=15.0 $HOME/bundle/hapmap_3.3.hg38.vcf.gz --resource:omni,known=false,training=true,truth=true,prior=12.0 $HOME/bundle/1000G_omni2.5.hg38.vcf.gz --resource:1000G,known=false,training=true,truth=false,prior=10.0 $HOME/bundle/1000G_phase1.snps.high_confidence.hg38.vcf.gz --resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf --use-annotation QD --use-annotation FS --use-annotation SOR --use-annotation MQ --use-annotation MQRankSum --use-annotation ReadPosRankSum --mode SNP --truth-sensitivity-tranche 100.0 --truth-sensitivity-tranche 99.9 --truth-sensitivity-tranche 99.0 --truth-sensitivity-tranche 90.0 --max-gaussians 1 --max-negative-gaussians 1 --output S3_recalibrate-SNP.recal --tranches-file S3_recalibrate-SNP.tranches --rscript-file S3_recalibrate-SNP-plots.R
+gatk ApplyVQSR --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --variant S3_raw-vars.vcf --intervals TSO_xt_hg38.bed --mode SNP --truth-sensitivity-filter-level 99.0 --recal-file S3_recalibrate-SNP.recal --tranches-file S3_recalibrate-SNP.tranches --output S3_recal-snps_raw-indels.vcf
+gatk VariantRecalibrator --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --variant S3_recal-snps_raw-indels.vcf --intervals TSO_xt_hg38.bed --resource:mills,known=true,training=true,truth=true,prior=12.0 $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz --use-annotation QD --use-annotation FS --use-annotation SOR --use-annotation MQRankSum --use-annotation ReadPosRankSum --mode INDEL --truth-sensitivity-tranche 100.0 --truth-sensitivity-tranche 99.9 --truth-sensitivity-tranche 99.0 --truth-sensitivity-tranche 90.0 --max-gaussians 1 --max-negative-gaussians 1 --output S3_recalibrate-INDEL.recal --tranches-file S3_recalibrate-INDEL.tranches --rscript-file S3_recalibrate-INDEL-plots.R
+gatk ApplyVQSR --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --variant S3_recal-snps_raw-indels.vcf --intervals TSO_xt_hg38.bed --mode INDEL --truth-sensitivity-filter-level 99.0 --recal-file S3_recalibrate-INDEL.recal --tranches-file S3_recalibrate-INDEL.tranches --output S3_recalibrated_variants.vcf
+gatk VariantAnnotator --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --variant S3_recalibrated_variants.vcf --intervals TSO_xt_hg38.bed --dbsnp $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf --output S3_annotated_variants.vcf --annotation Coverage
+gatk SelectVariants --reference $HOME/bundle/Homo_sapiens_assembly38.fasta --variant S3_annotated_variants.vcf --output S3_annotated_qd_dp_filtered_variants.vcf --selectExpressions "QD > 5.0 && DP > 10.0"

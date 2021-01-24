@@ -90,21 +90,21 @@
               <!-- Local TOC -->
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Introducción</a></li>
+<li><a class="reference internal" href="#la-bendita-instancia">La bendita instancia</a></li>
 <li><a class="reference internal" href="#consideraciones-y-conceptos">Consideraciones y conceptos</a><ul>
-<li><a class="reference internal" href="#shell">Shell</a></li>
-<li><a class="reference internal" href="#terminal">Terminal</a></li>
+<li><a class="reference internal" href="#shell"><em>Shell</em></a></li>
+<li><a class="reference internal" href="#terminal"><em>Terminal</em></a></li>
 <li><a class="reference internal" href="#prompt"><em>Prompt</em></a></li>
-<li><a class="reference internal" href="#comando">Comando</a></li>
-<li><a class="reference internal" href="#opcion">Opción</a></li>
-<li><a class="reference internal" href="#argumento">Argumento</a></li>
+<li><a class="reference internal" href="#comando"><em>Comando</em></a></li>
+<li><a class="reference internal" href="#opcion"><em>Opción</em></a></li>
+<li><a class="reference internal" href="#argumento"><em>Argumento</em></a></li>
+<li><a class="reference internal" href="#combinaciones"><em>Combinaciones</em></a></li>
 <li><a class="reference internal" href="#path"><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code></a></li>
-<li><a class="reference internal" href="#uso-de-mayusculas-y-minusculas">Uso de mayúsculas y minúsculas</a></li>
-<li><a class="reference internal" href="#uso-de-caracteres-especiales">Uso de caracteres especiales</a></li>
+<li><a class="reference internal" href="#uso-de-mayusculas-y-minusculas"><em>Uso de</em> <strong>mayúsculas</strong> <em>y</em> <strong>minúsculas</strong></a></li>
+<li><a class="reference internal" href="#uso-de-caracteres-especiales"><em>Uso de caracteres especiales</em></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#comandos-basicos">Comandos básicos</a><ul>
-<li><a class="reference internal" href="#whoami"><code class="code docutils literal notranslate"><span class="pre">whoami</span></code></a></li>
-<li><a class="reference internal" href="#pwd"><code class="code docutils literal notranslate"><span class="pre">pwd</span></code></a></li>
 <li><a class="reference internal" href="#ls"><code class="code docutils literal notranslate"><span class="pre">ls</span></code></a></li>
 <li><a class="reference internal" href="#cd"><code class="code docutils literal notranslate"><span class="pre">cd</span></code></a></li>
 <li><a class="reference internal" href="#mkdir"><code class="code docutils literal notranslate"><span class="pre">mkdir</span></code></a></li>
@@ -115,9 +115,10 @@
 <li><a class="reference internal" href="#less"><code class="code docutils literal notranslate"><span class="pre">less</span></code></a></li>
 <li><a class="reference internal" href="#head"><code class="code docutils literal notranslate"><span class="pre">head</span></code></a></li>
 <li><a class="reference internal" href="#tail"><code class="code docutils literal notranslate"><span class="pre">tail</span></code></a></li>
+<li><a class="reference internal" href="#wc"><code class="code docutils literal notranslate"><span class="pre">wc</span></code></a></li>
+<li><a class="reference internal" href="#scp"><code class="code docutils literal notranslate"><span class="pre">scp</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#scp"><code class="code docutils literal notranslate"><span class="pre">scp</span></code></a></li>
 </ul>
 </div>
             
@@ -187,6 +188,68 @@
 <p>Existen múltiples programas para el llamado de variantes, no obstante la gran mayoria no puede ser ejecutada en ambientes windows. En consecuencia, es importante estar familiarizado con el uso de sistemas unix/linux como puede ser Mac-OSX o Ubuntu linux.</p>
 <p>Adicionalmente, muchos de los programas para el llamado de variantes no cuenta con una interfáz gráfica de usuario, por ello, es importante aprender a usar la línea de comandos con fluidez</p>
 </div>
+<div class="section" id="la-bendita-instancia">
+<h1>La bendita instancia<a class="headerlink" href="#la-bendita-instancia" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En esta ocasión te preparamos una máquina especial a la que puedes accesar en el horario del curso. Es una instancia en Amazon Web Services y de ahora en adelante nos referiremos a esta máquina como «la instancia»
+Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo «atg.pem». <strong>no necesitas abrir este archivo</strong>, solamente debes ponerlo en tu carpeta personal</p>
+<ul>
+<li><p>Si usas windows, así puedes accesar a tu carpeta personal:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Abre un explorador de archivos</p></li>
+<li><p>Ve a la carpeta «Este equipo»</p></li>
+<li><p>Ve a la carpeta «C:\»</p></li>
+<li><p>Ve a la carpeta «Users» (o usuarios, dependiendo de tu equipo)</p></li>
+<li><p>Ve a la carpeta con tu nombre de usuario</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/dianolasa_home.jpg"><img alt="&quot;Así se ve el home de &#64;dianolasa&quot;" src="_images/dianolasa_home.jpg" style="width: 600px;" /></a>
+</div></blockquote>
+</li>
+<li><p>Si usas linux, así puedes accesar a tu carpeta personal:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Abre un explorador de archivos</p></li>
+<li><p>En la barra lateral podrás encontrar tu carpeta personal con el icono de una casa</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/vflorelo_home.png"><img alt="&quot;Así se ve el home de &#64;vflorelo&quot;" src="_images/vflorelo_home.png" style="width: 600px;" /></a>
+</div></blockquote>
+</li>
+<li><p>Si usas mac, así puedes accesar a tu carpeta personal:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Abre tu explorador de archivos (Finder)</p></li>
+<li><p>Dirigete a la carpeta marcada con el icono de una casa</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/zorbax_home.jpg"><img alt="&quot;Así se ve el home de &#64;zorbax&quot;" src="_images/zorbax_home.jpg" style="width: 600px;" /></a>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>No siempre está habilitado el directorio home en finder, de modo que si no lo ves, checa la configuración de finder</p>
+<a class="reference internal image-reference" href="_images/zorbax_finder_opts.jpg"><img alt="&quot;Checa tu finder si no encuentras tu home&quot;" src="_images/zorbax_finder_opts.jpg" style="height: 200px;" /></a>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>Ya que tengas tu archivo atg.pem en tu carpeta personal, no la muevas ni le cambies el nombre.
+Ahora vamos a abrir la terminal</p>
+<ul class="simple">
+<li><p>Si usas windows, inicia una sesión con mobaxterm</p></li>
+<li><p>Si usas linux, abre tu terminal</p></li>
+<li><p>Si usas mac, abre tu terminal en Aplicaciones -&gt; Utilidades -&gt; Terminal</p></li>
+</ul>
+<p>A continuación vamos a blindar nuestra llave para que funcione adecuadamente</p>
+<p><code class="code docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">400</span> <span class="pre">atg.pem</span></code></p>
+<p>Una vez hecho esto, vamos a iniciar sesión en la instancia (<strong>recuerda cambiar «vflorelo» por tu nombre de usuario</strong>)</p>
+<p><code class="code docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-i</span> <span class="pre">atg.pem</span> <span class="pre">vflorelo&#64;atgenomics.ddns.net</span></code></p>
+<div class="admonition-nota admonition">
+<p class="admonition-title">Nota</p>
+<p>Es importante que distingas:</p>
+<ul class="simple">
+<li><p>Cuando estás trabajando en la instancia, la barrita en la terminal dice atgenomics</p></li>
+<li><p>Cuando estás trabajando en una terminal local, la barrita no dice atgenomics</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/local_remote.png"><img alt="&quot;Recuerda, el prompt es tu amigo&quot;" src="_images/local_remote.png" style="width: 600px;" /></a>
+</div>
+</div>
 <div class="section" id="consideraciones-y-conceptos">
 <h1>Consideraciones y conceptos<a class="headerlink" href="#consideraciones-y-conceptos" title="Enlazar permanentemente con este título">¶</a></h1>
 <div class="admonition important">
@@ -194,7 +257,7 @@
 <p>Para el uso óptimo de la línea de comandos debemos tener en consideración las siguientes definiciones y precauciones</p>
 </div>
 <div class="section" id="shell">
-<h2>Shell<a class="headerlink" href="#shell" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><em>Shell</em><a class="headerlink" href="#shell" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Es el intérprete entre el usuario y las aplicaciones</p>
 <ul class="simple">
 <li><p>El shell recibe una entrada a manera de comandos</p></li>
@@ -203,12 +266,10 @@
 </ul>
 </div>
 <div class="section" id="terminal">
-<h2>Terminal<a class="headerlink" href="#terminal" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>La terminal o línea de comandos es una interfáz no gráfica con la cúal el usuario puede interactuar con el sistema</p>
-<p>A pesar de su simpleza es una interfaz sumamente poderosa y eficiente, ya que nos permite ver que es lo que está ocurriendo tras bambalinas mientras un programa se está ejecutando</p>
-<p>Es un estándar en el cómputo y seguirá siendolo por mucho tiempo más</p>
+<h2><em>Terminal</em><a class="headerlink" href="#terminal" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La terminal o línea de comandos es una interfáz no gráfica con la cúal el usuario puede interactuar con el sistema. A pesar de su simpleza es una interfaz sumamente poderosa y eficiente, ya que nos permite ver que es lo que está ocurriendo tras bambalinas mientras un programa se está ejecutando. Es un estándar en el cómputo y seguirá siendolo por mucho tiempo más.</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/commitstrip_cli.jpg"><img alt="Your friendly neighbour the terminal" src="_images/commitstrip_cli.jpg" style="height: 150px;" /></a>
+<div><a class="reference internal image-reference" href="_images/commitstrip_cli.jpg"><img alt="Your friendly neighbour the terminal" src="_images/commitstrip_cli.jpg" style="width: 600px;" /></a>
 </div></blockquote>
 </div>
 <div class="section" id="prompt">
@@ -218,122 +279,79 @@
 <p class="admonition-title">Peligro</p>
 <p>Si no hay prompt no podemos mandar comandos</p>
 </div>
-<a class="reference internal image-reference" href="_images/prompt.png"><img alt="No prompt, no soup for you!" src="_images/prompt.png" style="height: 150px;" /></a>
+<a class="reference internal image-reference" href="_images/terminal_01_prompt.png"><img alt="No prompt, no soup for you!" src="_images/terminal_01_prompt.png" style="width: 600px;" /></a>
 </dd>
 </dl>
 </div>
 <div class="section" id="comando">
-<h2>Comando<a class="headerlink" href="#comando" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><em>Comando</em><a class="headerlink" href="#comando" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Un comando es la primera palabra que va después del prompt (o después de un pipe &quot;|&quot;, eso lo veremos en parseo ), un comando es esencialmente un elemento ejecutable que puede ser un programa binario o un script</p>
 <blockquote>
 <div><div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
 <p>El comando debe estar presente en el <code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> para que la terminal lo pueda ejecutar</p>
 </div>
+<a class="reference internal image-reference" href="_images/terminal_02_command.png"><img alt="_images/terminal_02_command.png" src="_images/terminal_02_command.png" style="width: 600px;" /></a>
 </div></blockquote>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/command_01.png"><img alt="command" src="_images/command_01.png" style="height: 150px;" /></a></p></td>
-<td rowspan="2"><p><a class="reference internal" href="_images/command_02.png"><img alt="command" src="_images/command_02.png" style="height: 150px;" /></a></p></td>
-</tr>
-<tr class="row-even"></tr>
-</tbody>
-</table>
 </div>
 <div class="section" id="opcion">
-<h2>Opción<a class="headerlink" href="#opcion" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Ciertos comandos y programas pueden comportarse distinto si le pasamos una o más opciones, las opciones se especifican con el signo “-” o con los signos “--”</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/option_01.png"><img alt="option" src="_images/option_01.png" style="height: 150px;" /></a></p></td>
-<td rowspan="2"><p><a class="reference internal" href="_images/option_02.png"><img alt="option" src="_images/option_02.png" style="height: 150px;" /></a></p></td>
-</tr>
-<tr class="row-even"></tr>
-</tbody>
-</table>
+<h2><em>Opción</em><a class="headerlink" href="#opcion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Ciertos comandos y programas pueden comportarse distinto si le pasamos una o más opciones.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Las opciones se especifican con el signo “-” o con los signos “--”</p>
+</div>
+<a class="reference internal image-reference" href="_images/terminal_03_option.png"><img alt="option" src="_images/terminal_03_option.png" style="width: 600px;" /></a>
+</div></blockquote>
 </div>
 <div class="section" id="argumento">
-<h2>Argumento<a class="headerlink" href="#argumento" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><em>Argumento</em><a class="headerlink" href="#argumento" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Un argumento es una o más palabras que vienen después de un comando, pueden ir antes o después de una opción (o no llevar opciones incluso)</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/argument_01.png"><img alt="argument" src="_images/argument_01.png" style="height: 150px;" /></a></p></td>
-<td rowspan="2"><p><a class="reference internal" href="_images/argument_02.png"><img alt="argument" src="_images/argument_02.png" style="height: 150px;" /></a></p></td>
-</tr>
-<tr class="row-even"></tr>
-</tbody>
-</table>
 <blockquote>
-<div><div class="admonition tip">
-<p class="admonition-title">Truco</p>
-<p><strong>Un argumento no lleva el signo “-”</strong></p>
+<div><div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Los argumentos no llevan “-” ni “--” y en ocasiones conviene delimitarlos con comillas</p>
 </div>
+<a class="reference internal image-reference" href="_images/terminal_04_argument.png"><img alt="argument" src="_images/terminal_04_argument.png" style="width: 600px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="combinaciones">
+<h2><em>Combinaciones</em><a class="headerlink" href="#combinaciones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En muchas ocasiones necesitaremos de opciones y de argumentos de modo que es indispensable saber como combinarlos</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>El orden de las opciones y argumentos es fundamental en la ejecución de los comandos que usaremos a partir del día 3</p>
+</div>
+<a class="reference internal image-reference" href="_images/terminal_05_opt_arg.png"><img alt="combination" src="_images/terminal_05_opt_arg.png" style="width: 600px;" /></a>
 </div></blockquote>
 </div>
 <div class="section" id="path">
 <h2><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code><a class="headerlink" href="#path" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>En unix/linux la variable de entorno <code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> contiene el conjunto de directorios que alberga aplicaciones en nuestro sistema</p>
-<p>Al hacer <code class="code docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;$PATH&quot;</span></code></p>
 <blockquote>
-<div><a class="reference internal image-reference" href="_images/path.png"><img alt="path" src="_images/path.png" style="height: 150px;" /></a>
-<p>Veremos que los programas de mi computadora, residen en alguna de las siguientes carpetas:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">mpi</span><span class="o">/</span><span class="n">gcc</span><span class="o">/</span><span class="n">openmpi</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mit</span><span class="o">/</span><span class="n">sbin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">local_scripts</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="nb">bin</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">rmblast</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">augustus</span><span class="o">-</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">scripts</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">augustus</span><span class="o">-</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="nb">bin</span>
-</pre></div>
+<div><div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>Es una variable muy sensible, y moverla sin conocimiento puede tener consecuencias que afecten la sesión del usuario, hay que modificarla lo menos posible</p>
 </div>
+<a class="reference internal image-reference" href="_images/path.png"><img alt="path" src="_images/path.png" style="width: 600px;" /></a>
 <div class="admonition tip">
 <p class="admonition-title">Truco</p>
-<p>Adicionalmente, si queremos instalar un programa nuevo, lo podemos colocar en cualquiera de las carpetas enlistadas anteriormente y lo podemos invocar desde cualquier sitio en nuestra terminal</p>
+<p>Si queremos instalar un programa nuevo, lo podemos colocar en cualquiera de las carpetas enlistadas anteriormente y lo podemos invocar desde cualquier sitio en nuestra terminal</p>
 </div>
 </div></blockquote>
 </div>
 <div class="section" id="uso-de-mayusculas-y-minusculas">
-<h2>Uso de mayúsculas y minúsculas<a class="headerlink" href="#uso-de-mayusculas-y-minusculas" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><em>Uso de</em> <strong>mayúsculas</strong> <em>y</em> <strong>minúsculas</strong><a class="headerlink" href="#uso-de-mayusculas-y-minusculas" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Peligro</p>
-<p>Los sistemas unix/linux son sensibles al uso de mayúsculas y minúsculas!</p>
-<p>Es importante revisar lo que se ingresa en la terminal antes de mandar cualquier instrucción</p>
+<p>Los sistemas unix/linux son sensibles al uso de <strong>mayúsculas</strong> y <strong>minúsculas</strong>!</p>
+<p>Es importante revisar siempre lo que ingresas en la terminal antes de mandar cualquier instrucción</p>
 </div>
-<p>En nuestro sistema windows en un mismo directorio no pueden existir los siguientes archivos:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><strong>&quot;A.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;a.pdf&quot;</strong></p></li>
-</ul>
-</div></blockquote>
-<p>Sin embargo, en nuestro sistema unix/linux podemos tener dentro de un mismo directorio los siguientes archivos:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><strong>&quot;abcD.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;Abcd.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;aBcd.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;abCd.pdf&quot;</strong></p></li>
-<li><p><strong>&quot;ABCd.pdf&quot;</strong></p></li>
-</ul>
-</div></blockquote>
 </div>
 <div class="section" id="uso-de-caracteres-especiales">
-<h2>Uso de caracteres especiales<a class="headerlink" href="#uso-de-caracteres-especiales" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2><em>Uso de caracteres especiales</em><a class="headerlink" href="#uso-de-caracteres-especiales" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Existen caracteres con un significado específico del sistema, en consecuencia, se deben tratar de forma especial.</p>
 <p>Estos caracteres son los siguientes y por lo general los ubicas en tu teclado en la barra numérica:</p>
 <blockquote>
@@ -420,96 +438,20 @@ Hola mundo
 <div class="section" id="comandos-basicos">
 <h1>Comandos básicos<a class="headerlink" href="#comandos-basicos" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>En esta sección encontraremos comandos básicos para el manejo de archivos, es indispensable que tengamos familiaridad con estos comandos antes de continuar con la manipulación de archivos</p>
-<div class="section" id="whoami">
-<h2><code class="code docutils literal notranslate"><span class="pre">whoami</span></code><a class="headerlink" href="#whoami" title="Enlazar permanentemente con este título">¶</a></h2>
-<p><em>Who am I?</em> Nos indica con qué nombre de usuario estamos trabajando:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ whoami
-vflorelo
-</pre></div>
-</div>
-</div>
-<div class="section" id="pwd">
-<h2><code class="code docutils literal notranslate"><span class="pre">pwd</span></code><a class="headerlink" href="#pwd" title="Enlazar permanentemente con este título">¶</a></h2>
-<p><em>Print working directory</em> nos indica en que directorio estamos trabajando:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-/home/vflorelo
-</pre></div>
-</div>
-</div>
 <div class="section" id="ls">
 <h2><code class="code docutils literal notranslate"><span class="pre">ls</span></code><a class="headerlink" href="#ls" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>List, nos indica que elementos hay en el directorio actual</p>
-<blockquote>
-<div><div class="toggle admonition">
+<div class="toggle admonition">
 <p class="admonition-title">Opciones de <code class="code docutils literal notranslate"><span class="pre">ls</span></code></p>
-<ul>
-<li><p>Listado de los archivos en formato extendido ( <code class="code docutils literal notranslate"><span class="pre">-l</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l
-total 4
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos en formato extendido en lenguaje humano ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos incluido archivos ocultos ( <code class="code docutils literal notranslate"><span class="pre">-a</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -a
-.   ..  &#39;mi archivo.txt&#39;
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos en orden cronológico ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-t</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
-
-$ ls -l -h -t
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos en orden alfanumérico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
-
-$ ls -l -h -r
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-</pre></div>
-</div>
-</li>
-<li><p>Listado de los archivos en orden cronológico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span> <span class="pre">-t</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l -h
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
-
-$ ls -l -h -r -t
-total 4.0K
--rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 &#39;mi archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 &#39;otro archivo.txt&#39;
--rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-</pre></div>
-</div>
-</li>
+<ul class="simple">
+<li><p>Listado de los archivos en formato extendido ( <code class="code docutils literal notranslate"><span class="pre">-l</span></code> )</p></li>
+<li><p>Listado de los archivos en formato extendido en lenguaje humano ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span></code> )</p></li>
+<li><p>Listado de los archivos incluido archivos ocultos ( <code class="code docutils literal notranslate"><span class="pre">-a</span></code> )</p></li>
+<li><p>Listado de los archivos en orden cronológico ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-t</span></code> )</p></li>
+<li><p>Listado de los archivos en orden alfanumérico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span></code> )</p></li>
+<li><p>Listado de los archivos en orden cronológico reverso ( <code class="code docutils literal notranslate"><span class="pre">-l</span> <span class="pre">-h</span> <span class="pre">-r</span> <span class="pre">-t</span></code> )</p></li>
 </ul>
 </div>
-</div></blockquote>
 </div>
 <div class="section" id="cd">
 <h2><code class="code docutils literal notranslate"><span class="pre">cd</span></code><a class="headerlink" href="#cd" title="Enlazar permanentemente con este título">¶</a></h2>
@@ -915,8 +857,10 @@ MT      16569   3132388394      70      71
 </li>
 </ul>
 </div>
-<p><code class="code docutils literal notranslate"><span class="pre">wc</span></code>
-Word count, nos indica el número de líneas, palabras y caracteres de un archivo o de un <em>string</em></p>
+</div>
+<div class="section" id="wc">
+<h2><code class="code docutils literal notranslate"><span class="pre">wc</span></code><a class="headerlink" href="#wc" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Word count, nos indica el número de líneas, palabras y caracteres de un archivo o de un <em>string</em></p>
 <div class="toggle admonition">
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">wc</span></code></p>
 <ul>
@@ -947,9 +891,8 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 </ul>
 </div>
 </div>
-</div>
 <div class="section" id="scp">
-<h1><code class="code docutils literal notranslate"><span class="pre">scp</span></code><a class="headerlink" href="#scp" title="Enlazar permanentemente con este título">¶</a></h1>
+<h2><code class="code docutils literal notranslate"><span class="pre">scp</span></code><a class="headerlink" href="#scp" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>El comando <code class="code docutils literal notranslate"><span class="pre">scp</span></code> nos permite al igual que <code class="code docutils literal notranslate"><span class="pre">cp</span></code>, copiar archivos desde un origen hacia un destino, no obstante, lo hace a través de servidores remotos.</p>
 <p>Este comando combina las bondades de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> con los protocolos de seguridad de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code></p>
 <p>Por ello, el uso de <code class="code docutils literal notranslate"><span class="pre">scp</span></code> es muy similar al de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> y al de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code>:</p>
@@ -961,6 +904,7 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 <p class="admonition-title">Advertencia</p>
 <p>A dónde lo va a copiar?</p>
 <p>Noten al final de la construcción, el punto <code class="code docutils literal notranslate"><span class="pre">.</span></code> el cual especifica que copiará el archivo <cite>Homo_sapiens_GRCh38.fasta.fai</cite> hacia el directorio actual</p>
+</div>
 </div>
 </div>
 

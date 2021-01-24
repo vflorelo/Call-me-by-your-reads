@@ -5,148 +5,179 @@ Existen múltiples programas para el llamado de variantes, no obstante la gran m
 
 Adicionalmente, muchos de los programas para el llamado de variantes no cuenta con una interfáz gráfica de usuario, por ello, es importante aprender a usar la línea de comandos con fluidez
 
+La bendita instancia
+--------------------
+
+En esta ocasión te preparamos una máquina especial a la que puedes accesar en el horario del curso. Es una instancia en Amazon Web Services y de ahora en adelante nos referiremos a esta máquina como "la instancia"
+Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo "atg.pem". **no necesitas abrir este archivo**, solamente debes ponerlo en tu carpeta personal
+
+* Si usas windows, así puedes accesar a tu carpeta personal:
+
+	* Abre un explorador de archivos
+	* Ve a la carpeta "Este equipo"
+	* Ve a la carpeta "C:\\"
+	* Ve a la carpeta "Users" (o usuarios, dependiendo de tu equipo)
+	* Ve a la carpeta con tu nombre de usuario
+
+	.. image:: dianolasa_home.jpg
+		:width: 600px
+		:alt: "Así se ve el home de @dianolasa"
+
+* Si usas linux, así puedes accesar a tu carpeta personal:
+
+	* Abre un explorador de archivos
+	* En la barra lateral podrás encontrar tu carpeta personal con el icono de una casa
+
+	.. image:: vflorelo_home.png
+		:width: 600px
+		:alt: "Así se ve el home de @vflorelo"
+
+* Si usas mac, así puedes accesar a tu carpeta personal:
+
+	* Abre tu explorador de archivos (Finder)
+	* Dirigete a la carpeta marcada con el icono de una casa
+
+	.. image:: zorbax_home.jpg
+		:width: 600px
+		:alt: "Así se ve el home de @zorbax"
+
+	.. warning::
+		No siempre está habilitado el directorio home en finder, de modo que si no lo ves, checa la configuración de finder
+
+		.. image:: zorbax_finder_opts.jpg
+			:height: 200px
+			:alt: "Checa tu finder si no encuentras tu home"
+
+
+Ya que tengas tu archivo atg.pem en tu carpeta personal, no la muevas ni le cambies el nombre.
+Ahora vamos a abrir la terminal
+
+* Si usas windows, inicia una sesión con mobaxterm
+* Si usas linux, abre tu terminal
+* Si usas mac, abre tu terminal en Aplicaciones -> Utilidades -> Terminal
+
+A continuación vamos a blindar nuestra llave para que funcione adecuadamente
+
+:code:`chmod 400 atg.pem`
+
+Una vez hecho esto, vamos a iniciar sesión en la instancia (**recuerda cambiar "vflorelo" por tu nombre de usuario**)
+
+:code:`ssh -i atg.pem vflorelo@atgenomics.ddns.net`
+
+.. admonition:: Nota
+
+	Es importante que distingas:
+
+	* Cuando estás trabajando en la instancia, la barrita en la terminal dice atgenomics
+	* Cuando estás trabajando en una terminal local, la barrita no dice atgenomics
+
+	.. image:: local_remote.png
+		:width: 600px
+		:alt: "Recuerda, el prompt es tu amigo"
+
+
+
 Consideraciones y conceptos
 ---------------------------
 
 .. important::
 	Para el uso óptimo de la línea de comandos debemos tener en consideración las siguientes definiciones y precauciones
 
-
-Shell
-^^^^^
+*Shell*
+^^^^^^^
 Es el intérprete entre el usuario y las aplicaciones
 
 * El shell recibe una entrada a manera de comandos
 * Estos comandos operan a través de aplicaciones
 * Las aplicaciones interactuan con el *kernel* controlando el procesador, la memoria RAM y el disco de la máquina
 
-Terminal
-^^^^^^^^
-La terminal o línea de comandos es una interfáz no gráfica con la cúal el usuario puede interactuar con el sistema
-
-A pesar de su simpleza es una interfaz sumamente poderosa y eficiente, ya que nos permite ver que es lo que está ocurriendo tras bambalinas mientras un programa se está ejecutando
-
-Es un estándar en el cómputo y seguirá siendolo por mucho tiempo más
+*Terminal*
+^^^^^^^^^^
+La terminal o línea de comandos es una interfáz no gráfica con la cúal el usuario puede interactuar con el sistema. A pesar de su simpleza es una interfaz sumamente poderosa y eficiente, ya que nos permite ver que es lo que está ocurriendo tras bambalinas mientras un programa se está ejecutando. Es un estándar en el cómputo y seguirá siendolo por mucho tiempo más.
 
 	.. image:: commitstrip_cli.jpg
-		:height: 150px
+		:width: 600px
 		:alt: Your friendly neighbour the terminal
 
 *Prompt*
 ^^^^^^^^
 El *prompt* es la linea en la terminal que nos indica que nuestra consola está responsiva y que puede aceptar comandos del usuario
 	.. danger::
-
 		Si no hay prompt no podemos mandar comandos
 
-	.. image:: prompt.png
-		:height: 150px
+	.. image:: terminal_01_prompt.png
+		:width: 600px
 		:alt: No prompt, no soup for you!
 
-Comando
-^^^^^^^
+*Comando*
+^^^^^^^^^
 Un comando es la primera palabra que va después del prompt (o después de un pipe \"\|\", eso lo veremos en parseo ), un comando es esencialmente un elemento ejecutable que puede ser un programa binario o un script
 
 	.. warning::
 		El comando debe estar presente en el :code:`$PATH` para que la terminal lo pueda ejecutar
 
-.. |command_01| image:: command_01.png
-	:height: 150px
-	:alt: command
+	.. image:: terminal_02_command.png
+		:width: 600px
 
-.. |command_02| image:: command_02.png
-	:height: 150px
-	:alt: command
+*Opción*
+^^^^^^^^
+Ciertos comandos y programas pueden comportarse distinto si le pasamos una o más opciones.
 
-+--------------+--------------+
-+ |command_01| + |command_02| +
-+--------------+--------------+
+	.. warning::
+		Las opciones se especifican con el signo '\-' o con los signos '\-\-'
 
-Opción
-^^^^^^
-Ciertos comandos y programas pueden comportarse distinto si le pasamos una o más opciones, las opciones se especifican con el signo '\-' o con los signos '\-\-'
+	.. image:: terminal_03_option.png
+		:width: 600px
+		:alt: option
 
-.. |option_01| image:: option_01.png
-	:height: 150px
-	:alt: option
-
-.. |option_02| image:: option_02.png
-	:height: 150px
-	:alt: option
-
-+-------------+-------------+
-+ |option_01| + |option_02| +
-+-------------+-------------+
-
-
-Argumento
-^^^^^^^^^
+*Argumento*
+^^^^^^^^^^^
 Un argumento es una o más palabras que vienen después de un comando, pueden ir antes o después de una opción (o no llevar opciones incluso)
 
-.. |argument_01| image:: argument_01.png
-	:height: 150px
-	:alt: argument
+	.. warning::
+		Los argumentos no llevan '\-' ni '\-\-' y en ocasiones conviene delimitarlos con comillas
 
-.. |argument_02| image:: argument_02.png
-	:height: 150px
-	:alt: argument
+	.. image:: terminal_04_argument.png
+		:width: 600px
+		:alt: argument
 
-+---------------+---------------+
-+ |argument_01| + |argument_02| +
-+---------------+---------------+
+*Combinaciones*
+^^^^^^^^^^^^^^^
+En muchas ocasiones necesitaremos de opciones y de argumentos de modo que es indispensable saber como combinarlos
 
-	.. tip::
-		**Un argumento no lleva el signo '\-'**
+	.. warning::
+		El orden de las opciones y argumentos es fundamental en la ejecución de los comandos que usaremos a partir del día 3
 
+	.. image:: terminal_05_opt_arg.png
+		:width: 600px
+		:alt: combination
 
 :code:`$PATH`
 ^^^^^^^^^^^^^
 En unix/linux la variable de entorno :code:`$PATH` contiene el conjunto de directorios que alberga aplicaciones en nuestro sistema
 
-Al hacer :code:`echo "$PATH"`
+	.. danger::
+		Es una variable muy sensible, y moverla sin conocimiento puede tener consecuencias que afecten la sesión del usuario, hay que modificarla lo menos posible
 
 	.. image:: path.png
-		:height: 150px
+		:width: 600px
 		:alt: path
 
-	Veremos que los programas de mi computadora, residen en alguna de las siguientes carpetas::
-
-		/usr/lib64/mpi/gcc/openmpi/bin
-		/usr/local/bin
-		/usr/bin
-		/bin
-		/usr/lib/mit/sbin
-		/usr/local/bioinformatics/local_scripts
-		/usr/local/bioinformatics/bin
-		/usr/local/bioinformatics/rmblast
-		/usr/local/bioinformatics/opt/augustus-3.3.2/scripts
-		/usr/local/bioinformatics/opt/augustus-3.3.2/bin
-
 	.. tip::
-		Adicionalmente, si queremos instalar un programa nuevo, lo podemos colocar en cualquiera de las carpetas enlistadas anteriormente y lo podemos invocar desde cualquier sitio en nuestra terminal
+		Si queremos instalar un programa nuevo, lo podemos colocar en cualquiera de las carpetas enlistadas anteriormente y lo podemos invocar desde cualquier sitio en nuestra terminal
 
-Uso de mayúsculas y minúsculas
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*Uso de* **mayúsculas** *y* **minúsculas**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. danger::
-	Los sistemas unix/linux son sensibles al uso de mayúsculas y minúsculas!
+	Los sistemas unix/linux son sensibles al uso de **mayúsculas** y **minúsculas**!
 
-	Es importante revisar lo que se ingresa en la terminal antes de mandar cualquier instrucción
+	Es importante revisar siempre lo que ingresas en la terminal antes de mandar cualquier instrucción
 
-En nuestro sistema windows en un mismo directorio no pueden existir los siguientes archivos:
 
-	* **\"A.pdf\"**
-	* **\"a.pdf\"**
+*Uso de caracteres especiales*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sin embargo, en nuestro sistema unix/linux podemos tener dentro de un mismo directorio los siguientes archivos:
-
-	* **\"abcD.pdf\"**
-	* **\"Abcd.pdf\"**
-	* **\"aBcd.pdf\"**
-	* **\"abCd.pdf\"**
-	* **\"ABCd.pdf\"**
-
-Uso de caracteres especiales
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Existen caracteres con un significado específico del sistema, en consecuencia, se deben tratar de forma especial.
 
 Estos caracteres son los siguientes y por lo general los ubicas en tu teclado en la barra numérica:
@@ -196,84 +227,19 @@ Comandos básicos
 ----------------
 En esta sección encontraremos comandos básicos para el manejo de archivos, es indispensable que tengamos familiaridad con estos comandos antes de continuar con la manipulación de archivos
 
-:code:`whoami`
-^^^^^^^^^^^^^^
-*Who am I?* Nos indica con qué nombre de usuario estamos trabajando::
-
-	$ whoami
-	vflorelo
-
-:code:`pwd`
-^^^^^^^^^^^
-*Print working directory* nos indica en que directorio estamos trabajando::
-
-	$ pwd
-	/home/vflorelo
-
 :code:`ls`
 ^^^^^^^^^^
 List, nos indica que elementos hay en el directorio actual
 
-	.. admonition:: Opciones de :code:`ls`
-		:class: toggle
+.. admonition:: Opciones de :code:`ls`
+	:class: toggle
 
-		* Listado de los archivos en formato extendido ( :code:`-l` )::
-
-			$ ls -l
-			total 4
-			-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 'mi archivo.txt'
-
-		* Listado de los archivos en formato extendido en lenguaje humano ( :code:`-l -h` )::
-
-			$ ls -l -h
-			total 4.0K
-			-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 'mi archivo.txt'
-
-		* Listado de los archivos incluido archivos ocultos ( :code:`-a` )::
-
-			$ ls -a
-			.   ..  'mi archivo.txt'
-
-		* Listado de los archivos en orden cronológico ( :code:`-l -h -t` )::
-
-			$ ls -l -h
-			total 4.0K
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-			-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 'mi archivo.txt'
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 'otro archivo.txt'
-
-			$ ls -l -h -t
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 'otro archivo.txt'
-			-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 'mi archivo.txt'
-
-		* Listado de los archivos en orden alfanumérico reverso ( :code:`-l -h -r` )::
-
-			$ ls -l -h
-			total 4.0K
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-			-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 'mi archivo.txt'
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 'otro archivo.txt'
-
-			$ ls -l -h -r
-			total 4.0K
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 'otro archivo.txt'
-			-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 'mi archivo.txt'
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-
-		* Listado de los archivos en orden cronológico reverso ( :code:`-l -h -r -t` )::
-
-			$ ls -l -h
-			total 4.0K
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
-			-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 'mi archivo.txt'
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 'otro archivo.txt'
-
-			$ ls -l -h -r -t
-			total 4.0K
-			-rw-r--r-- 1 vflorelo bioinformatics 12 Aug 26 15:07 'mi archivo.txt'
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28 'otro archivo.txt'
-			-rw-r--r-- 1 vflorelo bioinformatics  0 Aug 26 15:28  archivo.txt
+	* Listado de los archivos en formato extendido ( :code:`-l` )
+	* Listado de los archivos en formato extendido en lenguaje humano ( :code:`-l -h` )
+	* Listado de los archivos incluido archivos ocultos ( :code:`-a` )
+	* Listado de los archivos en orden cronológico ( :code:`-l -h -t` )
+	* Listado de los archivos en orden alfanumérico reverso ( :code:`-l -h -r` )
+	* Listado de los archivos en orden cronológico reverso ( :code:`-l -h -r -t` )
 
 :code:`cd`
 ^^^^^^^^^^
@@ -352,6 +318,7 @@ List, nos indica que elementos hay en el directorio actual
 
 		$ pwd
 		/home/vflorelo/dia_02
+
 
 :code:`mkdir`
 ^^^^^^^^^^^^^
@@ -639,6 +606,8 @@ Tail, nos da las últimas N líneas de un archivo
 		MT      16569   3132388394      70      71
 
 :code:`wc`
+^^^^^^^^^^
+
 Word count, nos indica el número de líneas, palabras y caracteres de un archivo o de un *string*
 
 .. admonition:: Modos de operación de :code:`wc`
@@ -664,7 +633,8 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 		 715 Homo_sapiens_GRCh38.fasta.fai
 
 :code:`scp`
------------
+^^^^^^^^^^^
+
 El comando :code:`scp` nos permite al igual que :code:`cp`, copiar archivos desde un origen hacia un destino, no obstante, lo hace a través de servidores remotos.
 
 Este comando combina las bondades de :code:`cp` con los protocolos de seguridad de :code:`ssh`

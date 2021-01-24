@@ -32,6 +32,8 @@ El procedimiento general consiste en:
 		* Puede ser secuenciación de genoma completo
 		* Puede ser secuenciación de regiones específicas
 		* Puede ser secuenciación de regiones aleatorias
+
+		.. image:: GBS.png
 	1. Alineamiento de las lecturas a un genoma de referencia
 		* `...`_ ó no
 	2. Llamado de variantes
@@ -41,7 +43,7 @@ El procedimiento general consiste en:
 		* Construcción de haplotipos basado en secuenciación (usando *long reads*)
 		* Construcción de haplotipos basado en relaciones interindividuales (usando árboles genealógicos)
 
-	.. image:: GBS.png
+		.. image:: data_flow.png
 
 En este curso aprenderás a usar comandos básicos de linux y `GATK4`_ para el llamado de variantes genómicas a partir de datos de secuenciación masiva obtenidos de muestras humanas por individuo
 	* La documentación de todo el curso estará disponible conforme avance el curso en `readthedocs.org`_
@@ -86,5 +88,5 @@ Contacto
 .. _plantas: https://pubmed.ncbi.nlm.nih.gov/32814806/
 .. _...: https://pubmed.ncbi.nlm.nih.gov/25056481/
 .. _GATK4: https://gatk.broadinstitute.org/
-.. _readthedocs.org: https://better_call_ATG.readthedocs.io/es/latest/
-.. _discord: https://discord.com/channels/724665563212939285/757304924835938354
+.. _readthedocs.org: https://call-me-by-your-reads.readthedocs.io/en/latest/
+.. _discord: https://discord.com/channels/724665563212939285/798223051253874709
