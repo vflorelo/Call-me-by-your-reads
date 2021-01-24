@@ -57,18 +57,6 @@ En este curso aprenderás a usar comandos básicos de linux y `GATK4`_ para el l
 ===========================
 .. include:: parsing.rst
 
-:doc:`NGS </ngs>`
-===========================
-.. include:: ngs.rst
-
-:doc:`Burrows Wheeler Transform </bwa>`
-=======================================
-.. include:: bwa.rst
-
-:doc:`Manejo de archivos SAM/BAM/BED/VCF </gatk>`
-=================================================
-.. include:: gatk.rst
-
 Contacto
 --------
 	Este curso es llevado a ti por `ATGenomics`_, una iniciativa dedicada a la divulgación, promoción y capacitación en bioinformática

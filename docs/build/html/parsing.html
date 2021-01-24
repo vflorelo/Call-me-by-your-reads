@@ -25,8 +25,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
         <script src="_static/translations.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -36,7 +34,6 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" /> 
@@ -327,8 +324,26 @@
 </div></blockquote>
 </div>
 <p>A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes
-Para comenzar, vamos a descargar un archivo con el que podamos trabajar
-<code class="code docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://github.com/vflorelo/Call-me-by-your-reads/</span></code></p>
+Para comenzar, vamos a descargar un archivo con el que podamos trabajar</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $HOME
+wget https://raw.githubusercontent.com/vflorelo/Call-me-by-your-reads/master/snpEff_genes.txt
+</pre></div>
+</div>
+<p>Y entonces tendremos un archivo llamado snpEff_genes.txt que es un resumen de cuantas variantes se encontraron en cada gen en un experimento de secuenciación de exoma empleando el kit <a class="reference external" href="https://emea.illumina.com/library-prep-array-kit-selector/kits-and-arrays/trusight-one-expanded-panel.html">TruSight One expanded</a></p>
+<p>Primero lo revisamos rapidamente con <code class="code docutils literal notranslate"><span class="pre">head</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head snpEff_genes.txt
+# The following table is formatted as tab separated values.
+#GeneName       GeneId  TranscriptId    BioType variants_impact_HIGH    variants_impact_LOW     variants_impact_MODERATE        variants_impact_MODIFIER        variants_effect_3_prime_UTR_variant     variants_effect_5_prime_UTR_premature_start_codon_gain_variant  variants_effect_5_prime_UTR_variant     variants_effect_conservative_inframe_deletion   variants_effect_conservative_inframe_insertion  variants_effect_disruptive_inframe_deletion     variants_effect_disruptive_inframe_insertion    variants_effect_downstream_gene_variant variants_effect_frameshift_variant      variants_effect_intron_variant  variants_effect_missense_variant        variants_effect_non_coding_transcript_exon_variant      variants_effect_non_coding_transcript_variant   variants_effect_splice_acceptor_variant variants_effect_splice_donor_variant    variants_effect_splice_region_variant   variants_effect_start_lost      variants_effect_stop_gained     variants_effect_stop_lost       variants_effect_stop_retained_variant   variants_effect_synonymous_variant      variants_effect_upstream_gene_variant
+A2M     ENSG00000175899 ENST00000318602 protein_coding  1       1       1       0       0       0       0       0       0       0       0       0       0       2       1       0       0       1       0       2       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000462568 retained_intron 0       1       0       1       0       0       0       0       0       0       0       0       0       1       0       0       0       0       0       1       0       0       0       0       0       1
+A2M     ENSG00000175899 ENST00000472360 retained_intron 0       0       0       2       0       0       0       0       0       0       0       2       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000543436 processed_transcript    0       1       0       2       0       0       0       0       0       0       0       0       0       1       0       0       0       0       0       1       0       0       0       0       0       2
+A2M     ENSG00000175899 ENST00000545828 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       0       0       3       0       0       0       0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000546069 nonsense_mediated_decay 1       0       0       3       1       0       0       0       0       0       0       1       0       1       0       1       0       1       0       1       0       0       0       0       0       0
+A4GALT  ENSG00000128274 ENST00000249005 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       0       0       0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000381278 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       0       0       0       0       0       0       0       0       0       2       0
+</pre></div>
+</div>
 </div>
 <div class="section" id="grep">
 <h1><code class="code docutils literal notranslate"><span class="pre">grep</span></code><a class="headerlink" href="#grep" title="Enlazar permanentemente con este título">¶</a></h1>
@@ -339,65 +354,53 @@ Para comenzar, vamos a descargar un archivo con el que podamos trabajar
 <p class="admonition-title">Opciones <code class="code docutils literal notranslate"><span class="pre">grep</span></code></p>
 <ul>
 <li><p>Buscar un patrón en un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep X Homo_sapiens_GRCh38.fasta.fai
-X       156040895       2916073361      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep ABCD3 snpEff_genes.txt
+ABCD3   ENSG00000117528 ENST00000315713 protein_coding  0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       1       0
+ABCD3   ENSG00000117528 ENST00000370214 protein_coding  0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       1       0
+ABCD3   ENSG00000117528 ENST00000468860 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       0       0       0       01      0       0       0       0       0       0       0       0       0       0
+ABCD3   ENSG00000117528 ENST00000647998 protein_coding  0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       1       0
 </pre></div>
 </div>
 </li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">-w</span></code> Buscar un patrón en un archivo <em>si y solo si</em>, ocurre como <strong>palabra completa</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep 2 Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-12      133275309       1971535983      70      71
-13      114364328       2106715242      70      71
-14      107043718       2222713363      70      71
-15      101991189       2331286294      70      71
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-X       156040895       2916073361      70      71
-Y       57227415        3074343428      70      71
-MT      16569   3132388394      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep ADCY1 snpEff_genes.txt
+ADCY1   ENSG00000164742 ENST00000297323 protein_coding  0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       1       0
+ADCY10  ENSG00000143199 ENST00000367848 protein_coding  0       4       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       4       0
+ADCY10  ENSG00000143199 ENST00000367851 protein_coding  0       4       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       4       0
+ADCY10  ENSG00000143199 ENST00000485964 nonsense_mediated_decay 0       0       0       3       1       0       0       0       0       0       0       0       0       0       02      0       0       0       0       0       0       0       0       0       0
+ADCY10  ENSG00000143199 ENST00000545172 protein_coding  0       4       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       4       0
 
-$ grep -w 2 Homo_sapiens_GRCh38.fasta.fai
-2       242193529       252512975       70      71
+
+$ grep -w ADCY1 snpEff_genes.txt
+ADCY1   ENSG00000164742 ENST00000297323 protein_coding  0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       1       0
 </pre></div>
 </div>
 </li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">-c</span></code> Buscar un patrón en un archivo pero en vez de entregar las líneas que contienen el patrón, entrega el <strong>número de líneas que contiene el patrón</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -c 2 Homo_sapiens_GRCh38.fasta.fai
-24
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -c BRCA2 snpEff_genes.txt
+5
 </pre></div>
 </div>
 </li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">-m</span></code> Buscar un patrón en un archivo y entregar como maximo m líneas</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -m2 2 Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -m1 BRCA2 snpEff_genes.txt
+BRCA2   ENSG00000139618 ENST00000380152 protein_coding  0       4       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       4       0
 </pre></div>
 </div>
 </li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">-n</span></code> Buscar un patrón en un archivo y mostrar el <strong>número de línea</strong> en la que ocurre el patrón de búsqueda:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -n X Homo_sapiens_GRCh38.fasta.fai
-23:X    156040895       2916073361      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -n BRCA2 snpEff_genes.txt
+5884:BRCA2      ENSG00000139618 ENST00000380152 protein_coding  0       4       2       0       0       0       0       0       0       0       0       0       0       0       20      0       0       0       0       0       0       0       0       4       0
+5885:BRCA2      ENSG00000139618 ENST00000530893 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+5886:BRCA2      ENSG00000139618 ENST00000544455 protein_coding  0       4       2       0       0       0       0       0       0       0       0       0       0       0       20      0       0       0       0       0       0       0       0       4       0
+5887:BRCA2      ENSG00000139618 ENST00000614259 processed_transcript    0       0       0       6       0       0       0       0       0       0       0       0       0       00      6       0       0       0       0       0       0       0       0       0       0
+5888:BRCA2      ENSG00000139618 ENST00000665585 nonsense_mediated_decay 0       0       0       3       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       0       0       3
 </pre></div>
 </div>
 </li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">-v</span></code> Buscar un patrón en un archivo y muestra las líneas <strong>que no contengan</strong> el patrón de búsqueda:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -v 2 Homo_sapiens_GRCh38.fasta.fai
-6       170805979       1076358398      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -v BRCA2 snpEff_genes.txt
+&lt;Es mucho output como para ponerlo ;) &gt;
 </pre></div>
 </div>
 </li>
@@ -438,100 +441,54 @@ $ grep -wc termino archivo
 </div>
 <div class="section" id="cut">
 <h1><code class="code docutils literal notranslate"><span class="pre">cut</span></code><a class="headerlink" href="#cut" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Cut es una utilidad para separar columnas de un archivo tabular (como el vcf!)</p>
-<p>Para linux todo es una tabla, sabiéndola separar, aquí una pequeña introducción, tomemos el siguiente texto:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">|</span><span class="n">b</span><span class="o">|</span><span class="n">c</span>
-<span class="n">d</span><span class="o">|</span><span class="n">e</span><span class="o">|</span><span class="n">f</span>
-<span class="n">g</span><span class="o">|</span><span class="n">h</span><span class="o">|</span><span class="n">i</span>
-</pre></div>
-</div>
-<p>Podemos leerlo como una tabla de 3 filas y 3 columnas, separado por el signo “|”</p>
-<p>Otro ejemplo, si copipegamos una tabla de excel a nuestro bloc de notas, tendremos un texto con la siguiente estructura:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>       <span class="n">b</span>       <span class="n">c</span>
-<span class="n">d</span>       <span class="n">e</span>       <span class="n">f</span>
-<span class="n">g</span>       <span class="n">h</span>       <span class="n">i</span>
-</pre></div>
-</div>
-<p>Nuevamente podemos leerlo como una tabla de 3 filas y 3 columnas, separado por el signo invisible “\t”</p>
-<p>Ahora si, habiendo tenido esta breve introducción:</p>
+<p>Cut es una utilidad para separar columnas de un archivo tabular, como los vcfs o el archivo snpEff_genes.txt</p>
 <blockquote>
 <div><div class="toggle admonition">
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">cut</span></code></p>
 <ul>
-<li><p>Obtener la primera columna de un archivo tabular:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 Homo_sapiens_GRCh38.fasta.fai
-1
-2
-3
-4
-5
-6
-7
-8
-9
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-X
-Y
-MT
+<li><p>Obtener la primera columna de un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 snpEff_genes.txt
+# The following table is formatted as tab separated values.
+#GeneName
+A2M
+A2M
+A2M
+A2M
+A2M
+A2M
+A4GALT
+A4GALT
 </pre></div>
 </div>
 </li>
-<li><p>Obtener las primeras dos columnas de un archivo tabular:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1,2 Homo_sapiens_GRCh38.fasta.fai
-1       248956422
-2       242193529
-3       198295559
-4       190214555
-5       181538259
-6       170805979
-7       159345973
-8       145138636
-9       138394717
-10      133797422
-11      135086622
-12      133275309
-13      114364328
-14      107043718
-15      101991189
-16      90338345
-17      83257441
-18      80373285
-19      58617616
-20      64444167
-21      46709983
-22      50818468
-X       156040895
-Y       57227415
-MT      16569
+<li><p>Obtener las primeras dos columnas de un archivo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1,2 snpEff_genes.txt
+# The following table is formatted as tab separated values.
+#GeneName       GeneId
+A2M     ENSG00000175899
+A2M     ENSG00000175899
+A2M     ENSG00000175899
+A2M     ENSG00000175899
+A2M     ENSG00000175899
+A2M     ENSG00000175899
+A4GALT  ENSG00000128274
+A4GALT  ENSG00000128274
 </pre></div>
 </div>
 </li>
-<li><p>Obtener las primeras tres columnas de un archivo tabular</p>
+<li><p>Obtener las primeras cinco columnas de un archivo</p>
 <blockquote>
 <div><div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>podemos usar:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1,2,3 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1,2,3,4,5 snpEff_genes.txt
 </pre></div>
 </div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Truco</p>
 <p>o podemos usar:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1-3 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1-5 snpEff_genes.txt
 </pre></div>
 </div>
 </div>
@@ -542,14 +499,14 @@ MT      16569
 <div><div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>podemos usar:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f2,3 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f2,3 snpEff_genes.txt
 </pre></div>
 </div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Truco</p>
 <p>o podemos usar:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 --complement Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 --complement snpEff_genes.txt
 </pre></div>
 </div>
 </div>
@@ -560,11 +517,11 @@ MT      16569
 <div><div class="admonition tip">
 <p class="admonition-title">Truco</p>
 <p>Podemos hacerlo pidiendo un intervalo abierto:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f2- Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f2- snpEff_genes.txt
 </pre></div>
 </div>
 <p>O podemos hacerlo excluyendo la columna que nos estorba:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 --complement Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cut -f1 --complement snpEff_genes.txt
 </pre></div>
 </div>
 </div>
@@ -576,14 +533,14 @@ MT      16569
 <p><code class="code docutils literal notranslate"><span class="pre">cut</span></code> usa por default el tabulador (“\t”) como separador de campo. Qué pasa si mi tabla no está separada por tabuladores?</p>
 <p>En ese escenario, podemos especificarle a <code class="code docutils literal notranslate"><span class="pre">cut</span></code> que use caracteres específicos como separadores de campo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat file_1
-a|b|c
-d|e|f
-g|h|i
+a1|b1|c1|d1|e1|f1
+a2|b2|c2|d2|e2|f2
+a3|b3|c3|d3|e3|f3
 
-$ cut -d\| -f2
-b
-e
-h
+$ cut -d\| -f2 file_1
+b1
+b2
+b2
 </pre></div>
 </div>
 </div>
@@ -597,24 +554,6 @@ $ cut -d, -f1,3-5 --complement
 </pre></div>
 </div>
 </div>
-<div class="toggle admonition">
-<p class="admonition-title">Reto!</p>
-<p>Cúal seria el resultado de las siguientes construcciones? El archivo lo encuentras en tu carpeta del dia_01. Mandanos por correo tus respuestas (y su explicación) y podrás ganar una sorpresa (limitado a 3 ganadores):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat archivo
-A,B     C       D       E       F       G       H       I       J       K       L       M       N       O,P     Q       R,S,T   U       V       W       X
-
-$ cut -f1,4-9,10,14,18- archivo
-
-$ cut -f1,4-9,10,14,18- --complement archivo
-
-$ cut -d, -f2,3 archivo
-
-$ cut -d, -f2,3- archivo
-
-$ cut -d, -f2,3 --complement archivo
-</pre></div>
-</div>
-</div>
 </div>
 </div></blockquote>
 </div>
@@ -624,201 +563,94 @@ $ cut -d, -f2,3 --complement archivo
 <blockquote>
 <div><div class="toggle admonition">
 <p class="admonition-title">Modos de operacion de <code class="code docutils literal notranslate"><span class="pre">sort</span></code></p>
-<div class="toggle admonition">
+<div class="admonition-ordenar-un-conjunto-de-lineas-alfanumericamente admonition">
 <p class="admonition-title">Ordenar un conjunto de líneas alfanumericamente</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort Homo_sapiens_GRCh38.fasta.fai
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-12      133275309       1971535983      70      71
-1       248956422       16      70      71
-13      114364328       2106715242      70      71
-14      107043718       2222713363      70      71
-15      101991189       2331286294      70      71
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-2       242193529       252512975       70      71
-22      50818468        2864528898      70      71
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-MT      16569   3132388394      70      71
-X       156040895       2916073361      70      71
-Y       57227415        3074343428      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort snpEff_genes.txt
+A2M     ENSG00000175899 ENST00000318602 protein_coding  1       1       1       0       0       0       0       0       0       0       0       0       0       2       1       00      1       0       2       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000462568 retained_intron 0       1       0       1       0       0       0       0       0       0       0       0       0       1       0       00      0       0       1       0       0       0       0       0       1
+A2M     ENSG00000175899 ENST00000472360 retained_intron 0       0       0       2       0       0       0       0       0       0       0       2       0       0       0       00      0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000543436 processed_transcript    0       1       0       2       0       0       0       0       0       0       0       0       0       1       00      0       0       0       1       0       0       0       0       0       2
+A2M     ENSG00000175899 ENST00000545828 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       0       0       3       00      0       0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000546069 nonsense_mediated_decay 1       0       0       3       1       0       0       0       0       0       0       1       0       1       01      0       1       0       1       0       0       0       0       0       0
+A4GALT  ENSG00000128274 ENST00000249005 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000381278 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000401850 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000465765 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       3       0       0       00      0       0       0       0       0       0       0       0       0       0
 </pre></div>
 </div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
 <p>En cómputo, el orden alfanumérico es algo truculento, 100 va antes que 10, y 10 va antes que 1.</p>
-<p>De modo que ordenar líneas no es una tarea trivial</p>
 </div>
-<div class="toggle admonition">
-<p class="admonition-title">Ordenar un conjunto de líneas numericamente</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -n Homo_sapiens_GRCh38.fasta.fai
-MT      16569   3132388394      70      71
-X       156040895       2916073361      70      71
-Y       57227415        3074343428      70      71
-1       248956422       16      70      71
-2       242193529       252512975       70      71
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-12      133275309       1971535983      70      71
-13      114364328       2106715242      70      71
-14      107043718       2222713363      70      71
-15      101991189       2331286294      70      71
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-</pre></div>
-</div>
+<div class="admonition-ordenar-un-conjunto-de-lineas-numericamente admonition">
+<p class="admonition-title">Ordenar un conjunto de líneas numericamente
+::</p>
+<blockquote>
+<div><p>$ sort -n snpEff_genes.txt</p>
+</div></blockquote>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
 <p>En cómputo, el orden numérico es sensible a la presencia de caracteres alfabéticos, por lo que para ordenar líneas adecuadamente se requiere limpiar los datos (que unicamente contengan un tipo de datos por columna o por campo) o de emplear otra estrategia</p>
 </div>
-<div class="toggle admonition">
-<p class="admonition-title">Ordenar un conjunto de líneas como versionado de software</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -V Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-12      133275309       1971535983      70      71
-13      114364328       2106715242      70      71
-14      107043718       2222713363      70      71
-15      101991189       2331286294      70      71
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-MT      16569   3132388394      70      71
-X       156040895       2916073361      70      71
-Y       57227415        3074343428      70      71
-</pre></div>
+<div class="admonition-ordenar-un-conjunto-de-lineas-como-versionado-de-software admonition">
+<p class="admonition-title">Ordenar un conjunto de líneas como versionado de software
+::</p>
+<blockquote>
+<div><p>$ sort -V snpEff_genes.txt</p>
+</div></blockquote>
 </div>
+<div class="admonition-ordenar-de-forma-descendente-un-conjunto-de-lineas admonition">
+<p class="admonition-title">Ordenar de forma descendente un conjunto de líneas
+::</p>
+<blockquote>
+<div><p>$ sort -r snpEff_genes.txt
+ZSWIM8  ENSG00000214655 ENST00000605216 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604754 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604729 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604524 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604165 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603840 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603409 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603309 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603195 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603187 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0</p>
+</div></blockquote>
 </div>
-<div class="toggle admonition">
-<p class="admonition-title">Ordenar de forma descendente un conjunto de líneas</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -r Homo_sapiens_GRCh38.fasta.fai
-Y       57227415        3074343428      70      71
-X       156040895       2916073361      70      71
-MT      16569   3132388394      70      71
-9       138394717       1558438902      70      71
-8       145138636       1411226840      70      71
-7       159345973       1249604479      70      71
-6       170805979       1076358398      70      71
-5       181538259       892226719       70      71
-4       190214555       699294797       70      71
-3       198295559       498166428       70      71
-22      50818468        2864528898      70      71
-2       242193529       252512975       70      71
-21      46709983        2817151612      70      71
-20      64444167        2751786798      70      71
-19      58617616        2692331770      70      71
-18      80373285        2610810278      70      71
-17      83257441        2526363427      70      71
-16      90338345        2434734517      70      71
-15      101991189       2331286294      70      71
-14      107043718       2222713363      70      71
-13      114364328       2106715242      70      71
-1       248956422       16      70      71
-12      133275309       1971535983      70      71
-11      135086622       1834519535      70      71
-10      133797422       1698810704      70      71
-</pre></div>
+<div class="admonition-ordenar-con-base-en-alguna-columna-especifica admonition">
+<p class="admonition-title">Ordenar con base en alguna columna específica
+::</p>
+<blockquote>
+<div><p>$ sort -k2 snpEff_genes.txt
+C1orf112        ENSG00000000460 ENST00000498289 processed_transcript    0       0       0       5       0       0       0       0       0       0       0       0       0       50      0       0       0       0       0       0       0       0       0       0       0
+CFH     ENSG00000000971 ENST00000359637 protein_coding  0       1       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       1       0
+CFH     ENSG00000000971 ENST00000367429 protein_coding  0       2       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       2       0
+CFH     ENSG00000000971 ENST00000466229 retained_intron 0       0       0       4       0       0       0       0       0       0       0       0       0       0       0       30      0       0       0       0       0       0       0       0       1
+CFH     ENSG00000000971 ENST00000496761 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       0       0       0       01      0       0       0       0       0       0       0       0       0       0
+CFH     ENSG00000000971 ENST00000630130 protein_coding  0       1       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       1       0
+GCLC    ENSG00000001084 ENST00000504525 nonsense_mediated_decay 0       0       0       2       0       0       1       0       0       0       0       0       0       0       01      0       0       0       0       0       0       0       0       0       0
+GCLC    ENSG00000001084 ENST00000505197 protein_coding  0       0       0       1       0       0       0       0       0       0       0       0       0       1       0       00      0       0       0       0       0       0       0       0       0
+GCLC    ENSG00000001084 ENST00000513939 protein_coding  0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       1
+GCLC    ENSG00000001084 ENST00000514004 protein_coding  0       0       0       1       0       0       1       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       0</p>
+</div></blockquote>
 </div>
-</div>
-<div class="toggle admonition">
-<p class="admonition-title">Ordenar con base en alguna columna específica</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -k2 Homo_sapiens_GRCh38.fasta.fai
-15      101991189       2331286294      70      71
-14      107043718       2222713363      70      71
-13      114364328       2106715242      70      71
-12      133275309       1971535983      70      71
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-9       138394717       1558438902      70      71
-8       145138636       1411226840      70      71
-X       156040895       2916073361      70      71
-7       159345973       1249604479      70      71
-MT      16569   3132388394      70      71
-6       170805979       1076358398      70      71
-5       181538259       892226719       70      71
-4       190214555       699294797       70      71
-3       198295559       498166428       70      71
-2       242193529       252512975       70      71
-1       248956422       16      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-Y       57227415        3074343428      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-18      80373285        2610810278      70      71
-17      83257441        2526363427      70      71
-16      90338345        2434734517      70      71
-</pre></div>
-</div>
-</div>
-<div class="toggle admonition">
-<p class="admonition-title">Ordenar con opciones múltiples</p>
-<p><code class="code docutils literal notranslate"><span class="pre">sort</span></code> al igual que <code class="code docutils literal notranslate"><span class="pre">cut</span></code> o <code class="code docutils literal notranslate"><span class="pre">grep</span></code> permite combinar opciones, siempre y cuando estas tengan sentido:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -n -r -k3 Homo_sapiens_GRCh38.fasta.fai
-MT      16569   3132388394      70      71
-Y       57227415        3074343428      70      71
-X       156040895       2916073361      70      71
-22      50818468        2864528898      70      71
-21      46709983        2817151612      70      71
-20      64444167        2751786798      70      71
-19      58617616        2692331770      70      71
-18      80373285        2610810278      70      71
-17      83257441        2526363427      70      71
-16      90338345        2434734517      70      71
-15      101991189       2331286294      70      71
-14      107043718       2222713363      70      71
-13      114364328       2106715242      70      71
-12      133275309       1971535983      70      71
-11      135086622       1834519535      70      71
-10      133797422       1698810704      70      71
-9       138394717       1558438902      70      71
-8       145138636       1411226840      70      71
-7       159345973       1249604479      70      71
-6       170805979       1076358398      70      71
-5       181538259       892226719       70      71
-4       190214555       699294797       70      71
-3       198295559       498166428       70      71
-2       242193529       252512975       70      71
-1       248956422       16      70
-</pre></div>
-</div>
+<div class="admonition-ordenar-con-opciones-multiples-code-sort-al-igual-que-code-cut-o-code-grep-permite-combinar-opciones-siempre-y-cuando-estas-tengan-sentido admonition">
+<p class="admonition-title">Ordenar con opciones múltiples
+<code class="code docutils literal notranslate"><span class="pre">sort</span></code> al igual que <code class="code docutils literal notranslate"><span class="pre">cut</span></code> o <code class="code docutils literal notranslate"><span class="pre">grep</span></code> permite combinar opciones, siempre y cuando estas tengan sentido::</p>
+<blockquote>
+<div><p>$ sort -n -r -k5 snpEff_genes.txt
+ZAN     ENSG00000146839 ENST00000620596 protein_coding  3       1       12      2       0       0       0       1       0       0       0       0       2       3       11      00      0       1       1       0       0       0       0       1       0
+ZAN     ENSG00000146839 ENST00000618565 protein_coding  3       2       13      0       0       0       0       1       0       0       0       0       2       2       12      00      0       1       2       0       0       0       0       1       0
+ZAN     ENSG00000146839 ENST00000613979 protein_coding  3       2       13      0       0       0       0       1       0       0       0       0       2       2       12      00      0       1       2       0       0       0       0       1       0
+ZAN     ENSG00000146839 ENST00000546292 protein_coding  3       1       12      2       0       0       0       1       0       0       0       0       2       3       11      00      0       1       1       0       0       0       0       1       0
+RAI1    ENSG00000108557 ENST00000640861 protein_coding  3       0       2       0       0       0       0       0       0       0       0       0       3       0       2       00      0       0       0       0       0       0       0       0       0
+RAI1    ENSG00000108557 ENST00000395774 protein_coding  3       0       2       0       0       0       0       0       0       0       0       0       3       0       2       00      0       0       0       0       0       0       0       0       0
+RAI1    ENSG00000108557 ENST00000353383 protein_coding  3       0       2       1       0       0       0       0       0       0       0       1       3       0       2       00      0       0       0       0       0       0       0       0       0
+FMO2    ENSG00000094963 ENST00000209929 protein_coding  3       1       6       0       0       0       0       0       1       0       0       0       2       0       5       00      0       0       0       0       1       0       0       1       0
+ZMYND15 ENSG00000141497 ENST00000592813 protein_coding  2       1       0       6       0       0       0       0       0       0       0       0       2       0       0       00      0       0       0       0       0       0       0       1       6
+ZMYND15 ENSG00000141497 ENST00000573751 protein_coding  2       1       0       3       0       0       0       0       0       0       0       0       2       0       0       00      0       0       0       0       0       0       0       1       3</p>
+</div></blockquote>
 </div>
 </div>
 </div></blockquote>
@@ -1009,24 +841,148 @@ i,j
 <dt>Estamos listos para usar awk?</dt><dd><p>Estamos listos para usar awk!</p>
 </dd>
 </dl>
-<p>En la siguiente <a class="reference external" href="https://raw.githubusercontent.com/vflorelo/better_call_ATG/master/docs/source/test_data_variants.tsv">tabla</a> están las variantes encontradas en un experimento de secuenciación de exoma, veamos que le podemos hacer con awk (o con cualquier otro programa)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Chr</span><span class="o">.</span>    <span class="n">Position</span>        <span class="n">ID</span>      <span class="n">Ref</span><span class="o">.</span> <span class="n">allele</span>     <span class="n">Alt</span><span class="o">.</span> <span class="n">allele</span>     <span class="n">Genotype</span>        <span class="n">Gene</span>    <span class="n">HGVS</span><span class="p">(</span><span class="n">nt</span><span class="p">)</span>        <span class="n">HGVS</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>        <span class="n">Effect</span>  <span class="n">TOPMED</span>  <span class="n">ExAC</span>    <span class="n">gnomADx</span> <span class="n">gnomADg</span> <span class="mi">1000</span><span class="n">G</span>   <span class="n">PolyPhen</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>     <span class="n">PolyPhen</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>     <span class="n">SIFT</span>    <span class="n">FATHMM</span>  <span class="n">MutAssessor</span>     <span class="n">MutTaster</span>       <span class="n">PROVEAN</span> <span class="n">LRT</span>     <span class="n">MetaSVM</span> <span class="n">MetaLR</span>  <span class="n">FATHMM_MKL</span>      <span class="n">VEST3</span>   <span class="n">REVEL</span>   <span class="n">CADD</span>    <span class="n">DANN</span>    <span class="n">ClinVar</span> <span class="n">InterPro</span>        <span class="n">AF_verdict</span>
-<span class="mi">2</span>       <span class="mi">71668784</span>        <span class="n">rs145832952</span>     <span class="n">C</span>       <span class="n">T</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.438596</span><span class="p">)</span> <span class="n">DYSF</span>    <span class="n">c</span><span class="o">.</span><span class="mi">5488</span><span class="n">C</span><span class="o">&gt;</span><span class="n">T</span>       <span class="n">p</span><span class="o">.</span><span class="n">Pro1830Ser</span>    <span class="n">missense_variant</span>        <span class="mf">0.99989</span> <span class="mf">0.00009</span> <span class="mf">0.00012</span> <span class="mf">0.00003</span> <span class="mf">0.00060</span> <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">4</span>       <span class="mi">832</span>     <span class="n">Uncertain_significance</span>  <span class="mi">1</span>       <span class="n">LF</span>
-<span class="mi">4</span>       <span class="mi">119150952</span>       <span class="n">rs758181218</span>     <span class="n">C</span>       <span class="n">G</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.441176</span><span class="p">)</span> <span class="n">MYOZ2</span>   <span class="n">c</span><span class="o">.</span><span class="mi">157</span><span class="n">C</span><span class="o">&gt;</span><span class="n">G</span>        <span class="n">p</span><span class="o">.</span><span class="n">Arg53Gly</span>      <span class="n">missense_variant</span>        <span class="mf">0.99999</span> <span class="mf">0.00001</span> <span class="mf">0.00001</span>                 <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">0</span>       <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">432</span>     <span class="n">Uncertain_significance</span>  <span class="mi">0</span>       <span class="n">PLF</span>
-<span class="mi">17</span>      <span class="mi">41479481</span>        <span class="n">rs138303882</span>     <span class="n">G</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.391304</span><span class="p">)</span> <span class="n">KRT35</span>   <span class="n">c</span><span class="o">.</span><span class="mi">577</span><span class="n">C</span><span class="o">&gt;</span><span class="n">T</span>        <span class="n">p</span><span class="o">.</span><span class="n">Arg193Trp</span>     <span class="n">missense_variant</span>        <span class="mf">0.99811</span> <span class="mf">0.00051</span> <span class="mf">0.00044</span> <span class="mf">0.00162</span> <span class="mf">0.00140</span> <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">0</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">832</span>     <span class="n">none</span>    <span class="mi">0</span>       <span class="n">LF</span>
-<span class="mi">1</span>       <span class="mi">232514192</span>       <span class="n">rs770896568</span>     <span class="n">C</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.517241</span><span class="p">)</span> <span class="n">SIPA1L2</span> <span class="n">c</span><span class="o">.</span><span class="mi">1148</span><span class="n">G</span><span class="o">&gt;</span><span class="n">T</span>       <span class="n">p</span><span class="o">.</span><span class="n">Ser383Ile</span>     <span class="n">missense_variant</span>        <span class="mf">0.99999</span> <span class="mf">0.00001</span> <span class="mf">0.00000</span> <span class="mf">0.00003</span>         <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">8</span>       <span class="mi">0</span>       <span class="mi">232</span>     <span class="n">none</span>    <span class="mi">0</span>       <span class="n">PLF</span>
-<span class="mi">17</span>      <span class="mi">20297028</span>        <span class="n">test_data_novel140</span>      <span class="n">C</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.342105</span><span class="p">)</span> <span class="n">SPECC1</span>  <span class="n">c</span><span class="o">.</span><span class="mi">3008</span><span class="n">C</span><span class="o">&gt;</span><span class="n">A</span>       <span class="n">p</span><span class="o">.</span><span class="n">Thr1003Asn</span>    <span class="n">missense_variant</span>        <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">2</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">1</span>       <span class="mi">0</span>       <span class="mi">4</span>       <span class="mi">32</span>      <span class="n">none</span>    <span class="mi">1</span>       <span class="n">LF</span>
-<span class="mi">3</span>       <span class="mi">38126203</span>        <span class="n">rs140127056</span>     <span class="n">A</span>       <span class="n">G</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.506329</span><span class="p">)</span> <span class="n">ACAA1</span>   <span class="n">c</span><span class="o">.</span><span class="mi">956</span><span class="n">T</span><span class="o">&gt;</span><span class="n">C</span>        <span class="n">p</span><span class="o">.</span><span class="n">Ile319Thr</span>     <span class="n">missense_variant</span>        <span class="mf">0.99802</span> <span class="mf">0.00055</span> <span class="mf">0.00042</span> <span class="mf">0.00175</span> <span class="mf">0.00240</span> <span class="mi">32</span>      <span class="mi">16</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">0</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">8</span>       <span class="mi">232</span>     <span class="n">none</span>    <span class="mi">2</span>       <span class="n">LF</span>
-<span class="mi">1</span>       <span class="mi">119514197</span>       <span class="n">rs774738158</span>     <span class="n">A</span>       <span class="n">G</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>      <span class="n">HSD3B1</span>  <span class="n">c</span><span class="o">.</span><span class="mi">674</span><span class="n">A</span><span class="o">&gt;</span><span class="n">G</span>        <span class="n">p</span><span class="o">.</span><span class="n">Tyr225Cys</span>     <span class="n">missense_variant</span>                <span class="mf">0.00040</span> <span class="mf">0.00013</span> <span class="mf">0.00045</span>         <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">0</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">16</span>      <span class="mi">2</span>       <span class="mi">32</span><span class="n">none</span>  <span class="mi">1</span>       <span class="n">pLF</span>
-<span class="mi">1</span>       <span class="mi">152313385</span>       <span class="n">rs61816761</span>      <span class="n">G</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.435115</span><span class="p">)</span> <span class="n">FLG</span>     <span class="n">c</span><span class="o">.</span><span class="mi">1501</span><span class="n">C</span><span class="o">&gt;</span><span class="n">T</span>       <span class="n">p</span><span class="o">.</span><span class="n">Arg501</span><span class="o">*</span>       <span class="n">stop_gained</span>     <span class="mf">0.98844</span> <span class="mf">0.00873</span> <span class="mf">0.00937</span> <span class="mf">0.00940</span> <span class="mf">0.00339</span> <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">2</span>       <span class="mi">8</span><span class="n">Pathogenic</span>     <span class="mi">0</span>       <span class="n">PLF</span>
-<span class="mi">4</span>       <span class="mi">169713231</span>       <span class="n">rs770732784</span>     <span class="n">A</span>       <span class="n">G</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.323529</span><span class="p">)</span> <span class="n">CLCN3</span>   <span class="n">c</span><span class="o">.</span><span class="mi">2302</span><span class="n">A</span><span class="o">&gt;</span><span class="n">G</span>       <span class="n">p</span><span class="o">.</span><span class="n">Met768Val</span>     <span class="n">missense_variant</span>        <span class="mf">0.99997</span> <span class="mf">0.00008</span> <span class="mf">0.00008</span>                 <span class="mi">4</span>       <span class="mi">2</span>       <span class="mi">16</span>      <span class="mi">16</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">16</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">8</span>       <span class="mi">8</span>       <span class="mi">232</span>     <span class="n">Uncertain_significance</span>  <span class="mi">1</span>       <span class="n">PLF</span>
-<span class="mi">19</span>      <span class="mi">9996220</span> <span class="n">rs148417859</span>     <span class="n">G</span>       <span class="n">A</span>       <span class="n">Het</span><span class="o">.</span> <span class="p">(</span><span class="mf">0.436364</span><span class="p">)</span> <span class="n">COL5A3</span>  <span class="n">c</span><span class="o">.</span><span class="mi">1465</span><span class="n">C</span><span class="o">&gt;</span><span class="n">T</span>       <span class="n">p</span><span class="o">.</span><span class="n">Arg489Cys</span>     <span class="n">missense_variant</span>        <span class="mf">0.99959</span> <span class="mf">0.00016</span> <span class="mf">0.00015</span> <span class="mf">0.00019</span>         <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">32</span>      <span class="mi">32</span>      <span class="mi">4</span>       <span class="mi">4</span>       <span class="mi">0</span>       <span class="mi">2</span>       <span class="mi">32</span><span class="n">none</span>  <span class="mi">0</span>       <span class="n">PLF</span>
-</pre></div>
+<p>Volvamos a nuestro archivo snpEff_genes.txt, sabiendo que está separado por tabuladores podemos jugar con esta tabla usando <code class="code docutils literal notranslate"><span class="pre">awk</span></code></p>
+<div class="toggle admonition">
+<p class="admonition-title">Estructura del archivo snpEff.txt</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p>Columna</p></td>
+<td rowspan="2"><p>Descripción</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>1</p></td>
+<td rowspan="2"><p>GeneName</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>2</p></td>
+<td rowspan="2"><p>GeneId</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>3</p></td>
+<td rowspan="2"><p>TranscriptId</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>4</p></td>
+<td rowspan="2"><p>BioType</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>5</p></td>
+<td rowspan="2"><p>variants_impact_HIGH</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>6</p></td>
+<td rowspan="2"><p>variants_impact_LOW</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>7</p></td>
+<td rowspan="2"><p>variants_impact_MODERATE</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>8</p></td>
+<td rowspan="2"><p>variants_impact_MODIFIER</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>9</p></td>
+<td rowspan="2"><p>variants_effect_3_prime_UTR_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>10</p></td>
+<td rowspan="2"><p>variants_effect_5_prime_UTR_premature_start_codon_gain_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>11</p></td>
+<td rowspan="2"><p>variants_effect_5_prime_UTR_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>12</p></td>
+<td rowspan="2"><p>variants_effect_conservative_inframe_deletion</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>13</p></td>
+<td rowspan="2"><p>variants_effect_conservative_inframe_insertion</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>14</p></td>
+<td rowspan="2"><p>variants_effect_disruptive_inframe_deletion</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>15</p></td>
+<td rowspan="2"><p>variants_effect_disruptive_inframe_insertion</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>16</p></td>
+<td rowspan="2"><p>variants_effect_downstream_gene_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>17</p></td>
+<td rowspan="2"><p>variants_effect_frameshift_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>18</p></td>
+<td rowspan="2"><p>variants_effect_intron_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>19</p></td>
+<td rowspan="2"><p>variants_effect_missense_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>20</p></td>
+<td rowspan="2"><p>variants_effect_non_coding_transcript_exon_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>21</p></td>
+<td rowspan="2"><p>variants_effect_non_coding_transcript_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>22</p></td>
+<td rowspan="2"><p>variants_effect_splice_acceptor_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>23</p></td>
+<td rowspan="2"><p>variants_effect_splice_donor_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>24</p></td>
+<td rowspan="2"><p>variants_effect_splice_region_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>25</p></td>
+<td rowspan="2"><p>variants_effect_start_lost</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>26</p></td>
+<td rowspan="2"><p>variants_effect_stop_gained</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>27</p></td>
+<td rowspan="2"><p>variants_effect_stop_lost</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>28</p></td>
+<td rowspan="2"><p>variants_effect_stop_retained_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>29</p></td>
+<td rowspan="2"><p>variants_effect_synonymous_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p>30</p></td>
+<td rowspan="2"><p>variants_effect_upstream_gene_variant</p></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+</div></blockquote>
 </div>
 <div class="toggle admonition">
 <p class="admonition-title">Condicionales en <code class="code docutils literal notranslate"><span class="pre">awk</span></code></p>
 <p>Con awk podemos emplear condicionales simples que nos permiten obtener segmentos específicos de un archivo o de un stream</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;BEGIN{FS=&quot;\t&quot;}{if($1==1 &amp;&amp; $2&gt;=1000000 &amp;&amp; $2&lt;=2000000){print $0}}&#39;</span> variant_table.tsv
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;BEGIN{FS=&quot;\t&quot;}{if($1==&quot;BRCA1&quot; &amp;&amp; $4==&quot;protein_coding&quot; &amp;&amp; $5&lt;=10){print $0}}&#39;</span> snpEff_genes.txt
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -1040,15 +996,15 @@ i,j
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="code docutils literal notranslate"><span class="pre">{if($1==1</span> <span class="pre">&amp;&amp;</span> <span class="pre">$2&gt;=1000000</span> <span class="pre">&amp;&amp;</span> <span class="pre">$2&lt;=2000000}</span></code></dt><dd><p>Esta condicional (<code class="code docutils literal notranslate"><span class="pre">if(condition){actions}</span></code>) se lee como:</p>
+<dt><code class="code docutils literal notranslate"><span class="pre">{if($1==&quot;BRCA1&quot;</span> <span class="pre">&amp;&amp;</span> <span class="pre">$4==&quot;protein_coding&quot;</span> <span class="pre">&amp;&amp;</span> <span class="pre">$5&lt;=10)}</span></code></dt><dd><p>Esta condicional (<code class="code docutils literal notranslate"><span class="pre">if(condition){actions}</span></code>) se lee como:</p>
 <ul>
 <li><dl class="simple">
 <dt>Si se cumplen las siguientes condiciones:</dt><dd><ul>
-<li><p><code class="code docutils literal notranslate"><span class="pre">$1=='1'</span></code> la primera columna es igual a 1</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$1==&quot;BRCA1&quot;</span></code> la primera columna (nombre del gen) es BRCA1</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y además</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">$2&gt;='1000000'</span></code> la segunda columna es mayor o igual a 1,000,000</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$4=&quot;protein_coding&quot;</span></code> la cuarta columna (biotipo del transcrito) es codificante</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> y además</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">$2&lt;='2000000'</span></code> la segunda columna es menor o igual a 2,000,000</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$5&lt;=10</span></code> la quinta columna (número de variantes de alto impacto) es menor o igual a 10</p></li>
 </ul>
 </dd>
 </dl>
@@ -1067,7 +1023,7 @@ i,j
 </ul>
 </div></blockquote>
 <dl class="simple">
-<dt>Y en términos biológicos:</dt><dd><p><strong>Dame todas las variantes del cromosoma 1, del nucleótido 1000000 al nucleótido 2000000</strong></p>
+<dt>Y en términos biológicos:</dt><dd><p><strong>Dame los transcritos del gen BRCA2 que sean codificantes y que además presenten menos de 10 variantes de alto impacto</strong></p>
 </dd>
 </dl>
 </div>
@@ -1095,18 +1051,6 @@ i,j
 </ul>
 </dd>
 </dl>
-</div>
-<div class="toggle admonition">
-<p class="admonition-title">Reto!</p>
-<p>Mandanos por correo los comandos que usarias para:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Obtener las variantes que se ubiquen en el gen <em>DMD</em></p></li>
-<li><p>Obtener las variantes sinónimas del cromosoma 4</p></li>
-<li><p>Obtener las variantes no sinónimas heterocigotas del cromosoma 16</p></li>
-<li><p>Obtener las variantes no sinónimas heterocigotas del cromosoma 1 que tengan una frecuencia alélica en el proyecto 1000 Genomas de menos de 0.01</p></li>
-</ul>
-</div></blockquote>
 </div>
 </div>
 </div>
