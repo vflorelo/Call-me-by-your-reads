@@ -1,7 +1,6 @@
 #!/bin/bash
 #step1
 add-apt-repository universe
-add-apt-repository ppa:certbot/certbot
 apt-get update
 apt-get upgrade
 apt-get install autoconf automake build-essential cmake firewalld gcc gfortran git libblas-dev libbz2-dev libcurl4-gnutls-dev liblapack-dev libltdl-dev liblzma-dev libncurses5-dev libssl-dev libxrender-dev libxtst-dev make openjdk-8-jre openjdk-11-jre parallel perl pigz python3-pip rename tree unzip zlib1g-dev python3-testresources r-base
@@ -52,10 +51,6 @@ done
 #step5
 mkdir -p /usr/local/bioinformatics/reads
 mv /home/ubuntu/S3*.gz /usr/local/bioinformatics/reads
-for user in yruiz adiaz mrodriguez mochoa mromero hmartinez jgaytan nrivera jhernandez tgarrido svidal lflores bvera emartinez jcornejo lramirez cgonzalez ecoss vflorelo dianolasa zorbax
-do
-	su $user
-done
 mkdir -p /usr/local/bioinformatics/bundle
 mkdir -p /usr/local/bioinformatics/db/GRCh38/clinvar
 mkdir -p /usr/local/bioinformatics/db/GRCh38/dbSnp
