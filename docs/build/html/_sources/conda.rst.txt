@@ -34,19 +34,27 @@ Pero primero debemos instalar conda, para ello, primero ingresamos a la instanci
 
 1. Empezamos como siempre en nuestra carpeta `$HOME`
 
-:code:`$ cd $HOME`
+	::
+
+		$ cd $HOME
 
 2. Descargamos el instalador de conda	(versión miniconda)
 
-:code:`$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`
+	::
+
+		$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 3. Ejecutamos el instalador (aquí te esperamos para hacerlo a la par)
 
-:code:`$ bash Miniconda3-latest-Linux-x86_64.sh`
+	::
+
+		$ bash Miniconda3-latest-Linux-x86_64.sh
 
 4. Para que los cambios surtan efecto, debemos reiniciar nuestra terminal ya que el archivo de control `.bashrc` fue modificado por conda para poder *saber* donde está ubicado el ejecutable y donde va a poder instalar programas y ambientes
 
-:code:`$ exit`
+	::
+
+		$ exit
 
 5. Volvemos a ingresar a la instancia y esta vez notaremos que aparece una pista adicional en nuestra terminal: un cuadrito verde que dice "base" que nos indica 1) que estamos usando conda, y 2) que estamos en un ambiente "base"
 
@@ -54,21 +62,34 @@ Pero primero debemos instalar conda, para ello, primero ingresamos a la instanci
 6. Posteriormente vamos a agregar *canales* a la configuración de conda, para que conda *sepa* de donde descargar los programas
 
 	* Agregamos canales default:
-		:code:`$ conda config --add channels defaults`
+
+		::
+
+			$ conda config --add channels defaults
 
 	* Agregamos canales para bioinformática:
-		:code:`$ conda config --add channels bioconda`
+
+		::
+
+			$ conda config --add channels bioconda
 
 	* Agregamos canales para programas varios:
-		:code:`$ conda config --add channels conda-forge`
+
+		::
+
+			$ conda config --add channels conda-forge
 
 7. Habiendo hecho esto, ahora si, creamos un nuevo entorno llamado gatk que va a contener los programas FastQC, bwa y samtools
 
-	:code:`$ conda create -n gatk -c bioconda samtools bwa fastqc`
+	::
+
+		$ conda create -n gatk -c bioconda samtools bwa fastqc
 
 8. Activamos nuestro entorno para poder revisar los datos de secuenciación
 
-	:code:`$ conda activate gatk`
+	::
+
+		$ conda activate gatk
 
 .. tip::
 
@@ -84,13 +105,22 @@ Pero primero debemos instalar conda, para ello, primero ingresamos a la instanci
 Una parte de la configuración la realiza conda, no obstante también usaremos programas que no tienen receta de conda. Para que estos programas funcionen debemos configurar nuestro `$PATH`
 
 1. Creamos una carpeta donde van a vivir estos programas:
-	:code:`mkdir -p $HOME/bin`
+
+	::
+
+		mkdir -p $HOME/bin
 
 .. danger::
 
 	Los siguientes pasos los debemos hacer **una sóla** vez
 
 2. Agregamos esta ruta al `$PATH` modificando el archivo `.bashrc`
-	:code:`echo "PATH=\\$PATH:\\$HOME/bin" >> .bashrc`
+
+	::
+
+		echo "PATH=\\$PATH:\\$HOME/bin" >> .bashrc
 3. Guardamos la variable para que el cambio sea persistente entre sesiones:
-	:code:`echo "export PATH" >> .bashrc`
+
+	::
+
+		echo "export PATH" >> .bashrc

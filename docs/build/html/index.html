@@ -26,6 +26,8 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
         <script src="_static/translations.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -35,6 +37,7 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" /> 
@@ -1855,7 +1858,7 @@ i,j
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
-<p>Las condicionales son sumamente útiles en cualquier lenguaje de programación, sin embargo antes de ejecutarlas debemos verificar que tengan sentido:</p>
+<p>Las condicionales son sumamente útiles en cualquier lenguaje de programación, sin embargo antes de ejecutarlas debemos verificar que tengan sentido</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{if($1==1 &amp;&amp; $2&lt;=1000000 &amp;&amp; $2&gt;=2000000)}
 </pre></div>
 </div>
@@ -1906,53 +1909,75 @@ i,j
 <li><p><a class="reference external" href="https://github.com/samtools/samtools">samtools</a></p></li>
 </ul>
 <p>Pero primero debemos instalar conda, para ello, primero ingresamos a la instancia y ejecutamos los siguientes comandos, los ejecutaremos a la par que tú :)</p>
-<ol class="arabic simple">
-<li><p>Empezamos como siempre en nuestra carpeta <cite>$HOME</cite></p></li>
-</ol>
-<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">cd</span> <span class="pre">$HOME</span></code></p>
-<ol class="arabic simple" start="2">
-<li><p>Descargamos el instalador de conda   (versión miniconda)</p></li>
-</ol>
-<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">wget</span> <span class="pre">https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span></code></p>
-<ol class="arabic simple" start="3">
-<li><p>Ejecutamos el instalador (aquí te esperamos para hacerlo a la par)</p></li>
-</ol>
-<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">bash</span> <span class="pre">Miniconda3-latest-Linux-x86_64.sh</span></code></p>
-<ol class="arabic simple" start="4">
-<li><p>Para que los cambios surtan efecto, debemos reiniciar nuestra terminal ya que el archivo de control <cite>.bashrc</cite> fue modificado por conda para poder <em>saber</em> donde está ubicado el ejecutable y donde va a poder instalar programas y ambientes</p></li>
-</ol>
-<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">exit</span></code></p>
-<ol class="arabic" start="5">
+<ol class="arabic">
+<li><p>Empezamos como siempre en nuestra carpeta <cite>$HOME</cite></p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Descargamos el instalador de conda   (versión miniconda)</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Ejecutamos el instalador (aquí te esperamos para hacerlo a la par)</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bash Miniconda3-latest-Linux-x86_64.sh
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Para que los cambios surtan efecto, debemos reiniciar nuestra terminal ya que el archivo de control <cite>.bashrc</cite> fue modificado por conda para poder <em>saber</em> donde está ubicado el ejecutable y donde va a poder instalar programas y ambientes</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ exit
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 <li><p>Volvemos a ingresar a la instancia y esta vez notaremos que aparece una pista adicional en nuestra terminal: un cuadrito verde que dice «base» que nos indica 1) que estamos usando conda, y 2) que estamos en un ambiente «base»</p></li>
 <li><p>Posteriormente vamos a agregar <em>canales</em> a la configuración de conda, para que conda <em>sepa</em> de donde descargar los programas</p>
 <blockquote>
-<div><ul class="simple">
-<li><dl class="simple">
-<dt>Agregamos canales default:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--add</span> <span class="pre">channels</span> <span class="pre">defaults</span></code></p>
-</dd>
-</dl>
+<div><ul>
+<li><p>Agregamos canales default:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda config --add channels defaults
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Agregamos canales para bioinformática:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--add</span> <span class="pre">channels</span> <span class="pre">bioconda</span></code></p>
-</dd>
-</dl>
+<li><p>Agregamos canales para bioinformática:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda config --add channels bioconda
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Agregamos canales para programas varios:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--add</span> <span class="pre">channels</span> <span class="pre">conda-forge</span></code></p>
-</dd>
-</dl>
+<li><p>Agregamos canales para programas varios:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda config --add channels conda-forge
+</pre></div>
+</div>
+</div></blockquote>
 </li>
 </ul>
 </div></blockquote>
 </li>
 <li><p>Habiendo hecho esto, ahora si, creamos un nuevo entorno llamado gatk que va a contener los programas FastQC, bwa y samtools</p>
 <blockquote>
-<div><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">gatk</span> <span class="pre">-c</span> <span class="pre">bioconda</span> <span class="pre">samtools</span> <span class="pre">bwa</span> <span class="pre">fastqc</span></code></p>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda create -n gatk -c bioconda samtools bwa fastqc
+</pre></div>
+</div>
 </div></blockquote>
 </li>
 <li><p>Activamos nuestro entorno para poder revisar los datos de secuenciación</p>
 <blockquote>
-<div><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">gatk</span></code></p>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate gatk
+</pre></div>
+</div>
 </div></blockquote>
 </li>
 </ol>
@@ -1968,27 +1993,33 @@ i,j
 <div class="section" id="path-una-vez-mas-con-sentimiento">
 <h2><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> una vez más, con sentimiento<a class="headerlink" href="#path-una-vez-mas-con-sentimiento" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Una parte de la configuración la realiza conda, no obstante también usaremos programas que no tienen receta de conda. Para que estos programas funcionen debemos configurar nuestro <cite>$PATH</cite></p>
-<ol class="arabic simple">
-<li><dl class="simple">
-<dt>Creamos una carpeta donde van a vivir estos programas:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">$HOME/bin</span></code></p>
-</dd>
-</dl>
+<ol class="arabic">
+<li><p>Creamos una carpeta donde van a vivir estos programas:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p $HOME/bin
+</pre></div>
+</div>
+</div></blockquote>
 </li>
 </ol>
 <div class="admonition danger">
 <p class="admonition-title">Peligro</p>
 <p>Los siguientes pasos los debemos hacer <strong>una sóla</strong> vez</p>
 </div>
-<ol class="arabic simple" start="2">
-<li><dl class="simple">
-<dt>Agregamos esta ruta al <cite>$PATH</cite> modificando el archivo <cite>.bashrc</cite></dt><dd><p><code class="code docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;PATH=\\$PATH:\\$HOME/bin&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">.bashrc</span></code></p>
-</dd>
-</dl>
+<ol class="arabic" start="2">
+<li><p>Agregamos esta ruta al <cite>$PATH</cite> modificando el archivo <cite>.bashrc</cite></p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;PATH=</span><span class="se">\\</span><span class="s2">$PATH:</span><span class="se">\\</span><span class="s2">$HOME/bin&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Guardamos la variable para que el cambio sea persistente entre sesiones:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;export</span> <span class="pre">PATH&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">.bashrc</span></code></p>
-</dd>
-</dl>
+<li><p>Guardamos la variable para que el cambio sea persistente entre sesiones:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;export PATH&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
 </ol>
 </div>

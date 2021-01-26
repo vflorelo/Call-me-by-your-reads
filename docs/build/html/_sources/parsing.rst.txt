@@ -658,7 +658,9 @@ Volvamos a nuestro archivo snpEff_genes.txt, sabiendo que está separado por tab
 
 	.. warning::
 
-		Las condicionales son sumamente útiles en cualquier lenguaje de programación, sin embargo antes de ejecutarlas debemos verificar que tengan sentido::
+		Las condicionales son sumamente útiles en cualquier lenguaje de programación, sin embargo antes de ejecutarlas debemos verificar que tengan sentido
+
+		::
 
 			{if($1==1 && $2<=1000000 && $2>=2000000)}
 
