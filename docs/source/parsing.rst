@@ -4,7 +4,7 @@ Introducción
 La finalidad de este curso es obtener un archivo de llamado de variantes (*Variant Calling File* por sus siglas en inglés) que tiene la siguiente estructura::
 
 	#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  g204
-		chr1       13417   rs777038595     C       CGAGA   324.73  PASS    AC=1;AF=0.500;AN=2;BaseQRankSum=0.583;DB;DP=26;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.21;MQRankSum=-0.032;QD=12.49;ReadPosRankSum=-2.185;SOR=0.446;VQSLOD=0.698;culprit=ReadPosRankSum GT:AD:DP:GQ:PL  0/1:15,11:26:99:362,0,634
+	chr1       13417   rs777038595     C       CGAGA   324.73  PASS    AC=1;AF=0.500;AN=2;BaseQRankSum=0.583;DB;DP=26;ExcessHet=3.0103;FS=0.000;MLEAC=1;MLEAF=0.500;MQ=22.21;MQRankSum=-0.032;QD=12.49;ReadPosRankSum=-2.185;SOR=0.446;VQSLOD=0.698;culprit=ReadPosRankSum GT:AD:DP:GQ:PL  0/1:15,11:26:99:362,0,634
 
 .. admonition:: Descripción extendida del formato vcf
 	:class: toggle
@@ -14,7 +14,7 @@ La finalidad de este curso es obtener un archivo de llamado de variantes (*Varia
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+2: POS   +13417                  +Posición de la variante en el cromosoma                                                                                                                                              +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-		+3: ID    +rs777038595             +Identificador de la variante                                                                                                                                                        +
+		+3: ID    +rs777038595            +Identificador de la variante                                                                                                                                                         +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 		+4: REF   +C                      +Alelo de referencia                                                                                                                                                                  +
 		+---------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -326,6 +326,7 @@ Sort puede ordenar un conjunto de líneas empleando algún criterio.
 				$ sort -V snpEff_genes.txt
 
 		.. admonition:: Ordenar de forma descendente un conjunto de líneas
+
 			::
 
 				$ sort -r snpEff_genes.txt
@@ -341,6 +342,7 @@ Sort puede ordenar un conjunto de líneas empleando algún criterio.
 				ZSWIM8	ENSG00000214655	ENST00000603187	protein_coding	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	00	0	0	0	0	0	0	0	0	0
 
 		.. admonition:: Ordenar con base en alguna columna específica
+
 			::
 
 				$ sort -k2 snpEff_genes.txt
@@ -356,7 +358,9 @@ Sort puede ordenar un conjunto de líneas empleando algún criterio.
 				GCLC	ENSG00000001084	ENST00000514004	protein_coding	0	0	0	1	0	0	1	0	0	0	0	0	0	0	0	00	0	0	0	0	0	0	0	0	0
 
 		.. admonition:: Ordenar con opciones múltiples
-			:code:`sort` al igual que :code:`cut` o :code:`grep` permite combinar opciones, siempre y cuando estas tengan sentido::
+			:code:`sort` al igual que :code:`cut` o :code:`grep` permite combinar opciones, siempre y cuando estas tengan sentido
+
+			::
 
 				$ sort -n -r -k5 snpEff_genes.txt
 				ZAN	ENSG00000146839	ENST00000620596	protein_coding	3	1	12	2	0	0	0	1	0	0	0	0	2	3	11	00	0	1	1	0	0	0	0	1	0
@@ -384,9 +388,10 @@ Para ello debemos considerar que cuando ejecutamos un programa o comando, este n
 
 	En el siguiente ejemplo, :code:`"Hello world!"` es la salida estándar del comando :code:`echo`
 
-	.. code-block:: sh
+	::
 
 		$ echo "Hello world!"
+
 .. admonition:: STDERR
 	:class: toggle
 
@@ -394,7 +399,7 @@ Para ello debemos considerar que cuando ejecutamos un programa o comando, este n
 
 	En el siguiente ejemplo, :code:`"Hola mundo!"` es la salida estándar del comando :code:`cat`, no obstante, al no haber encontrado el archivo :code:`mi_otro_archivo.txt`, nos manda el mensaje de *error* (STDERR) :code:`cat: mi_archivo.txt No such file or directory`
 
-	.. code-block:: sh
+	::
 
 		$ cat mi_archivo.txt mi_otro_archivo.txt
 		cat: mi_otro_archivo.txt No such file or directory
@@ -414,7 +419,7 @@ Teniendo esto en mente, veremos que los pipes ':code:`|`' toman el :code:`STDOUT
 
 	.. image:: stdin_stderr.png
 
-	.. code-block:: sh
+	::
 
 		$ seq 1 3
 		1
@@ -618,7 +623,7 @@ Volvamos a nuestro archivo snpEff_genes.txt, sabiendo que está separado por tab
 
 	Con awk podemos emplear condicionales simples que nos permiten obtener segmentos específicos de un archivo o de un stream
 
-	.. code-block:: sh
+	::
 
 		awk 'BEGIN{FS="\t"}{if($1=="BRCA1" && $4=="protein_coding" && $5<=10){print $0}}' snpEff_genes.txt
 
@@ -655,7 +660,7 @@ Volvamos a nuestro archivo snpEff_genes.txt, sabiendo que está separado por tab
 
 		Las condicionales son sumamente útiles en cualquier lenguaje de programación, sin embargo antes de ejecutarlas debemos verificar que tengan sentido::
 
-			{if($1==1 && $2<=1000000 && $2>=2000000}
+			{if($1==1 && $2<=1000000 && $2>=2000000)}
 
 		Esta construcción no tiene sentido, ya que esencialmente le estaremos pidiendo a awk que nos entregue filas en dónde se cumplen las siguientes condiciones:
 			* :code:`$1=='1'` la primera columna sea igual a 1

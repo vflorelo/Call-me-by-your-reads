@@ -9,15 +9,15 @@ La bendita instancia
 --------------------
 
 En esta ocasión te preparamos una máquina especial a la que puedes accesar en el horario del curso. Es una instancia en Amazon Web Services y de ahora en adelante nos referiremos a esta máquina como "la instancia"
-Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo "atg.pem". **no necesitas abrir este archivo**, solamente debes ponerlo en tu carpeta personal
+Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo "atg.pem". **no necesitas abrir este archivo**, solamente debes ponerlo en la carpeta de MobaXterm si usas windows o en tu carpeta personal si usas Linux o Mac
 
-* Si usas windows, así puedes accesar a tu carpeta personal:
+* Si usas windows, así puedes accesar a la carpeta de MobaXterm:
 
 	* Abre un explorador de archivos
 	* Ve a la carpeta "Este equipo"
-	* Ve a la carpeta "C:\\"
-	* Ve a la carpeta "Users" (o usuarios, dependiendo de tu equipo)
-	* Ve a la carpeta con tu nombre de usuario
+	* Ve a la carpeta "Documentos"
+	* Ve a la carpeta "MobaXterm"
+	* Ve a la carpeta "home"
 
 	.. image:: dianolasa_home.jpg
 		:width: 600px
@@ -506,50 +506,30 @@ Head, nos da las primeras N líneas de un archivo
 
 		* Muestra las primeras 10 líneas de un archivo::
 
-			$ head Homo_sapiens_GRCh38.fasta.fai
-			1       248956422       16      70      71
-			2       242193529       252512975       70      71
-			3       198295559       498166428       70      71
-			4       190214555       699294797       70      71
-			5       181538259       892226719       70      71
-			6       170805979       1076358398      70      71
-			7       159345973       1249604479      70      71
-			8       145138636       1411226840      70      71
-			9       138394717       1558438902      70      71
-			10      133797422       1698810704      70      71
+			$ head snpEff_genes.txt
+			# The following table is formatted as tab separated values.
+			#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_conservative_inframe_deletionvariants_effect_conservative_inframe_insertion	variants_effect_disruptive_inframe_deletion	variants_effect_disruptive_inframe_insertion	variants_effect_downstream_gene_variant	variants_effect_frameshift_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_non_coding_transcript_exon_variant	variants_effect_non_coding_transcript_variant	variants_effect_splice_acceptor_variant	variants_effect_splice_donor_variant	variants_effect_splice_region_variantvariants_effect_start_lost	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_stop_retained_variant	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
+			A2M	ENSG00000175899	ENST00000318602	protein_coding	1	1	1	0	0	0	0	0	0	0	0	0	0	2	1	00	1	0	2	0	0	0	0	0	0
+			A2M	ENSG00000175899	ENST00000462568	retained_intron	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	00	0	0	1	0	0	0	0	0	1
+			A2M	ENSG00000175899	ENST00000472360	retained_intron	0	0	0	2	0	0	0	0	0	0	0	2	0	0	0	00	0	0	0	0	0	0	0	0	0
+			A2M	ENSG00000175899	ENST00000543436	processed_transcript	0	1	0	2	0	0	0	0	0	0	0	0	0	1	00	0	0	0	1	0	0	0	0	0	2
+			A2M	ENSG00000175899	ENST00000545828	processed_transcript	0	0	0	3	0	0	0	0	0	0	0	0	0	3	00	0	0	0	0	0	0	0	0	0	0
+			A2M	ENSG00000175899	ENST00000546069	nonsense_mediated_decay	1	0	0	3	1	0	0	0	0	0	0	1	0	1	01	0	1	0	1	0	0	0	0	0	0
+			A4GALT	ENSG00000128274	ENST00000249005	protein_coding	0	2	1	0	0	0	0	0	0	0	0	0	0	0	1	00	0	0	0	0	0	0	0	2	0
+			A4GALT	ENSG00000128274	ENST00000381278	protein_coding	0	2	1	0	0	0	0	0	0	0	0	0	0	0	1	00	0	0	0	0	0	0	0	2	0
 
 		* Muestra las primeras 2 líneas de un archivo::
 
-			$ head -n2 Homo_sapiens_GRCh38.fasta.fai
-			1       248956422       16      70      71
-			2       242193529       252512975       70      71
+			$ head -n2 snpEff_genes.txt
+			# The following table is formatted as tab separated values.
+			#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_conservative_inframe_deletionvariants_effect_conservative_inframe_insertion	variants_effect_disruptive_inframe_deletion	variants_effect_disruptive_inframe_insertion	variants_effect_downstream_gene_variant	variants_effect_frameshift_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_non_coding_transcript_exon_variant	variants_effect_non_coding_transcript_variant	variants_effect_splice_acceptor_variant	variants_effect_splice_donor_variant	variants_effect_splice_region_variantvariants_effect_start_lost	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_stop_retained_variant	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
 
 		* Muestra las primeras líneas de un archivo exceptuando las ultimas 2 líneas::
 
-			$ head -n-2 Homo_sapiens_GRCh38.fasta.fai
-			1       248956422       16      70      71
-			2       242193529       252512975       70      71
-			3       198295559       498166428       70      71
-			4       190214555       699294797       70      71
-			5       181538259       892226719       70      71
-			6       170805979       1076358398      70      71
-			7       159345973       1249604479      70      71
-			8       145138636       1411226840      70      71
-			9       138394717       1558438902      70      71
-			10      133797422       1698810704      70      71
-			11      135086622       1834519535      70      71
-			12      133275309       1971535983      70      71
-			13      114364328       2106715242      70      71
-			14      107043718       2222713363      70      71
-			15      101991189       2331286294      70      71
-			16      90338345        2434734517      70      71
-			17      83257441        2526363427      70      71
-			18      80373285        2610810278      70      71
-			19      58617616        2692331770      70      71
-			20      64444167        2751786798      70      71
-			21      46709983        2817151612      70      71
-			22      50818468        2864528898      70      71
-			X       156040895       2916073361      70      71
+			$ head -n-2 snpEff_genes.txt
+			< Mucho output como para mostrarlo ;) >
+			ZSWIM8	ENSG00000214655	ENST00000605216	protein_coding	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	00	0	0	0	0	0	0	0	0	0
+			ZSWIM8-AS1	ENSG00000272589	ENST00000456638		0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	00	0	0	0	0	0	0	0	0	1
 
 :code:`tail`
 ^^^^^^^^^^^^
@@ -560,50 +540,38 @@ Tail, nos da las últimas N líneas de un archivo
 
 	* Muestra las últimas 10 líneas de un archivo::
 
-		$ tail Homo_sapiens_GRCh38.fasta.fai
-		16      90338345        2434734517      70      71
-		17      83257441        2526363427      70      71
-		18      80373285        2610810278      70      71
-		19      58617616        2692331770      70      71
-		20      64444167        2751786798      70      71
-		21      46709983        2817151612      70      71
-		22      50818468        2864528898      70      71
-		X       156040895       2916073361      70      71
-		Y       57227415        3074343428      70      71
-		MT      16569   3132388394      70      71
+		$ tail snpEff_genes.txt
+		ZSWIM8	ENSG00000214655	ENST00000603195	processed_transcript	0	0	0	1	0	0	0	0	0	0	0	1	0	0	00	0	0	0	0	0	0	0	0	0	0
+		ZSWIM8	ENSG00000214655	ENST00000603309	processed_transcript	0	0	0	1	0	0	0	0	0	0	0	1	0	0	00	0	0	0	0	0	0	0	0	0	0
+		ZSWIM8	ENSG00000214655	ENST00000603409	processed_transcript	0	0	0	1	0	0	0	0	0	0	0	1	0	0	00	0	0	0	0	0	0	0	0	0	0
+		ZSWIM8	ENSG00000214655	ENST00000603840	processed_transcript	0	0	0	1	0	0	0	0	0	0	0	1	0	0	00	0	0	0	0	0	0	0	0	0	0
+		ZSWIM8	ENSG00000214655	ENST00000604165	processed_transcript	0	0	0	1	0	0	0	0	0	0	0	1	0	0	00	0	0	0	0	0	0	0	0	0	0
+		ZSWIM8	ENSG00000214655	ENST00000604524	protein_coding	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	00	0	0	0	0	0	0	0	0	0
+		ZSWIM8	ENSG00000214655	ENST00000604729	protein_coding	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	00	0	0	0	0	0	0	0	0	0
+		ZSWIM8	ENSG00000214655	ENST00000604754	protein_coding	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	00	0	0	0	0	0	0	0	0	0
+		ZSWIM8	ENSG00000214655	ENST00000605216	protein_coding	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	00	0	0	0	0	0	0	0	0	0
+		ZSWIM8-AS1	ENSG00000272589	ENST00000456638		0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	00	0	0	0	0	0	0	0	0	1
 
 	* Muestra las últimas 2 lineas de un archivo::
 
-		$ tail -n2 Homo_sapiens_GRCh38.fasta.fai
-		Y       57227415        3074343428      70      71
-		MT      16569   3132388394      70      71
+		$ tail -n2 snpEff_genes.txt
+		ZSWIM8	ENSG00000214655	ENST00000605216	protein_coding	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	00	0	0	0	0	0	0	0	0	0
+		ZSWIM8-AS1	ENSG00000272589	ENST00000456638		0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	00	0	0	0	0	0	0	0	0	1
 
 	* Muestra las últimas líneas de un archivo exceptuando las primeras 2 líneas::
 
-		$ tail -n+2 Homo_sapiens_GRCh38.fasta.fai
-		3       198295559       498166428       70      71
-		4       190214555       699294797       70      71
-		5       181538259       892226719       70      71
-		6       170805979       1076358398      70      71
-		7       159345973       1249604479      70      71
-		8       145138636       1411226840      70      71
-		9       138394717       1558438902      70      71
-		10      133797422       1698810704      70      71
-		11      135086622       1834519535      70      71
-		12      133275309       1971535983      70      71
-		13      114364328       2106715242      70      71
-		14      107043718       2222713363      70      71
-		15      101991189       2331286294      70      71
-		16      90338345        2434734517      70      71
-		17      83257441        2526363427      70      71
-		18      80373285        2610810278      70      71
-		19      58617616        2692331770      70      71
-		20      64444167        2751786798      70      71
-		21      46709983        2817151612      70      71
-		22      50818468        2864528898      70      71
-		X       156040895       2916073361      70      71
-		Y       57227415        3074343428      70      71
-		MT      16569   3132388394      70      71
+		$ tail -n+3 Homo_sapiens_GRCh38.fasta.fai
+		A2M	ENSG00000175899	ENST00000318602	protein_coding	1	1	1	0	0	0	0	0	0	0	0	0	0	2	1	00	1	0	2	0	0	0	0	0	0
+		A2M	ENSG00000175899	ENST00000462568	retained_intron	0	1	0	1	0	0	0	0	0	0	0	0	0	1	0	00	0	0	1	0	0	0	0	0	1
+		A2M	ENSG00000175899	ENST00000472360	retained_intron	0	0	0	2	0	0	0	0	0	0	0	2	0	0	0	00	0	0	0	0	0	0	0	0	0
+		A2M	ENSG00000175899	ENST00000543436	processed_transcript	0	1	0	2	0	0	0	0	0	0	0	0	0	1	00	0	0	0	1	0	0	0	0	0	2
+		A2M	ENSG00000175899	ENST00000545828	processed_transcript	0	0	0	3	0	0	0	0	0	0	0	0	0	3	00	0	0	0	0	0	0	0	0	0	0
+		A2M	ENSG00000175899	ENST00000546069	nonsense_mediated_decay	1	0	0	3	1	0	0	0	0	0	0	1	0	1	01	0	1	0	1	0	0	0	0	0	0
+		A4GALT	ENSG00000128274	ENST00000249005	protein_coding	0	2	1	0	0	0	0	0	0	0	0	0	0	0	1	00	0	0	0	0	0	0	0	2	0
+		A4GALT	ENSG00000128274	ENST00000381278	protein_coding	0	2	1	0	0	0	0	0	0	0	0	0	0	0	1	00	0	0	0	0	0	0	0	2	0
+		A4GALT	ENSG00000128274	ENST00000401850	protein_coding	0	2	1	0	0	0	0	0	0	0	0	0	0	0	1	00	0	0	0	0	0	0	0	2	0
+		A4GALT	ENSG00000128274	ENST00000465765	processed_transcript	0	0	0	3	0	0	0	0	0	0	0	3	0	0	00	0	0	0	0	0	0	0	0	0	0
+		< Y un montón más de output >
 
 :code:`wc`
 ^^^^^^^^^^
@@ -615,22 +583,23 @@ Word count, nos indica el número de líneas, palabras y caracteres de un archiv
 
 	* Nos da un resumen del contenido de un archivo::
 
-		$ wc Homo_sapiens_GRCh38.fasta.fai
-		 25 125 715 Homo_sapiens_GRCh38.fasta.fai
+		$ wc snpEff_genes.txt
+		37200 1113368 3956494 snpEff_genes.txt
 
 	* Cuenta el número de líneas en un archivo::
 
-		$ wc -l Homo_sapiens_GRCh38.fasta.fai
-		 25 Homo_sapiens_GRCh38.fasta.fai
+		$ wc -l snpEff_genes.txt
+		37200 snpEff_genes.txt
 
 	* Cuenta el número de palabras en un archivo::
 
-		$ wc -w Homo_sapiens_GRCh38.fasta.fai
-		 125 Homo_sapiens_GRCh38.fasta.fai
+		$ wc -w snpEff_genes.txt
+		1113368 snpEff_genes.txt
+
 	* Cuenta el número de caracteres en un archivo::
 
-		$ wc -c Homo_sapiens_GRCh38.fasta.fai
-		 715 Homo_sapiens_GRCh38.fasta.fai
+		$ wc -c snpEff_genes.txt
+		3956494 snpEff_genes.txt
 
 :code:`scp`
 ^^^^^^^^^^^
@@ -641,12 +610,12 @@ Este comando combina las bondades de :code:`cp` con los protocolos de seguridad 
 
 Por ello, el uso de :code:`scp` es muy similar al de :code:`cp` y al de :code:`ssh`::
 
-	$ scp -i atg.pem vflorelo@atgenomics.ddns.net:/home/vflorelo/dia_01/Homo_sapiens_GRCh38.fasta.fai .
+	$ scp -i atg.pem vflorelo@atgenomics.ddns.net:snpEff_genes.txt .
 
-La construcción anterior nos permite copiar el archivo `Homo_sapiens_GRCh38.fasta.fai` desde el directorio `/home/vflorelo/dia_01` ubicado en el servidor `atgenomics.ddns.net` utilizando la llave `atg.pem`
+La construcción anterior nos permite copiar el archivo `snpEff_genes.txt` desde el directorio `/home/vflorelo` ubicado en el servidor `atgenomics.ddns.net` utilizando la llave `atg.pem`
 
 .. warning::
 
 	A dónde lo va a copiar?
 
-	Noten al final de la construcción, el punto :code:`.` el cual especifica que copiará el archivo `Homo_sapiens_GRCh38.fasta.fai` hacia el directorio actual
+	Noten al final de la construcción, el punto :code:`.` el cual especifica que copiará el archivo `snpEff_genes.txt` hacia el directorio actual

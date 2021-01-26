@@ -9,15 +9,15 @@ La bendita instancia
 --------------------
 
 En esta ocasión te preparamos una máquina especial a la que puedes accesar en el horario del curso. Es una instancia en Amazon Web Services y de ahora en adelante nos referiremos a esta máquina como "la instancia"
-Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo "atg.pem". **no necesitas abrir este archivo**, solamente debes ponerlo en tu carpeta personal
+Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo "atg.pem". **no necesitas abrir este archivo**, solamente debes ponerlo en la carpeta de MobaXterm si usas windows o en tu carpeta personal si usas Linux o Mac
 
-* Si usas windows, así puedes accesar a tu carpeta personal:
+* Si usas windows, así puedes accesar a la carpeta de MobaXterm:
 
 	* Abre un explorador de archivos
 	* Ve a la carpeta "Este equipo"
-	* Ve a la carpeta "C:\\"
-	* Ve a la carpeta "Users" (o usuarios, dependiendo de tu equipo)
-	* Ve a la carpeta con tu nombre de usuario
+	* Ve a la carpeta "Documentos"
+	* Ve a la carpeta "MobaXterm"
+	* Ve a la carpeta "home"
 
 	.. image:: dianolasa_home.jpg
 		:width: 600px
@@ -520,7 +520,7 @@ Head, nos da las primeras N líneas de un archivo
 
 		* Muestra las primeras 2 líneas de un archivo::
 
-			$ head snpEff_genes.txt
+			$ head -n2 snpEff_genes.txt
 			# The following table is formatted as tab separated values.
 			#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_conservative_inframe_deletionvariants_effect_conservative_inframe_insertion	variants_effect_disruptive_inframe_deletion	variants_effect_disruptive_inframe_insertion	variants_effect_downstream_gene_variant	variants_effect_frameshift_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_non_coding_transcript_exon_variant	variants_effect_non_coding_transcript_variant	variants_effect_splice_acceptor_variant	variants_effect_splice_donor_variant	variants_effect_splice_region_variantvariants_effect_start_lost	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_stop_retained_variant	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
 

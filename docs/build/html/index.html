@@ -133,6 +133,21 @@
 <li><a class="reference internal" href="#redireccion">Redirección: <code class="code docutils literal notranslate"><span class="pre">|</span></code></a></li>
 <li><a class="reference internal" href="#id3">Redirección: <code class="code docutils literal notranslate"><span class="pre">&gt;</span></code> &amp; <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></a></li>
 <li><a class="reference internal" href="#avanzado-awk">Avanzado: <code class="code docutils literal notranslate"><span class="pre">awk</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conda"><span class="xref std std-doc">Conda</span></a><ul>
+<li><a class="reference internal" href="#conda-create-n-atgenomics"><code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">ATGenomics</span></code></a></li>
+<li><a class="reference internal" href="#path-una-vez-mas-con-sentimiento"><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> una vez más, con sentimiento</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ngs"><span class="xref std std-doc">NGS</span></a><ul>
+<li><a class="reference internal" href="#id5">Introducción</a></li>
+<li><a class="reference internal" href="#aspectos-generales-de-la-secuenciacion-masiva">Aspectos generales de la secuenciación masiva</a></li>
+<li><a class="reference internal" href="#como-se-obtiene-un-exoma">Cómo se obtiene un exoma?</a></li>
+<li><a class="reference internal" href="#evolucion-en-los-costos-de-secuenciacion-y-comparacion-de-plataformas">Evolución en los costos de secuenciación y comparación de plataformas</a></li>
+<li><a class="reference internal" href="#secuenciacion-illumina">Secuenciación Illumina</a></li>
+<li><a class="reference internal" href="#calidad-de-la-secuenciacion">Calidad de la secuenciación</a></li>
+<li><a class="reference internal" href="#id6">FastQC</a></li>
 <li><a class="reference internal" href="#contacto">Contacto</a></li>
 </ul>
 </li>
@@ -274,16 +289,16 @@
 <div class="section" id="la-bendita-instancia">
 <h2>La bendita instancia<a class="headerlink" href="#la-bendita-instancia" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>En esta ocasión te preparamos una máquina especial a la que puedes accesar en el horario del curso. Es una instancia en Amazon Web Services y de ahora en adelante nos referiremos a esta máquina como «la instancia»
-Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo «atg.pem». <strong>no necesitas abrir este archivo</strong>, solamente debes ponerlo en tu carpeta personal</p>
+Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo «atg.pem». <strong>no necesitas abrir este archivo</strong>, solamente debes ponerlo en la carpeta de MobaXterm si usas windows o en tu carpeta personal si usas Linux o Mac</p>
 <ul>
-<li><p>Si usas windows, así puedes accesar a tu carpeta personal:</p>
+<li><p>Si usas windows, así puedes accesar a la carpeta de MobaXterm:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Abre un explorador de archivos</p></li>
 <li><p>Ve a la carpeta «Este equipo»</p></li>
-<li><p>Ve a la carpeta «C:\»</p></li>
-<li><p>Ve a la carpeta «Users» (o usuarios, dependiendo de tu equipo)</p></li>
-<li><p>Ve a la carpeta con tu nombre de usuario</p></li>
+<li><p>Ve a la carpeta «Documentos»</p></li>
+<li><p>Ve a la carpeta «MobaXterm»</p></li>
+<li><p>Ve a la carpeta «home»</p></li>
 </ul>
 <a class="reference internal image-reference" href="_images/dianolasa_home.jpg"><img alt="&quot;Así se ve el home de &#64;dianolasa&quot;" src="_images/dianolasa_home.jpg" style="width: 600px;" /></a>
 </div></blockquote>
@@ -828,52 +843,32 @@ ls: cannot access &#39;otro_directorio&#39;: No such file or directory
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">head</span></code></p>
 <ul>
 <li><p>Muestra las primeras 10 líneas de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head snpEff_genes.txt
+# The following table is formatted as tab separated values.
+#GeneName       GeneId  TranscriptId    BioType variants_impact_HIGH    variants_impact_LOW     variants_impact_MODERATE        variants_impact_MODIFIER        variants_effect_3_prime_UTR_variant     variants_effect_5_prime_UTR_premature_start_codon_gain_variant  variants_effect_5_prime_UTR_variant     variants_effect_conservative_inframe_deletionvariants_effect_conservative_inframe_insertion     variants_effect_disruptive_inframe_deletion     variants_effect_disruptive_inframe_insertion    variants_effect_downstream_gene_variant variants_effect_frameshift_variant      variants_effect_intron_variant  variants_effect_missense_variant        variants_effect_non_coding_transcript_exon_variant      variants_effect_non_coding_transcript_variant   variants_effect_splice_acceptor_variant variants_effect_splice_donor_variant    variants_effect_splice_region_variantvariants_effect_start_lost variants_effect_stop_gained     variants_effect_stop_lost       variants_effect_stop_retained_variant   variants_effect_synonymous_variant      variants_effect_upstream_gene_variant
+A2M     ENSG00000175899 ENST00000318602 protein_coding  1       1       1       0       0       0       0       0       0       0       0       0       0       2       1       00      1       0       2       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000462568 retained_intron 0       1       0       1       0       0       0       0       0       0       0       0       0       1       0       00      0       0       1       0       0       0       0       0       1
+A2M     ENSG00000175899 ENST00000472360 retained_intron 0       0       0       2       0       0       0       0       0       0       0       2       0       0       0       00      0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000543436 processed_transcript    0       1       0       2       0       0       0       0       0       0       0       0       0       1       00      0       0       0       1       0       0       0       0       0       2
+A2M     ENSG00000175899 ENST00000545828 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       0       0       3       00      0       0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000546069 nonsense_mediated_decay 1       0       0       3       1       0       0       0       0       0       0       1       0       1       01      0       1       0       1       0       0       0       0       0       0
+A4GALT  ENSG00000128274 ENST00000249005 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000381278 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
 </pre></div>
 </div>
 </li>
 <li><p>Muestra las primeras 2 líneas de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n2 Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n2 snpEff_genes.txt
+# The following table is formatted as tab separated values.
+#GeneName       GeneId  TranscriptId    BioType variants_impact_HIGH    variants_impact_LOW     variants_impact_MODERATE        variants_impact_MODIFIER        variants_effect_3_prime_UTR_variant     variants_effect_5_prime_UTR_premature_start_codon_gain_variant  variants_effect_5_prime_UTR_variant     variants_effect_conservative_inframe_deletionvariants_effect_conservative_inframe_insertion     variants_effect_disruptive_inframe_deletion     variants_effect_disruptive_inframe_insertion    variants_effect_downstream_gene_variant variants_effect_frameshift_variant      variants_effect_intron_variant  variants_effect_missense_variant        variants_effect_non_coding_transcript_exon_variant      variants_effect_non_coding_transcript_variant   variants_effect_splice_acceptor_variant variants_effect_splice_donor_variant    variants_effect_splice_region_variantvariants_effect_start_lost variants_effect_stop_gained     variants_effect_stop_lost       variants_effect_stop_retained_variant   variants_effect_synonymous_variant      variants_effect_upstream_gene_variant
 </pre></div>
 </div>
 </li>
 <li><p>Muestra las primeras líneas de un archivo exceptuando las ultimas 2 líneas:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n-2 Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-12      133275309       1971535983      70      71
-13      114364328       2106715242      70      71
-14      107043718       2222713363      70      71
-15      101991189       2331286294      70      71
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-X       156040895       2916073361      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n-2 snpEff_genes.txt
+&lt; Mucho output como para mostrarlo ;) &gt;
+ZSWIM8  ENSG00000214655 ENST00000605216 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8-AS1      ENSG00000272589 ENST00000456638         0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       1
 </pre></div>
 </div>
 </li>
@@ -889,52 +884,40 @@ X       156040895       2916073361      70      71
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">tail</span></code></p>
 <ul>
 <li><p>Muestra las últimas 10 líneas de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail Homo_sapiens_GRCh38.fasta.fai
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-X       156040895       2916073361      70      71
-Y       57227415        3074343428      70      71
-MT      16569   3132388394      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail snpEff_genes.txt
+ZSWIM8  ENSG00000214655 ENST00000603195 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603309 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603409 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603840 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604165 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604524 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604729 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604754 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000605216 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8-AS1      ENSG00000272589 ENST00000456638         0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       1
 </pre></div>
 </div>
 </li>
 <li><p>Muestra las últimas 2 lineas de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n2 Homo_sapiens_GRCh38.fasta.fai
-Y       57227415        3074343428      70      71
-MT      16569   3132388394      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n2 snpEff_genes.txt
+ZSWIM8  ENSG00000214655 ENST00000605216 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8-AS1      ENSG00000272589 ENST00000456638         0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       1
 </pre></div>
 </div>
 </li>
 <li><p>Muestra las últimas líneas de un archivo exceptuando las primeras 2 líneas:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n+2 Homo_sapiens_GRCh38.fasta.fai
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-12      133275309       1971535983      70      71
-13      114364328       2106715242      70      71
-14      107043718       2222713363      70      71
-15      101991189       2331286294      70      71
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-X       156040895       2916073361      70      71
-Y       57227415        3074343428      70      71
-MT      16569   3132388394      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n+3 Homo_sapiens_GRCh38.fasta.fai
+A2M     ENSG00000175899 ENST00000318602 protein_coding  1       1       1       0       0       0       0       0       0       0       0       0       0       2       1       00      1       0       2       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000462568 retained_intron 0       1       0       1       0       0       0       0       0       0       0       0       0       1       0       00      0       0       1       0       0       0       0       0       1
+A2M     ENSG00000175899 ENST00000472360 retained_intron 0       0       0       2       0       0       0       0       0       0       0       2       0       0       0       00      0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000543436 processed_transcript    0       1       0       2       0       0       0       0       0       0       0       0       0       1       00      0       0       0       1       0       0       0       0       0       2
+A2M     ENSG00000175899 ENST00000545828 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       0       0       3       00      0       0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000546069 nonsense_mediated_decay 1       0       0       3       1       0       0       0       0       0       0       1       0       1       01      0       1       0       1       0       0       0       0       0       0
+A4GALT  ENSG00000128274 ENST00000249005 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000381278 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000401850 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000465765 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       3       0       0       00      0       0       0       0       0       0       0       0       0       0
+&lt; Y un montón más de output &gt;
 </pre></div>
 </div>
 </li>
@@ -948,26 +931,26 @@ MT      16569   3132388394      70      71
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">wc</span></code></p>
 <ul>
 <li><p>Nos da un resumen del contenido de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc Homo_sapiens_GRCh38.fasta.fai
- 25 125 715 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc snpEff_genes.txt
+37200 1113368 3956494 snpEff_genes.txt
 </pre></div>
 </div>
 </li>
 <li><p>Cuenta el número de líneas en un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -l Homo_sapiens_GRCh38.fasta.fai
- 25 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -l snpEff_genes.txt
+37200 snpEff_genes.txt
 </pre></div>
 </div>
 </li>
 <li><p>Cuenta el número de palabras en un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -w Homo_sapiens_GRCh38.fasta.fai
- 125 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -w snpEff_genes.txt
+1113368 snpEff_genes.txt
 </pre></div>
 </div>
 </li>
 <li><p>Cuenta el número de caracteres en un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -c Homo_sapiens_GRCh38.fasta.fai
- 715 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -c snpEff_genes.txt
+3956494 snpEff_genes.txt
 </pre></div>
 </div>
 </li>
@@ -979,14 +962,14 @@ MT      16569   3132388394      70      71
 <p>El comando <code class="code docutils literal notranslate"><span class="pre">scp</span></code> nos permite al igual que <code class="code docutils literal notranslate"><span class="pre">cp</span></code>, copiar archivos desde un origen hacia un destino, no obstante, lo hace a través de servidores remotos.</p>
 <p>Este comando combina las bondades de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> con los protocolos de seguridad de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code></p>
 <p>Por ello, el uso de <code class="code docutils literal notranslate"><span class="pre">scp</span></code> es muy similar al de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> y al de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ scp -i atg.pem vflorelo@atgenomics.ddns.net:/home/vflorelo/dia_01/Homo_sapiens_GRCh38.fasta.fai .
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ scp -i atg.pem vflorelo@atgenomics.ddns.net:snpEff_genes.txt .
 </pre></div>
 </div>
-<p>La construcción anterior nos permite copiar el archivo <cite>Homo_sapiens_GRCh38.fasta.fai</cite> desde el directorio <cite>/home/vflorelo/dia_01</cite> ubicado en el servidor <cite>atgenomics.ddns.net</cite> utilizando la llave <cite>atg.pem</cite></p>
+<p>La construcción anterior nos permite copiar el archivo <cite>snpEff_genes.txt</cite> desde el directorio <cite>/home/vflorelo</cite> ubicado en el servidor <cite>atgenomics.ddns.net</cite> utilizando la llave <cite>atg.pem</cite></p>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
 <p>A dónde lo va a copiar?</p>
-<p>Noten al final de la construcción, el punto <code class="code docutils literal notranslate"><span class="pre">.</span></code> el cual especifica que copiará el archivo <cite>Homo_sapiens_GRCh38.fasta.fai</cite> hacia el directorio actual</p>
+<p>Noten al final de la construcción, el punto <code class="code docutils literal notranslate"><span class="pre">.</span></code> el cual especifica que copiará el archivo <cite>snpEff_genes.txt</cite> hacia el directorio actual</p>
 </div>
 </div>
 </div>
@@ -997,7 +980,7 @@ MT      16569   3132388394      70      71
 <h2>Introducción<a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>La finalidad de este curso es obtener un archivo de llamado de variantes (<em>Variant Calling File</em> por sus siglas en inglés) que tiene la siguiente estructura:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  g204</span>
-        <span class="n">chr1</span>       <span class="mi">13417</span>   <span class="n">rs777038595</span>     <span class="n">C</span>       <span class="n">CGAGA</span>   <span class="mf">324.73</span>  <span class="n">PASS</span>    <span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">BaseQRankSum</span><span class="o">=</span><span class="mf">0.583</span><span class="p">;</span><span class="n">DB</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">26</span><span class="p">;</span><span class="n">ExcessHet</span><span class="o">=</span><span class="mf">3.0103</span><span class="p">;</span><span class="n">FS</span><span class="o">=</span><span class="mf">0.000</span><span class="p">;</span><span class="n">MLEAC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MLEAF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mf">22.21</span><span class="p">;</span><span class="n">MQRankSum</span><span class="o">=-</span><span class="mf">0.032</span><span class="p">;</span><span class="n">QD</span><span class="o">=</span><span class="mf">12.49</span><span class="p">;</span><span class="n">ReadPosRankSum</span><span class="o">=-</span><span class="mf">2.185</span><span class="p">;</span><span class="n">SOR</span><span class="o">=</span><span class="mf">0.446</span><span class="p">;</span><span class="n">VQSLOD</span><span class="o">=</span><span class="mf">0.698</span><span class="p">;</span><span class="n">culprit</span><span class="o">=</span><span class="n">ReadPosRankSum</span> <span class="n">GT</span><span class="p">:</span><span class="n">AD</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">GQ</span><span class="p">:</span><span class="n">PL</span>  <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">99</span><span class="p">:</span><span class="mi">362</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">634</span>
+<span class="n">chr1</span>       <span class="mi">13417</span>   <span class="n">rs777038595</span>     <span class="n">C</span>       <span class="n">CGAGA</span>   <span class="mf">324.73</span>  <span class="n">PASS</span>    <span class="n">AC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">AF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">AN</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">BaseQRankSum</span><span class="o">=</span><span class="mf">0.583</span><span class="p">;</span><span class="n">DB</span><span class="p">;</span><span class="n">DP</span><span class="o">=</span><span class="mi">26</span><span class="p">;</span><span class="n">ExcessHet</span><span class="o">=</span><span class="mf">3.0103</span><span class="p">;</span><span class="n">FS</span><span class="o">=</span><span class="mf">0.000</span><span class="p">;</span><span class="n">MLEAC</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">MLEAF</span><span class="o">=</span><span class="mf">0.500</span><span class="p">;</span><span class="n">MQ</span><span class="o">=</span><span class="mf">22.21</span><span class="p">;</span><span class="n">MQRankSum</span><span class="o">=-</span><span class="mf">0.032</span><span class="p">;</span><span class="n">QD</span><span class="o">=</span><span class="mf">12.49</span><span class="p">;</span><span class="n">ReadPosRankSum</span><span class="o">=-</span><span class="mf">2.185</span><span class="p">;</span><span class="n">SOR</span><span class="o">=</span><span class="mf">0.446</span><span class="p">;</span><span class="n">VQSLOD</span><span class="o">=</span><span class="mf">0.698</span><span class="p">;</span><span class="n">culprit</span><span class="o">=</span><span class="n">ReadPosRankSum</span> <span class="n">GT</span><span class="p">:</span><span class="n">AD</span><span class="p">:</span><span class="n">DP</span><span class="p">:</span><span class="n">GQ</span><span class="p">:</span><span class="n">PL</span>  <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">99</span><span class="p">:</span><span class="mi">362</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">634</span>
 </pre></div>
 </div>
 <div class="toggle admonition">
@@ -1021,7 +1004,8 @@ MT      16569   3132388394      70      71
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>3: ID</p></td>
-<td colspan="2" rowspan="2"><p>rs777038595             +Identificador de la variante</p></td>
+<td rowspan="2"><p>rs777038595</p></td>
+<td rowspan="2"><p>Identificador de la variante</p></td>
 </tr>
 <tr class="row-even"></tr>
 <tr class="row-odd"><td rowspan="2"><p>4: REF</p></td>
@@ -1438,10 +1422,8 @@ A4GALT  ENSG00000128274 ENST00000465765 processed_transcript    0       0       
 </div></blockquote>
 </div>
 <div class="admonition-ordenar-de-forma-descendente-un-conjunto-de-lineas admonition">
-<p class="admonition-title">Ordenar de forma descendente un conjunto de líneas
-::</p>
-<blockquote>
-<div><p>$ sort -r snpEff_genes.txt
+<p class="admonition-title">Ordenar de forma descendente un conjunto de líneas</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -r snpEff_genes.txt
 ZSWIM8  ENSG00000214655 ENST00000605216 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
 ZSWIM8  ENSG00000214655 ENST00000604754 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
 ZSWIM8  ENSG00000214655 ENST00000604729 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
@@ -1451,14 +1433,13 @@ ZSWIM8  ENSG00000214655 ENST00000603840 processed_transcript    0       0       
 ZSWIM8  ENSG00000214655 ENST00000603409 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
 ZSWIM8  ENSG00000214655 ENST00000603309 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
 ZSWIM8  ENSG00000214655 ENST00000603195 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
-ZSWIM8  ENSG00000214655 ENST00000603187 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0</p>
-</div></blockquote>
+ZSWIM8  ENSG00000214655 ENST00000603187 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+</pre></div>
+</div>
 </div>
 <div class="admonition-ordenar-con-base-en-alguna-columna-especifica admonition">
-<p class="admonition-title">Ordenar con base en alguna columna específica
-::</p>
-<blockquote>
-<div><p>$ sort -k2 snpEff_genes.txt
+<p class="admonition-title">Ordenar con base en alguna columna específica</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -k2 snpEff_genes.txt
 C1orf112        ENSG00000000460 ENST00000498289 processed_transcript    0       0       0       5       0       0       0       0       0       0       0       0       0       50      0       0       0       0       0       0       0       0       0       0       0
 CFH     ENSG00000000971 ENST00000359637 protein_coding  0       1       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       1       0
 CFH     ENSG00000000971 ENST00000367429 protein_coding  0       2       2       0       0       0       0       0       0       0       0       0       0       0       2       00      0       0       0       0       0       0       0       2       0
@@ -1468,14 +1449,14 @@ CFH     ENSG00000000971 ENST00000630130 protein_coding  0       1       2       
 GCLC    ENSG00000001084 ENST00000504525 nonsense_mediated_decay 0       0       0       2       0       0       1       0       0       0       0       0       0       0       01      0       0       0       0       0       0       0       0       0       0
 GCLC    ENSG00000001084 ENST00000505197 protein_coding  0       0       0       1       0       0       0       0       0       0       0       0       0       1       0       00      0       0       0       0       0       0       0       0       0
 GCLC    ENSG00000001084 ENST00000513939 protein_coding  0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       1
-GCLC    ENSG00000001084 ENST00000514004 protein_coding  0       0       0       1       0       0       1       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       0</p>
-</div></blockquote>
+GCLC    ENSG00000001084 ENST00000514004 protein_coding  0       0       0       1       0       0       1       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       0
+</pre></div>
+</div>
 </div>
 <div class="admonition-ordenar-con-opciones-multiples-code-sort-al-igual-que-code-cut-o-code-grep-permite-combinar-opciones-siempre-y-cuando-estas-tengan-sentido admonition">
 <p class="admonition-title">Ordenar con opciones múltiples
-<code class="code docutils literal notranslate"><span class="pre">sort</span></code> al igual que <code class="code docutils literal notranslate"><span class="pre">cut</span></code> o <code class="code docutils literal notranslate"><span class="pre">grep</span></code> permite combinar opciones, siempre y cuando estas tengan sentido::</p>
-<blockquote>
-<div><p>$ sort -n -r -k5 snpEff_genes.txt
+<code class="code docutils literal notranslate"><span class="pre">sort</span></code> al igual que <code class="code docutils literal notranslate"><span class="pre">cut</span></code> o <code class="code docutils literal notranslate"><span class="pre">grep</span></code> permite combinar opciones, siempre y cuando estas tengan sentido</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sort -n -r -k5 snpEff_genes.txt
 ZAN     ENSG00000146839 ENST00000620596 protein_coding  3       1       12      2       0       0       0       1       0       0       0       0       2       3       11      00      0       1       1       0       0       0       0       1       0
 ZAN     ENSG00000146839 ENST00000618565 protein_coding  3       2       13      0       0       0       0       1       0       0       0       0       2       2       12      00      0       1       2       0       0       0       0       1       0
 ZAN     ENSG00000146839 ENST00000613979 protein_coding  3       2       13      0       0       0       0       1       0       0       0       0       2       2       12      00      0       1       2       0       0       0       0       1       0
@@ -1485,8 +1466,9 @@ RAI1    ENSG00000108557 ENST00000395774 protein_coding  3       0       2       
 RAI1    ENSG00000108557 ENST00000353383 protein_coding  3       0       2       1       0       0       0       0       0       0       0       1       3       0       2       00      0       0       0       0       0       0       0       0       0
 FMO2    ENSG00000094963 ENST00000209929 protein_coding  3       1       6       0       0       0       0       0       1       0       0       0       2       0       5       00      0       0       0       0       1       0       0       1       0
 ZMYND15 ENSG00000141497 ENST00000592813 protein_coding  2       1       0       6       0       0       0       0       0       0       0       0       2       0       0       00      0       0       0       0       0       0       0       1       6
-ZMYND15 ENSG00000141497 ENST00000573751 protein_coding  2       1       0       3       0       0       0       0       0       0       0       0       2       0       0       00      0       0       0       0       0       0       0       1       3</p>
-</div></blockquote>
+ZMYND15 ENSG00000141497 ENST00000573751 protein_coding  2       1       0       3       0       0       0       0       0       0       0       0       2       0       0       00      0       0       0       0       0       0       0       1       3
+</pre></div>
+</div>
 </div>
 </div>
 </div></blockquote>
@@ -1499,7 +1481,7 @@ ZMYND15 ENSG00000141497 ENST00000573751 protein_coding  2       1       0       
 <p class="admonition-title">STDOUT</p>
 <p>La salida estandar (STDOUT) es lo que arroja un comando o un programa a la terminal, contiene unicamente el resultado del proceso que haya realizado un comando o programa</p>
 <p>En el siguiente ejemplo, <code class="code docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">world!&quot;</span></code> es la salida estándar del comando <code class="code docutils literal notranslate"><span class="pre">echo</span></code></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;Hello world!&quot;
 </pre></div>
 </div>
 </div>
@@ -1507,7 +1489,7 @@ ZMYND15 ENSG00000141497 ENST00000573751 protein_coding  2       1       0       
 <p class="admonition-title">STDERR</p>
 <p>El error estándar (STDERR) es también lo que arroja un comando o un programa a la terminal pero que contiene diagnósticos internos e información del proceso que haya realizado un comando o programa (no necesariamente el resultado)</p>
 <p>En el siguiente ejemplo, <code class="code docutils literal notranslate"><span class="pre">&quot;Hola</span> <span class="pre">mundo!&quot;</span></code> es la salida estándar del comando <code class="code docutils literal notranslate"><span class="pre">cat</span></code>, no obstante, al no haber encontrado el archivo <code class="code docutils literal notranslate"><span class="pre">mi_otro_archivo.txt</span></code>, nos manda el mensaje de <em>error</em> (STDERR) <code class="code docutils literal notranslate"><span class="pre">cat:</span> <span class="pre">mi_archivo.txt</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code></p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ cat mi_archivo.txt mi_otro_archivo.txt
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat mi_archivo.txt mi_otro_archivo.txt
 cat: mi_otro_archivo.txt No such file or directory
 Hola mundo!
 </pre></div>
@@ -1521,22 +1503,22 @@ Hola mundo!
 <p>El siguiente comando también generará <code class="code docutils literal notranslate"><span class="pre">STDOUT</span></code> y <code class="code docutils literal notranslate"><span class="pre">STDERR</span></code> y podemos seguir transformando el <code class="code docutils literal notranslate"><span class="pre">STDOUT</span></code> resultante <em>ad infinitum</em> &amp; <em>ad nauseam</em></p>
 <p>En teoria podríamos concatenar tantos comandos como queramos, siempre y cuando la construcción tenga sentido</p>
 <img alt="_images/stdin_stderr.png" src="_images/stdin_stderr.png" />
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ seq <span class="m">1</span> <span class="m">3</span>
-<span class="m">1</span>
-<span class="m">2</span>
-<span class="m">3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ seq 1 3
+1
+2
+3
 
-$ seq <span class="m">1</span> <span class="m">3</span> <span class="p">|</span> grep <span class="m">2</span>
-<span class="m">2</span>
+$ seq 1 3 | grep 2
+2
 
-$ seq <span class="m">1</span> <span class="m">12</span> <span class="p">|</span> grep <span class="m">1</span>
-<span class="m">1</span>
-<span class="m">10</span>
-<span class="m">11</span>
-<span class="m">12</span>
+$ seq 1 12 | grep 1
+1
+10
+11
+12
 
-$ seq <span class="m">1</span> <span class="m">12</span> <span class="p">|</span> grep <span class="m">1</span> <span class="p">|</span> grep <span class="m">2</span>
-<span class="m">12</span>
+$ seq 1 12 | grep 1 | grep 2
+12
 </pre></div>
 </div>
 </div>
@@ -1818,7 +1800,7 @@ i,j
 <div class="toggle admonition">
 <p class="admonition-title">Condicionales en <code class="code docutils literal notranslate"><span class="pre">awk</span></code></p>
 <p>Con awk podemos emplear condicionales simples que nos permiten obtener segmentos específicos de un archivo o de un stream</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>awk <span class="s1">&#39;BEGIN{FS=&quot;\t&quot;}{if($1==&quot;BRCA1&quot; &amp;&amp; $4==&quot;protein_coding&quot; &amp;&amp; $5&lt;=10){print $0}}&#39;</span> snpEff_genes.txt
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">awk</span> <span class="s1">&#39;BEGIN{FS=&quot;</span><span class="se">\t</span><span class="s1">&quot;}{if($1==&quot;BRCA1&quot; &amp;&amp; $4==&quot;protein_coding&quot; &amp;&amp; $5&lt;=10){print $0}}&#39;</span> <span class="n">snpEff_genes</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -1874,7 +1856,7 @@ i,j
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
 <p>Las condicionales son sumamente útiles en cualquier lenguaje de programación, sin embargo antes de ejecutarlas debemos verificar que tengan sentido:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{if($1==1 &amp;&amp; $2&lt;=1000000 &amp;&amp; $2&gt;=2000000}
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{if($1==1 &amp;&amp; $2&lt;=1000000 &amp;&amp; $2&gt;=2000000)}
 </pre></div>
 </div>
 <dl class="simple">
@@ -1888,6 +1870,424 @@ i,j
 </dd>
 </dl>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="conda">
+<h1><a class="reference internal" href="conda.html"><span class="doc">Conda</span></a><a class="headerlink" href="#conda" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="conda-create-n-atgenomics">
+<h2><code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">ATGenomics</span></code><a class="headerlink" href="#conda-create-n-atgenomics" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Actualmente las ciencias genómicas se mueven muy rapidamente, instalar y configurar programas ya no es una prioridad para hacer ciencia reproducible ya que existen gestores de paquetes que hacen la tarea por ti</p>
+<div class="toggle admonition">
+<p class="admonition-title">Distintos gestores de paquetes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ubuntu &amp; Debian usan apt</p></li>
+<li><p>Fedora &amp; CentOS usan dnf</p></li>
+<li><p>Arch &amp; OpenSUSE pueden usar packman</p></li>
+<li><p>NodeJS usa npm</p></li>
+<li><p>Python usa pip</p></li>
+<li><p>Perl usa cpan</p></li>
+<li><p>R usa cran</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p>A pesar de haber esfuerzos integrales para optimizar la gestión de paquetes, existen ecosistemas que no interactuan tan bien unos con otros, por ejemplo no puedes instalar paquetes deb con dnf, o rpm con apt.</p>
+<p>Entonces, para que el usuario se preocupe lo menos posible por la gestión de programas, podemos usar <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">conda</a></p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Conda es un gestor de paquetes que permite la creación de ambientes que aislan los programas y bibliotecas del resto del sistema (pero no son contenedores).</p>
+<p>Con conda puedes instalar facilmente programas con versiones específicas y en espacios específicos, por lo que puedes reproducir un protocolo con comandos muy simples.</p>
+</div>
+<p>En este taller emplearemos conda para instalar 3 herramientas:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc">FastQC</a></p></li>
+<li><p><a class="reference external" href="https://github.com/lh3/bwa">bwa</a></p></li>
+<li><p><a class="reference external" href="https://github.com/samtools/samtools">samtools</a></p></li>
+</ul>
+<p>Pero primero debemos instalar conda, para ello, primero ingresamos a la instancia y ejecutamos los siguientes comandos, los ejecutaremos a la par que tú :)</p>
+<ol class="arabic simple">
+<li><p>Empezamos como siempre en nuestra carpeta <cite>$HOME</cite></p></li>
+</ol>
+<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">cd</span> <span class="pre">$HOME</span></code></p>
+<ol class="arabic simple" start="2">
+<li><p>Descargamos el instalador de conda   (versión miniconda)</p></li>
+</ol>
+<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">wget</span> <span class="pre">https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span></code></p>
+<ol class="arabic simple" start="3">
+<li><p>Ejecutamos el instalador (aquí te esperamos para hacerlo a la par)</p></li>
+</ol>
+<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">bash</span> <span class="pre">Miniconda3-latest-Linux-x86_64.sh</span></code></p>
+<ol class="arabic simple" start="4">
+<li><p>Para que los cambios surtan efecto, debemos reiniciar nuestra terminal ya que el archivo de control <cite>.bashrc</cite> fue modificado por conda para poder <em>saber</em> donde está ubicado el ejecutable y donde va a poder instalar programas y ambientes</p></li>
+</ol>
+<p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">exit</span></code></p>
+<ol class="arabic" start="5">
+<li><p>Volvemos a ingresar a la instancia y esta vez notaremos que aparece una pista adicional en nuestra terminal: un cuadrito verde que dice «base» que nos indica 1) que estamos usando conda, y 2) que estamos en un ambiente «base»</p></li>
+<li><p>Posteriormente vamos a agregar <em>canales</em> a la configuración de conda, para que conda <em>sepa</em> de donde descargar los programas</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>Agregamos canales default:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--add</span> <span class="pre">channels</span> <span class="pre">defaults</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Agregamos canales para bioinformática:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--add</span> <span class="pre">channels</span> <span class="pre">bioconda</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Agregamos canales para programas varios:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--add</span> <span class="pre">channels</span> <span class="pre">conda-forge</span></code></p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Habiendo hecho esto, ahora si, creamos un nuevo entorno llamado gatk que va a contener los programas FastQC, bwa y samtools</p>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">gatk</span> <span class="pre">-c</span> <span class="pre">bioconda</span> <span class="pre">samtools</span> <span class="pre">bwa</span> <span class="pre">fastqc</span></code></p>
+</div></blockquote>
+</li>
+<li><p>Activamos nuestro entorno para poder revisar los datos de secuenciación</p>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">gatk</span></code></p>
+</div></blockquote>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Al activar el entorno «gatk» veremos que nuestro prompt nos lo indica cambiando la bandera verde «base» a «gatk»</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>A partir de hoy, cada que ingreses a la instancia, recuerda verificar qué entornos tienes activados. Si no tienes activado el entorno <cite>gatk</cite> debes activarlo ejecutando <code class="code docutils literal notranslate"><span class="pre">$</span> <span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">gatk</span></code></p>
+</div>
+</div>
+<div class="section" id="path-una-vez-mas-con-sentimiento">
+<h2><code class="code docutils literal notranslate"><span class="pre">$PATH</span></code> una vez más, con sentimiento<a class="headerlink" href="#path-una-vez-mas-con-sentimiento" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Una parte de la configuración la realiza conda, no obstante también usaremos programas que no tienen receta de conda. Para que estos programas funcionen debemos configurar nuestro <cite>$PATH</cite></p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>Creamos una carpeta donde van a vivir estos programas:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">$HOME/bin</span></code></p>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>Los siguientes pasos los debemos hacer <strong>una sóla</strong> vez</p>
+</div>
+<ol class="arabic simple" start="2">
+<li><dl class="simple">
+<dt>Agregamos esta ruta al <cite>$PATH</cite> modificando el archivo <cite>.bashrc</cite></dt><dd><p><code class="code docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;PATH=\\$PATH:\\$HOME/bin&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">.bashrc</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Guardamos la variable para que el cambio sea persistente entre sesiones:</dt><dd><p><code class="code docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;export</span> <span class="pre">PATH&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">.bashrc</span></code></p>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="ngs">
+<h1><a class="reference internal" href="ngs.html"><span class="doc">NGS</span></a><a class="headerlink" href="#ngs" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="id5">
+<h2>Introducción<a class="headerlink" href="#id5" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>NGS es un término sombrilla que hace referencia a la última generación de tecnologías de secuenciación</p>
+<p>Actualmente hay tres generaciones de tecnologías de secuenciación disponibles de forma comercial</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><dl class="simple">
+<dt>Primera generación: secuenciación por terminación didesoxi</dt><dd><ul class="simple">
+<li><p>Secuenciación Sanger en geles de acrilamida</p></li>
+<li><p>Secuenciación Sanger en capilares</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Segunda generación: secuenciación por síntesis:</dt><dd><ul class="simple">
+<li><p>Roche 454</p></li>
+<li><p>Illumina</p></li>
+<li><p>Applied Biosystems SOLiD</p></li>
+<li><p>Ion Torren / Ion Proton</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Tercera generación: secuenciación por lectura directa de moléculas</dt><dd><ul class="simple">
+<li><p>PacBio</p></li>
+<li><p>Oxford Nanopore</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<a class="reference internal image-reference" href="_images/generations.png"><img alt="_images/generations.png" src="_images/generations.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="aspectos-generales-de-la-secuenciacion-masiva">
+<h2>Aspectos generales de la secuenciación masiva<a class="headerlink" href="#aspectos-generales-de-la-secuenciacion-masiva" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si bien las tecnologías de secuenciación son muy diversas, el principio es fundamentalmente el mismo:</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt>Se obtiene el DNA genómico de la muestra</dt><dd><ul class="simple">
+<li><p>El tipo de muestra determina el procedimiento a emplear (kit, consumibles, equipo)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>El DNA genómico es fragmentado de forma semi-aleatoria</dt><dd><ul class="simple">
+<li><p>Fragmentación mecánica</p></li>
+<li><p>Fragmentación enzimática</p></li>
+</ul>
+<p>Los kits de secuenciación indican el tamaño de fragmento a obtener, para exoma y genoma éstos van de 300 a 800 bp</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Se ligan adaptadores a ambos lados de los fragmentos generados.</dt><dd><p>En este momento tenemos bibliotecas genómicas y dependiendo de su concentración pueden estar listas para secuenciar</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Se agregan más oligonucleótidos a ambos lados de los fragmentos generados.</dt><dd><ul class="simple">
+<li><p>Éste es un paso opcional pero común cuando se procesa más de una muestra por corrida</p></li>
+<li><p>En caso de no contar con la cantidad adecuada, se amplifican las bibliotecas mediante una reacción de PCR</p></li>
+</ul>
+<p>En este momento tenemos bibliotecas uniplex listas para combinarse y tener bibliotecas multiplex</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>La biblioteca multiplex se inmobiliza en una matriz:</dt><dd><ul class="simple">
+<li><p>Puede ser una superficie en el caso de Illumina, PacBio &amp; Nanopore</p></li>
+<li><p>Puede ser en perlas como en Ion Proton &amp; 454</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Se secuencian las bibliotecas multiplexeadas en el aparato</dt><dd><ul class="simple">
+<li><p>La configuración de la corrida es fundamental para obtener el mejor rendimiento de nuestros reactivos, de nuestra muestra y muy importante, de nuestros datos de secuenciación</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Es recomendable secuenciar por ambos lados las bibliotecas, ya que la información de un solo lado de la lectura (75-300 nt) puede perderse en la inmensidad del genoma (3Gbp en el caso de humano)
+Es recomendable secuenciar fragmentos largos medianamente espaciados (2x150 nt + 200) para maximizar el rendimiento de la corrida, esto lo determina el laboratorio de biología molecular, los Field Application Scientists y los kits de secuenciación</p>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+<a class="reference internal image-reference" href="_images/ngs_commons.png"><img alt="_images/ngs_commons.png" src="_images/ngs_commons.png" style="width: 300px;" /></a>
+</div>
+<div class="section" id="como-se-obtiene-un-exoma">
+<h2>Cómo se obtiene un exoma?<a class="headerlink" href="#como-se-obtiene-un-exoma" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un exoma usualmente se obtiene mediante captura de regiones específicas a través de sondas que hibridan mediante complementaridad de bases en las regiones correspondientes a los exones del organismo que estemos tratando</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Los kits de captura para exomas humanos constan de cientos de miles de sondas que hibridan específicamente con los exones de los &gt;20000 genes codificados en el genoma humano!</p>
+<a class="reference internal image-reference" href="_images/exome.png"><img alt="_images/exome.png" src="_images/exome.png" style="width: 600px;" /></a>
+</div>
+<p>Existen otras estrategias como la de amplificación, sin embargo éstas tienen un rendimiento considerablemente inferior al de captura, adicionalmente, pueden ser susceptibles de rearreglos (captura también es sensible a rearreglos, pero no se pierden las variantes presentes en las regiones rearregladas)</p>
+</div>
+<div class="section" id="evolucion-en-los-costos-de-secuenciacion-y-comparacion-de-plataformas">
+<h2>Evolución en los costos de secuenciación y comparación de plataformas<a class="headerlink" href="#evolucion-en-los-costos-de-secuenciacion-y-comparacion-de-plataformas" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="admonition-esta-figura-la-hemos-visto-hasta-el-cansancio-pero-que-significa admonition">
+<p class="admonition-title">Esta figura la hemos visto hasta el cansancio, pero… qué significa?</p>
+<a class="reference internal image-reference" href="_images/genome_cost.jpg"><img alt="_images/genome_cost.jpg" src="_images/genome_cost.jpg" style="width: 600px;" /></a>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>La ley de Moore en realidad es aplicable a poder de cómputo vs costo vs tiempo. No obstante la genómica y la bioinformática van de la mano, de modo que si bien no es directamente aplicable, si podemos extrapolar la ley de Moore con respecto al costo esperado de la secuenciación de genomas.</p>
+<p>Esta imagen esencialmente nos indica que ahora es más fácil secuenciar genomas completos, y eso es tambien un aliciente para implementar metodologías de genoma o exoma completos por encima de las opciones de paneles específicos</p>
+</div>
+</div>
+<div class="admonition-y-el-rendimiento admonition">
+<p class="admonition-title">Y el rendimiento?</p>
+<a class="reference internal image-reference" href="_images/throughput.png"><img alt="_images/throughput.png" src="_images/throughput.png" style="width: 600px;" /></a>
+<p>No todas las plataformas entregan el mismo rendimiento, incluso si son baratas, por lo que es importante no solamente elegir el kit adecuado para obtener exomas o paneles específicos. Las distintas plataformas nos van a entregar throughputs diferentes, incluso dentro de la misma plataforma en diferentes versiones, la salida de los secuenciadores puede ser muy muy variada</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Para secuenciación masiva de genoma y de exoma, actualmente puede usarse Illumina, Ion Proton, PacBio o Nanopore, no obstante Illumina tiene ventajas notables sobre las demás plataformas:</p>
+<ul class="simple">
+<li><p>No es tan susceptible a errores en regiones homopoliméricas</p></li>
+<li><p>Tiene el throughput más alto de todas las tecnologías</p></li>
+<li><p>Tiene la relación más alta en costo beneficio en cuanto a costo por base secuenciada</p></li>
+<li><p>Tiene mayor número de certificaciones en aplicaciones clínicas y de investigación</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Pese a sus ventajas, Illumina tiene deficiencias a nivel de detección de variaciones estructurales:</p>
+<ul class="simple">
+<li><p>No permite la detección de rearreglos (la opción es Nanopore y PacBio)</p></li>
+<li><p>No permite la detección de expansiones con la resolución adecuada (Nanopore &gt; PacBio &gt; Ion Proton si pueden realizar esta tarea)</p></li>
+<li><p>No permite la resolución de regiones repetitivas (Nanopore y PacBio son la mejor opción)</p></li>
+</ul>
+</div>
+<p>Por lo anterior nos concentraremos en la tecnología Illumina para el llamado de variantes</p>
+</div>
+<div class="section" id="secuenciacion-illumina">
+<h2>Secuenciación Illumina<a class="headerlink" href="#secuenciacion-illumina" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Illumina es por mucho la principal plataforma de secuenciación masiva, no obstante las tecnologías de tercera generación pronto competirán con Illumina tanto en la clínica como en la investigación y en otras áreas en donde se apliquen estrategias de secuenciación</p>
+<a class="reference internal image-reference" href="_images/popularity.png"><img alt="_images/popularity.png" src="_images/popularity.png" style="width: 600px;" /></a>
+</div>
+<div class="admonition-cual-es-la-quimica-en-la-secuenciacion-illumina admonition">
+<p class="admonition-title">Cúal es la química en la secuenciación Illumina?</p>
+<img alt="_images/illumina_seq.png" src="_images/illumina_seq.png" />
+<p>En la secuenciación illumina, cada fragmento se lee dos veces (una vez en <em>foward</em> y una más en <em>reverse</em>), en cada incorporación de nucleótidos, se llevan a cabo los siguientes pasos:</p>
+<ul class="simple">
+<li><p>Se incorpora un nucleótido marcado con un fluoróforo específico</p></li>
+<li><p>Se detiene transitoriamente la reacción</p></li>
+<li><p>Se excitan los fluoróforos presentes en los nucleótidos incorporados</p></li>
+<li><p>Se lee la emisión de luz correspondiente a cada nucleótido</p></li>
+<li><p>Las intensidades de cada spot son registradas y transformadas en secuencias de nucleótidos</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>La intensidad de los spots estará intimamente ligada a la capacidad del detector de separar señales ruidosas y en consecuencia de entregarnos secuencias de calidad.</p>
+</div>
+</div>
+</div>
+<div class="section" id="calidad-de-la-secuenciacion">
+<h2>Calidad de la secuenciación<a class="headerlink" href="#calidad-de-la-secuenciacion" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El detector de los secuenciadores Illumina es esencialmente una cámara muy grande (muy (seriously, muy)). Cómo hace para discriminar entre una señal ruidosa de una señal real?</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Estas son imagenes reales de reacciones de secuenciación</p>
+<a class="reference internal image-reference" href="_images/illumina_signal_to_noise.png"><img alt="_images/illumina_signal_to_noise.png" src="_images/illumina_signal_to_noise.png" style="width: 600px;" /></a>
+<p>La calidad de una reacción de secuenciación está en función de la capacidad del aparato de separar el ruido de una señal ruidosa.</p>
+</div>
+<div class="admonition-un-poco-de-historia-para-entender-la-calidad-de-las-secuencias admonition">
+<p class="admonition-title">Un poco de historia para entender la calidad de las secuencias</p>
+<img alt="_images/quality.png" src="_images/quality.png" />
+<p>Cuando hacemos secuenciación Sanger podemos distinguir facilmente cuando una secuencia es de mala calidad porque los picos se traslapan con la señal basal de la fluorescencia de los demás nucleótidos</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En secuenciación masiva ocurre similar pero lo podemos ver de una forma numérica</p>
+<img alt="_images/phred_scores.png" src="_images/phred_scores.png" />
+</div>
+<p>Incorporemos ahora nuestros Phred scores en una secuenciación tradicional</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 51%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/low_qual_chrom.png"><img alt="low qual chrom" src="_images/low_qual_chrom.png" style="height: 150px;" /></a></p></td>
+<td rowspan="2"><p><a class="reference internal" href="_images/high_qual_chrom.png"><img alt="high qual chrom" src="_images/high_qual_chrom.png" style="height: 150px;" /></a></p></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recordemos que en cómputo, cada caracter de un <em>string</em> pesa ~1 byte</p>
+<p>Cuando incorporamos los phred scores en un archivo, éste pesará por lo menos el doble si se trata de secuencias de baja calidad, y podría pesar hasta el triple cuando son secuencias de alta calidad</p>
+<p>Puedes identificar por qué?</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Esto no parece ser muy problemático, si partimos de lo anterior, una secuencia de 1000 nucleótidos no excederá 1 Kb y con calidades incluidas no excederá 3 Kb</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Pero en secuenciación masiva tenemos millones de secuencias! Entonces el tamaño si importa.</p>
+</div>
+</div>
+<div class="toggle admonition">
+<p class="admonition-title">Solución al problema de codificar los phred scores en NGS</p>
+<p>El código ASCII es una implementación internacional que codifica caracteres alfanuméricos en una estructura controlada, cada letra tiene un identificador único y es valido internacionalmente.</p>
+<p>Y esto cómo conecta con la calidad?</p>
+<p>Dado que cada caracter (1 byte) tiene un código numérico (llegando incluso a más de 100), podemos codificar números que midan 2 bytes, en caracteres que midan unicamente 1 byte</p>
+<a class="reference internal image-reference" href="_images/phred_scale.png"><img alt="_images/phred_scale.png" src="_images/phred_scale.png" style="width: 600px;" /></a>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Sabiendo lo anterior, nuestro cromatograma lo podemos representar de la siguiente manera</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="_images/high_qual_chrom.png"><img alt="high qual chrom" src="_images/high_qual_chrom.png" style="height: 150px;" /></a></p></td>
+<td rowspan="2"><p><a class="reference internal" href="_images/high_qual_fastq.png"><img alt="high qual fastq" src="_images/high_qual_fastq.png" style="height: 150px;" /></a></p></td>
+</tr>
+<tr class="row-even"></tr>
+</tbody>
+</table>
+</div>
+<div class="admonition-y-ahora-en-secuenciacion-masiva admonition">
+<p class="admonition-title">Y ahora en secuenciación masiva!</p>
+<img alt="_images/fastq_format.png" src="_images/fastq_format.png" />
+<p>Considerando que ya conocemos las equivalencias del código ASCII con la escala Phred, qué podrías decir de las secuencias anteriores?</p>
+<ul class="simple">
+<li><p>Son de buena calidad?</p></li>
+<li><p>Son de mala calidad?</p></li>
+</ul>
+<div class="toggle admonition">
+<p class="admonition-title">Solución</p>
+<p><strong>Existen distintos *offsets* de la escala Phred!</strong></p>
+<p>Es indispensable que consultes con tu centro de secuenciación cual es el <em>offset</em> en la escala Phred de tu reacción de secuenciación!</p>
+<img alt="_images/phred_scales.png" src="_images/phred_scales.png" />
+</div>
+</div>
+<div class="admonition-y-entonces-tenemos-fastq admonition">
+<p class="admonition-title">Y entonces tenemos fastq!</p>
+<p>El formato fastq es sumamente rico, ya que además de la secuencia, tenemos información de la calidad de la secuencia y más, mucho más</p>
+<img alt="_images/fastq_header.png" src="_images/fastq_header.png" />
+</div>
+</div>
+<div class="section" id="id6">
+<h2>FastQC<a class="headerlink" href="#id6" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para nosotros poder examinar la calidad de nuestras secuencias, podemos medir directamente sus calidades en formato fastq, y para ello usaremos la aplicación FastQC.</p>
+<ul class="simple">
+<li><p>Es una aplicación escrita en Java que permite portabilidad, es decir, puede correr en Windows, Linux y OSX</p></li>
+<li><p>Cuenta con interfáz gráfica y también en línea de comandos</p></li>
+<li><p>Entrega reportes a manera de páginas web</p></li>
+</ul>
+<p>Sabiendo lo anterior, tomamos nuestra terminal, nos vamos a la carpeta del día 2 y ejecutamos FastQC</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<dl class="simple">
+<dt>En la carpeta del día 2, encontrarás archivos de secuenciación correspondientes al proyecto &quot;NextSeq 550: Nextera Flex for Enrichment (12-plex, NA12878) with TruSight One Expanded Panel&quot; Albergado en <a class="reference external" href="https://basespace.illumina.com/datacentral">Basespace</a></dt><dd><p>24 replicates of Coriell NA12878 were prepared using the Nextera Flex for Enrichment with TruSight One Expanded in 12-plex hybridizations with IDT for Illumina- Nextera UD Indexes, sequenced at 2x149 on NextSeq. Analysis was performed using the BaseSpace Enrichment app.</p>
+</dd>
+</dl>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+dia_01 dia_02 dia_03
+
+$ cd dia_02
+
+$ ls -lh
+total 648M
+-rwxrwxr-x 1 vflorelo bioinformatics  81M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R1_001.fastq.gz
+-rwxrwxr-x 1 vflorelo bioinformatics  82M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R2_001.fastq.gz
+-rwxrwxr-x 1 vflorelo bioinformatics  80M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L002_R1_001.fastq.gz
+-rwxrwxr-x 1 vflorelo bioinformatics  81M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L002_R2_001.fastq.gz
+-rwxrwxr-x 1 vflorelo bioinformatics  81M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L003_R1_001.fastq.gz
+-rwxrwxr-x 1 vflorelo bioinformatics  82M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L003_R2_001.fastq.gz
+-rwxrwxr-x 1 vflorelo bioinformatics  80M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L004_R1_001.fastq.gz
+-rwxrwxr-x 1 vflorelo bioinformatics  82M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L004_R2_001.fastq.gz
+
+
+$ file NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R1_001.fastq.gz
+NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R1_001.fastq.gz: gzip compressed data, was &quot;NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R1_001.fastq&quot;, last modified: Sun Sep 20 21:12:05 2020, max compression, from Unix
+
+
+$ fastqc *.gz
+</pre></div>
 </div>
 </div>
 <div class="section" id="contacto">

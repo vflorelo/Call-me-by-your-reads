@@ -188,16 +188,16 @@
 <div class="section" id="la-bendita-instancia">
 <h1>La bendita instancia<a class="headerlink" href="#la-bendita-instancia" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>En esta ocasión te preparamos una máquina especial a la que puedes accesar en el horario del curso. Es una instancia en Amazon Web Services y de ahora en adelante nos referiremos a esta máquina como «la instancia»
-Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo «atg.pem». <strong>no necesitas abrir este archivo</strong>, solamente debes ponerlo en tu carpeta personal</p>
+Para ingresar a la instancia necesitas una llave que te otorgamos en el archivo «atg.pem». <strong>no necesitas abrir este archivo</strong>, solamente debes ponerlo en la carpeta de MobaXterm si usas windows o en tu carpeta personal si usas Linux o Mac</p>
 <ul>
-<li><p>Si usas windows, así puedes accesar a tu carpeta personal:</p>
+<li><p>Si usas windows, así puedes accesar a la carpeta de MobaXterm:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Abre un explorador de archivos</p></li>
 <li><p>Ve a la carpeta «Este equipo»</p></li>
-<li><p>Ve a la carpeta «C:\»</p></li>
-<li><p>Ve a la carpeta «Users» (o usuarios, dependiendo de tu equipo)</p></li>
-<li><p>Ve a la carpeta con tu nombre de usuario</p></li>
+<li><p>Ve a la carpeta «Documentos»</p></li>
+<li><p>Ve a la carpeta «MobaXterm»</p></li>
+<li><p>Ve a la carpeta «home»</p></li>
 </ul>
 <a class="reference internal image-reference" href="_images/dianolasa_home.jpg"><img alt="&quot;Así se ve el home de &#64;dianolasa&quot;" src="_images/dianolasa_home.jpg" style="width: 600px;" /></a>
 </div></blockquote>
@@ -742,52 +742,32 @@ ls: cannot access &#39;otro_directorio&#39;: No such file or directory
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">head</span></code></p>
 <ul>
 <li><p>Muestra las primeras 10 líneas de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head snpEff_genes.txt
+# The following table is formatted as tab separated values.
+#GeneName       GeneId  TranscriptId    BioType variants_impact_HIGH    variants_impact_LOW     variants_impact_MODERATE        variants_impact_MODIFIER        variants_effect_3_prime_UTR_variant     variants_effect_5_prime_UTR_premature_start_codon_gain_variant  variants_effect_5_prime_UTR_variant     variants_effect_conservative_inframe_deletionvariants_effect_conservative_inframe_insertion     variants_effect_disruptive_inframe_deletion     variants_effect_disruptive_inframe_insertion    variants_effect_downstream_gene_variant variants_effect_frameshift_variant      variants_effect_intron_variant  variants_effect_missense_variant        variants_effect_non_coding_transcript_exon_variant      variants_effect_non_coding_transcript_variant   variants_effect_splice_acceptor_variant variants_effect_splice_donor_variant    variants_effect_splice_region_variantvariants_effect_start_lost variants_effect_stop_gained     variants_effect_stop_lost       variants_effect_stop_retained_variant   variants_effect_synonymous_variant      variants_effect_upstream_gene_variant
+A2M     ENSG00000175899 ENST00000318602 protein_coding  1       1       1       0       0       0       0       0       0       0       0       0       0       2       1       00      1       0       2       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000462568 retained_intron 0       1       0       1       0       0       0       0       0       0       0       0       0       1       0       00      0       0       1       0       0       0       0       0       1
+A2M     ENSG00000175899 ENST00000472360 retained_intron 0       0       0       2       0       0       0       0       0       0       0       2       0       0       0       00      0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000543436 processed_transcript    0       1       0       2       0       0       0       0       0       0       0       0       0       1       00      0       0       0       1       0       0       0       0       0       2
+A2M     ENSG00000175899 ENST00000545828 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       0       0       3       00      0       0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000546069 nonsense_mediated_decay 1       0       0       3       1       0       0       0       0       0       0       1       0       1       01      0       1       0       1       0       0       0       0       0       0
+A4GALT  ENSG00000128274 ENST00000249005 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000381278 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
 </pre></div>
 </div>
 </li>
 <li><p>Muestra las primeras 2 líneas de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n2 Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n2 snpEff_genes.txt
+# The following table is formatted as tab separated values.
+#GeneName       GeneId  TranscriptId    BioType variants_impact_HIGH    variants_impact_LOW     variants_impact_MODERATE        variants_impact_MODIFIER        variants_effect_3_prime_UTR_variant     variants_effect_5_prime_UTR_premature_start_codon_gain_variant  variants_effect_5_prime_UTR_variant     variants_effect_conservative_inframe_deletionvariants_effect_conservative_inframe_insertion     variants_effect_disruptive_inframe_deletion     variants_effect_disruptive_inframe_insertion    variants_effect_downstream_gene_variant variants_effect_frameshift_variant      variants_effect_intron_variant  variants_effect_missense_variant        variants_effect_non_coding_transcript_exon_variant      variants_effect_non_coding_transcript_variant   variants_effect_splice_acceptor_variant variants_effect_splice_donor_variant    variants_effect_splice_region_variantvariants_effect_start_lost variants_effect_stop_gained     variants_effect_stop_lost       variants_effect_stop_retained_variant   variants_effect_synonymous_variant      variants_effect_upstream_gene_variant
 </pre></div>
 </div>
 </li>
 <li><p>Muestra las primeras líneas de un archivo exceptuando las ultimas 2 líneas:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n-2 Homo_sapiens_GRCh38.fasta.fai
-1       248956422       16      70      71
-2       242193529       252512975       70      71
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-12      133275309       1971535983      70      71
-13      114364328       2106715242      70      71
-14      107043718       2222713363      70      71
-15      101991189       2331286294      70      71
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-X       156040895       2916073361      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ head -n-2 snpEff_genes.txt
+&lt; Mucho output como para mostrarlo ;) &gt;
+ZSWIM8  ENSG00000214655 ENST00000605216 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8-AS1      ENSG00000272589 ENST00000456638         0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       1
 </pre></div>
 </div>
 </li>
@@ -803,52 +783,40 @@ X       156040895       2916073361      70      71
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">tail</span></code></p>
 <ul>
 <li><p>Muestra las últimas 10 líneas de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail Homo_sapiens_GRCh38.fasta.fai
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-X       156040895       2916073361      70      71
-Y       57227415        3074343428      70      71
-MT      16569   3132388394      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail snpEff_genes.txt
+ZSWIM8  ENSG00000214655 ENST00000603195 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603309 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603409 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000603840 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604165 processed_transcript    0       0       0       1       0       0       0       0       0       0       0       1       0       0       00      0       0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604524 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604729 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000604754 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8  ENSG00000214655 ENST00000605216 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8-AS1      ENSG00000272589 ENST00000456638         0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       1
 </pre></div>
 </div>
 </li>
 <li><p>Muestra las últimas 2 lineas de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n2 Homo_sapiens_GRCh38.fasta.fai
-Y       57227415        3074343428      70      71
-MT      16569   3132388394      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n2 snpEff_genes.txt
+ZSWIM8  ENSG00000214655 ENST00000605216 protein_coding  0       0       0       1       0       0       0       0       0       0       0       1       0       0       0       00      0       0       0       0       0       0       0       0       0
+ZSWIM8-AS1      ENSG00000272589 ENST00000456638         0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       00      0       0       0       0       0       0       0       0       1
 </pre></div>
 </div>
 </li>
 <li><p>Muestra las últimas líneas de un archivo exceptuando las primeras 2 líneas:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n+2 Homo_sapiens_GRCh38.fasta.fai
-3       198295559       498166428       70      71
-4       190214555       699294797       70      71
-5       181538259       892226719       70      71
-6       170805979       1076358398      70      71
-7       159345973       1249604479      70      71
-8       145138636       1411226840      70      71
-9       138394717       1558438902      70      71
-10      133797422       1698810704      70      71
-11      135086622       1834519535      70      71
-12      133275309       1971535983      70      71
-13      114364328       2106715242      70      71
-14      107043718       2222713363      70      71
-15      101991189       2331286294      70      71
-16      90338345        2434734517      70      71
-17      83257441        2526363427      70      71
-18      80373285        2610810278      70      71
-19      58617616        2692331770      70      71
-20      64444167        2751786798      70      71
-21      46709983        2817151612      70      71
-22      50818468        2864528898      70      71
-X       156040895       2916073361      70      71
-Y       57227415        3074343428      70      71
-MT      16569   3132388394      70      71
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -n+3 Homo_sapiens_GRCh38.fasta.fai
+A2M     ENSG00000175899 ENST00000318602 protein_coding  1       1       1       0       0       0       0       0       0       0       0       0       0       2       1       00      1       0       2       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000462568 retained_intron 0       1       0       1       0       0       0       0       0       0       0       0       0       1       0       00      0       0       1       0       0       0       0       0       1
+A2M     ENSG00000175899 ENST00000472360 retained_intron 0       0       0       2       0       0       0       0       0       0       0       2       0       0       0       00      0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000543436 processed_transcript    0       1       0       2       0       0       0       0       0       0       0       0       0       1       00      0       0       0       1       0       0       0       0       0       2
+A2M     ENSG00000175899 ENST00000545828 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       0       0       3       00      0       0       0       0       0       0       0       0       0       0
+A2M     ENSG00000175899 ENST00000546069 nonsense_mediated_decay 1       0       0       3       1       0       0       0       0       0       0       1       0       1       01      0       1       0       1       0       0       0       0       0       0
+A4GALT  ENSG00000128274 ENST00000249005 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000381278 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000401850 protein_coding  0       2       1       0       0       0       0       0       0       0       0       0       0       0       1       00      0       0       0       0       0       0       0       2       0
+A4GALT  ENSG00000128274 ENST00000465765 processed_transcript    0       0       0       3       0       0       0       0       0       0       0       3       0       0       00      0       0       0       0       0       0       0       0       0       0
+&lt; Y un montón más de output &gt;
 </pre></div>
 </div>
 </li>
@@ -862,26 +830,26 @@ MT      16569   3132388394      70      71
 <p class="admonition-title">Modos de operación de <code class="code docutils literal notranslate"><span class="pre">wc</span></code></p>
 <ul>
 <li><p>Nos da un resumen del contenido de un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc Homo_sapiens_GRCh38.fasta.fai
- 25 125 715 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc snpEff_genes.txt
+37200 1113368 3956494 snpEff_genes.txt
 </pre></div>
 </div>
 </li>
 <li><p>Cuenta el número de líneas en un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -l Homo_sapiens_GRCh38.fasta.fai
- 25 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -l snpEff_genes.txt
+37200 snpEff_genes.txt
 </pre></div>
 </div>
 </li>
 <li><p>Cuenta el número de palabras en un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -w Homo_sapiens_GRCh38.fasta.fai
- 125 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -w snpEff_genes.txt
+1113368 snpEff_genes.txt
 </pre></div>
 </div>
 </li>
 <li><p>Cuenta el número de caracteres en un archivo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -c Homo_sapiens_GRCh38.fasta.fai
- 715 Homo_sapiens_GRCh38.fasta.fai
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wc -c snpEff_genes.txt
+3956494 snpEff_genes.txt
 </pre></div>
 </div>
 </li>
@@ -893,14 +861,14 @@ MT      16569   3132388394      70      71
 <p>El comando <code class="code docutils literal notranslate"><span class="pre">scp</span></code> nos permite al igual que <code class="code docutils literal notranslate"><span class="pre">cp</span></code>, copiar archivos desde un origen hacia un destino, no obstante, lo hace a través de servidores remotos.</p>
 <p>Este comando combina las bondades de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> con los protocolos de seguridad de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code></p>
 <p>Por ello, el uso de <code class="code docutils literal notranslate"><span class="pre">scp</span></code> es muy similar al de <code class="code docutils literal notranslate"><span class="pre">cp</span></code> y al de <code class="code docutils literal notranslate"><span class="pre">ssh</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ scp -i atg.pem vflorelo@atgenomics.ddns.net:/home/vflorelo/dia_01/Homo_sapiens_GRCh38.fasta.fai .
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ scp -i atg.pem vflorelo@atgenomics.ddns.net:snpEff_genes.txt .
 </pre></div>
 </div>
-<p>La construcción anterior nos permite copiar el archivo <cite>Homo_sapiens_GRCh38.fasta.fai</cite> desde el directorio <cite>/home/vflorelo/dia_01</cite> ubicado en el servidor <cite>atgenomics.ddns.net</cite> utilizando la llave <cite>atg.pem</cite></p>
+<p>La construcción anterior nos permite copiar el archivo <cite>snpEff_genes.txt</cite> desde el directorio <cite>/home/vflorelo</cite> ubicado en el servidor <cite>atgenomics.ddns.net</cite> utilizando la llave <cite>atg.pem</cite></p>
 <div class="admonition warning">
 <p class="admonition-title">Advertencia</p>
 <p>A dónde lo va a copiar?</p>
-<p>Noten al final de la construcción, el punto <code class="code docutils literal notranslate"><span class="pre">.</span></code> el cual especifica que copiará el archivo <cite>Homo_sapiens_GRCh38.fasta.fai</cite> hacia el directorio actual</p>
+<p>Noten al final de la construcción, el punto <code class="code docutils literal notranslate"><span class="pre">.</span></code> el cual especifica que copiará el archivo <cite>snpEff_genes.txt</cite> hacia el directorio actual</p>
 </div>
 </div>
 </div>

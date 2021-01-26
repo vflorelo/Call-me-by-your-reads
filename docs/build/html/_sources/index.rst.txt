@@ -57,6 +57,14 @@ En este curso aprenderás a usar comandos básicos de linux y `GATK4`_ para el l
 ===========================
 .. include:: parsing.rst
 
+:doc:`Conda </conda>`
+===========================
+.. include:: conda.rst
+
+:doc:`NGS </ngs>`
+===========================
+.. include:: ngs.rst
+
 Contacto
 --------
 	Este curso es llevado a ti por `ATGenomics`_, una iniciativa dedicada a la divulgación, promoción y capacitación en bioinformática
