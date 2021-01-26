@@ -118,7 +118,7 @@ Una parte de la configuración la realiza conda, no obstante también usaremos p
 
 	::
 
-		$ echo "PATH=\$PATH:\$HOME/bin" >> .bashrc
+		$ echo "PATH=$PATH:$HOME/bin" >> .bashrc
 
 3. Guardamos la variable para que el cambio sea persistente entre sesiones:
 
