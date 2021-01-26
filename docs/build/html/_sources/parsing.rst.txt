@@ -82,8 +82,8 @@ La finalidad de este curso es obtener un archivo de llamado de variantes (*Varia
 A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes
 Para comenzar, vamos a descargar un archivo con el que podamos trabajar ::
 
-	cd $HOME
-	wget https://raw.githubusercontent.com/vflorelo/Call-me-by-your-reads/master/snpEff_genes.txt
+	$ cd $HOME
+	$ wget https://raw.githubusercontent.com/vflorelo/Call-me-by-your-reads/master/snpEff_genes.txt
 
 Y entonces tendremos un archivo llamado snpEff_genes.txt que es un resumen de cuantas variantes se encontraron en cada gen en un experimento de secuenciación de exoma empleando el kit `TruSight One expanded <https://emea.illumina.com/library-prep-array-kit-selector/kits-and-arrays/trusight-one-expanded-panel.html>`_
 
@@ -625,7 +625,7 @@ Volvamos a nuestro archivo snpEff_genes.txt, sabiendo que está separado por tab
 
 	::
 
-		awk 'BEGIN{FS="\t"}{if($1=="BRCA1" && $4=="protein_coding" && $5<=10){print $0}}' snpEff_genes.txt
+		$ awk 'BEGIN{FS="\t"}{if($1=="BRCA1" && $4=="protein_coding" && $5<=10){print $0}}' snpEff_genes.txt
 
 	.. tip::
 

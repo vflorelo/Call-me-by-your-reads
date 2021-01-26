@@ -88,3 +88,5 @@ man_pages = [(master_doc, "Call me by your reads", "Crash course on genomic vari
 texinfo_documents = [(master_doc, "Call me by your reads", "Call me by your name", author, "Call-me-by-your-reads", "Crash course on genomic variant calling","Bioinformatics"),]
 def setup(app):
     app.add_css_file('custom.css')
+copybutton_prompt_text = "$ "
+copybutton_only_copy_prompt_lines = True

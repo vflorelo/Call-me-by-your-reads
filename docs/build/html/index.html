@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Call me by your reads &mdash; documentación de Call me by your reads - 0.0.1</title>
+  <title>Call me by your reads &mdash; documentación de Call me by your reads - 1</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.0.1
+                1
               </div>
             
           
@@ -1148,8 +1148,8 @@ A4GALT  ENSG00000128274 ENST00000465765 processed_transcript    0       0       
 </div>
 <p>A través del uso de los siguientes comandos podemos filtrar éstos y otros archivos para optimizar y entender mejor lo que ocurre en el llamado de variantes
 Para comenzar, vamos a descargar un archivo con el que podamos trabajar</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $HOME
-wget https://raw.githubusercontent.com/vflorelo/Call-me-by-your-reads/master/snpEff_genes.txt
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME
+$ wget https://raw.githubusercontent.com/vflorelo/Call-me-by-your-reads/master/snpEff_genes.txt
 </pre></div>
 </div>
 <p>Y entonces tendremos un archivo llamado snpEff_genes.txt que es un resumen de cuantas variantes se encontraron en cada gen en un experimento de secuenciación de exoma empleando el kit <a class="reference external" href="https://emea.illumina.com/library-prep-array-kit-selector/kits-and-arrays/trusight-one-expanded-panel.html">TruSight One expanded</a></p>
@@ -1803,7 +1803,7 @@ i,j
 <div class="toggle admonition">
 <p class="admonition-title">Condicionales en <code class="code docutils literal notranslate"><span class="pre">awk</span></code></p>
 <p>Con awk podemos emplear condicionales simples que nos permiten obtener segmentos específicos de un archivo o de un stream</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">awk</span> <span class="s1">&#39;BEGIN{FS=&quot;</span><span class="se">\t</span><span class="s1">&quot;}{if($1==&quot;BRCA1&quot; &amp;&amp; $4==&quot;protein_coding&quot; &amp;&amp; $5&lt;=10){print $0}}&#39;</span> <span class="n">snpEff_genes</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ awk &#39;BEGIN{FS=&quot;\t&quot;}{if($1==&quot;BRCA1&quot; &amp;&amp; $4==&quot;protein_coding&quot; &amp;&amp; $5&lt;=10){print $0}}&#39; snpEff_genes.txt
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -1996,7 +1996,7 @@ i,j
 <ol class="arabic">
 <li><p>Creamos una carpeta donde van a vivir estos programas:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p $HOME/bin
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/bin
 </pre></div>
 </div>
 </div></blockquote>
@@ -2009,14 +2009,14 @@ i,j
 <ol class="arabic" start="2">
 <li><p>Agregamos esta ruta al <cite>$PATH</cite> modificando el archivo <cite>.bashrc</cite></p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;PATH=</span><span class="se">\\</span><span class="s2">$PATH:</span><span class="se">\\</span><span class="s2">$HOME/bin&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">.</span><span class="n">bashrc</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;PATH=\\$PATH:\\$HOME/bin&quot; &gt;&gt; .bashrc
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Guardamos la variable para que el cambio sea persistente entre sesiones:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;export PATH&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">.</span><span class="n">bashrc</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;export PATH&quot; &gt;&gt; .bashrc
 </pre></div>
 </div>
 </div></blockquote>
