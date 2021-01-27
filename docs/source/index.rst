@@ -65,6 +65,10 @@ En este curso aprenderás a usar comandos básicos de linux y `GATK4`_ para el l
 ===========================
 .. include:: ngs.rst
 
+:doc:`BWA </bwa>`
+===========================
+.. include:: bwa.rst
+
 Contacto
 --------
 	Este curso es llevado a ti por `ATGenomics`_, una iniciativa dedicada a la divulgación, promoción y capacitación en bioinformática

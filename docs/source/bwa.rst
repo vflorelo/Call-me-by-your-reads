@@ -1,73 +1,3 @@
-*Before we start*
------------------
-
-La sesión del día de hoy implica correr un par de comandos que tomarán algo de tiempo, en consecuencia, los correremos al inicio de la sesión y explicaremos su sintaxis y funcionamiento a lo largo de la sesión.
-
-.. important::
-
-	En los ambientes unix linux los programas no se instalan de la misma forma que en los ambientes windows o mac, en vez tenemos que descargar el código fuente de los programas, compilarlo cuando así sea necesario e instalarlo en algun lugar de nuestro sistema
-
-	Los siguientes comandos nos permitirán instalar bwa en nuestro sistema::
-
-		$ pwd
-		/home/vflorelo
-
-		$ git clone https://github.com/lh3/bwa.git
-
-		$ls
-		bwa dia_01 dia_02 dia_03
-
-		$ mkdir bin
-
-		$ cd bwa
-
-		$ make
-
-		$ mv bwa /home/vflorelo/bin
-
-		$ bwa index
-
-.. admonition:: Comandos del día
-
-	Recuerda copiar unicamente los comandos en las líneas marcadas con el signo '$'
-
-	.. code-block:: sh
-
-		$ ls
-		/home/vflorelo
-
-		$ ls
-		dia_01
-		dia_02
-		dia_03
-
-		$ cd dia_02
-
-		$ ls -lh
-
-		total 648M
-		-rwxrwxr-x 1 vflorelo bioinformatics  81M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R1_001.fastq.gz
-		-rwxrwxr-x 1 vflorelo bioinformatics  82M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R2_001.fastq.gz
-		-rwxrwxr-x 1 vflorelo bioinformatics  80M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L002_R1_001.fastq.gz
-		-rwxrwxr-x 1 vflorelo bioinformatics  81M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L002_R2_001.fastq.gz
-		-rwxrwxr-x 1 vflorelo bioinformatics  81M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L003_R1_001.fastq.gz
-		-rwxrwxr-x 1 vflorelo bioinformatics  82M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L003_R2_001.fastq.gz
-		-rwxrwxr-x 1 vflorelo bioinformatics  80M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L004_R1_001.fastq.gz
-		-rwxrwxr-x 1 vflorelo bioinformatics  82M Sep 22 06:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L004_R2_001.fastq.gz
-
-
-		$ cat \*R1_001.fastq.gz > ../dia_03/forward_reads.fastq.gz
-
-		$ cat \*R2_001.fastq.gz > ../dia_03/reverse_reads.fastq.gz
-
-		$ cd ../dia_03
-
-		$ bwa mem -M -t 4 /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta forward_reads.fastq.gz reverse_reads.fastq.gz > S1.sam &
-
-.. warning::
-
-	Es importante que antes de dar enter al último comando nos muestren sus pantallas para que podamos seguir, este último comando generará un archivo de ~15 Gb en ~1 h
-
 Introducción
 ------------
 Ya tenemos nuestras secuencias en formato fastq y salieron bien de calidad. Qué hago con las secuencias para el llamado de variantes?
@@ -78,7 +8,7 @@ El siguiente paso es alinear dichas lecturas sobre un genoma de referencia que n
 
 	En llamado de variantes es de suma importancia especificar cual fue la referencia que se empleó
 
-	La secuencia de referencia del genoma humano no es la misma en 2020 que la que se liberó en Mayo de 2000, en total ha sufrido 19 revisiones para un total de 20 versiones.
+	La secuencia de referencia del genoma humano no es la misma en 2021 que la que se liberó en Mayo de 2000, en total ha sufrido 19 revisiones para un total de 20 versiones.
 
 .. note::
 
@@ -87,6 +17,142 @@ El siguiente paso es alinear dichas lecturas sobre un genoma de referencia que n
 .. important::
 
 	En este taller emplearemos la versión GRCh38 (hg38) del genoma humano.
+
+.. warning::
+
+	No obstante Illumina y otras compañias no han migrado aún sus archivos hacia la nueva versión del genoma, por lo que tenemos que hacer un par de transformaciones antes de iniciar
+
+1. Creamos un directorio donde vamos a albergar archivos de soporte
+
+::
+
+	$ cd $HOME
+
+::
+
+	$ mkdir 00_other
+
+2. Descargamos el archivo de coordenadas que provee el fabricante de nuestro kit de secuenciación
+
+::
+
+	$ cd $HOME/00_other
+
+::
+
+	$ wget https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/trusight/trusight-one-expanded-file-for-ucsc-browser-v2-0-bed.zip
+
+::
+
+	$ unzip trusight-one-expanded-file-for-ucsc-browser-v2-0-bed.zip
+
+3. Descargamos el programa liftOver que nos permite transformar sets de coordenadas entre ensamble GRCh37 y GRCh38
+
+::
+
+	$ mkdir -p $HOME/bin
+
+::
+
+	$ cd $HOME/bin
+
+::
+
+	$ wget https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver
+
+::
+
+	$ chmod 775 liftOver
+
+4. Descargamos el archivo *chain* para que liftOver sepa como transformar entre coordenadas
+
+::
+
+	$ cd $HOME/00_other
+
+::
+
+	$ wget ftp://hgdownload.soe.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz
+
+::
+
+	$ gunzip hg19ToHg38.over.chain.gz
+
+5. Transformamos nuestro archivo de coordenadas para actualizarlo a la última versión del genoma
+
+::
+
+	$ liftOver "TSOne Expanded BED v2.0.txt" hg19ToHg38.over.chain TSO_xt_hg38.bed unmapped
+
+Y dónde está el genoma?
+-----------------------
+
+En este taller vamos a emplear el genoma de referencia GRCh38 que viene incluido en el paquete de trabajo de GATK (*bundle*).
+
+.. admonition:: Nota
+	:class: toggle
+
+		Este *bundle* pesa mucho y puede llevar tiempo descargarlo, de modo que en este taller **no lo vamos a descargar**, no obstante, de dejamos los comandos para que puedas descargarlo en tu computadora (~40 Gb)
+
+		::
+
+			$ pip3 install gsutil
+
+			$ mkdir -p /usr/local/bioinformatics/bundle
+
+			$ mkdir -p /usr/local/bioinformatics/db/GRCh38/clinvar
+
+			$ mkdir -p /usr/local/bioinformatics/db/GRCh38/dbSnp
+
+			$ cd /usr/local/bioinformatics/bundle
+
+			$ gsutil -m cp -r \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/1000G.phase3.integrated.sites_only.no_MATCHED_REV.hg38.vcf" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/1000G.phase3.integrated.sites_only.no_MATCHED_REV.hg38.vcf.idx" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/1000G_omni2.5.hg38.vcf.gz" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/1000G_omni2.5.hg38.vcf.gz.tbi" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/1000G_phase1.snps.high_confidence.hg38.vcf.gz" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/1000G_phase1.snps.high_confidence.hg38.vcf.gz.tbi" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz.tbi" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf.idx" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dict" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.alt" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.amb" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.ann" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.bwt" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.pac" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.sa" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.fai" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.known_indels.vcf.gz" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.known_indels.vcf.gz.tbi" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz.tbi" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/hapmap_3.3.hg38.vcf.gz" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/hapmap_3.3.hg38.vcf.gz.tbi" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/scattered_calling_intervals/" \
+			  "gs://genomics-public-data/resources/broad/hg38/v0/wgs_calling_regions.hg38.interval_list" \
+			  .
+
+			$ conda activate gatk
+
+			$ cd /usr/local/bioinformatics/db/GRCh38/clinvar
+
+			$ wget ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz
+
+			$ bgzip --reindex clinvar.vcf.gz
+
+			$ tabix -p vcf clinvar.vcf.gz
+
+			$ cd /usr/local/bioinformatics/db/GRCh38/dbSnp
+
+			$ wget ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606/VCF/00-All.vcf.gz
+
+			$ bgzip --reindex 00-All.vcf.gz
+
+			$ tabix -p vcf 00-All.vcf.gz
 
 Alineamiento de lecturas sobre un genoma
 ----------------------------------------
@@ -98,8 +164,46 @@ En esta sesión veremos una de las estrategias más ampliamente utilizadas en bi
 Este procedimiento consta de dos etapas
 
 1. Construcción de la transformada de Burrows-Wheeler de nuestra secuencia genómica
+
+	* Este procedimiento se omite ya que el *bundle* de GATK incluye un índice del genoma
+
 2. Busqueda de las posiciones de las lecturas sobre la secuencia genómica mediante backtracking
 
+	* Procedimiento:
+
+	2.1. Preparamos el escenario
+
+	::
+
+		$ cd $HOME
+
+		$ mkdir 03_bwa
+
+		$ cd 03_bwa
+
+	2.2. Concatenamos las lecturas
+
+	::
+
+		$ cat $HOME/01_reads/*R1*.gz > fwd_reads.fastq.gz
+
+		$ cat $HOME/01_reads/*R2*.gz > rev_reads.fastq.gz
+
+	2.3. Copiamos nuestro archivo de coordenadas
+
+	::
+
+		$ cp $HOME/00_other/TSO_xt_hg38.bed .
+
+	2.4. Mapeamos las lecturas al genoma (en este paso debes tener activo el entorno gatk -> :code:`conda activate gatk` )
+
+	::
+
+		$ nohup bwa mem -M -t 4 /usr/local/bioinformatics/bundle/Homo_sapiens_assembly38.fasta fwd_reads.fastq.gz rev_reads.fastq.gz > S3.sam 2> S3.err &
+
+	.. important::
+
+		Con el comando :code:`nohup` nos aseguramos que el programa esté corriendo en el fondo y mientras eso ocurre, podemos cerrar nuestras terminales para la parte teórica
 
 Transformada de Burrows-Wheeler
 -------------------------------
@@ -433,8 +537,30 @@ Cómo su nombre lo indica, es un reporte conciso acerca de cómo una lectura ali
 	|XE |Number of supporting seeds                     |
 	+---+-----------------------------------------------+
 
+Filtrado de lecturas
+--------------------
 
+Una vez que entendemos cómo está estructurado el formato SAM, podemos ahora hacer manipulación de nuestros archivos para que sólo conservemos la información util
 
+0. Recuerda tener tu entorno gatk activado :code:`conda activate gatk`
+
+1. Transformamos nuestro archivo SAM a un formato más amigable: formato BAM
+
+::
+
+	$ samtools view -b -h -@ 4 -f 3 -L TSO_xt_hg38.bed -o S3.tmp.bam S3.sam
+
+2. Ordenamos por coordenadas nuestro archivo BAM
+
+::
+
+	$ samtools sort -l 9 -@ 4 -o S3.bam S3.bam
+
+3. Indexamos nuestro archivo sorteado
+
+::
+
+	$ samtools index S3.bam
 
 .. _`Broad Institute`: https://broadinstitute.github.io/picard/explain-flags.html
 

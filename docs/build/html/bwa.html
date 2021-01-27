@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Before we start &mdash; documentación de Call me by your reads - 1</title>
+  <title>Introducción &mdash; documentación de Call me by your reads - 1</title>
   
 
   
@@ -89,14 +89,15 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#"><em>Before we start</em></a></li>
-<li><a class="reference internal" href="#introduccion">Introducción</a></li>
+<li><a class="reference internal" href="#">Introducción</a></li>
+<li><a class="reference internal" href="#y-donde-esta-el-genoma">Y dónde está el genoma?</a></li>
 <li><a class="reference internal" href="#alineamiento-de-lecturas-sobre-un-genoma">Alineamiento de lecturas sobre un genoma</a></li>
 <li><a class="reference internal" href="#transformada-de-burrows-wheeler">Transformada de Burrows-Wheeler</a></li>
 <li><a class="reference internal" href="#tries-y-busqueda-por-backtracking"><em>Tries</em> y búsqueda por <em>backtracking</em></a></li>
 <li><a class="reference internal" href="#formatos-de-salida-sam">Formatos de salida: SAM</a></li>
 <li><a class="reference internal" href="#flag">FLAG</a></li>
 <li><a class="reference internal" href="#concise-idiosyncratic-gapped-alignment-report-cigar-para-los-amigos">Concise Idiosyncratic Gapped Alignment Report (CIGAR para los amigos)</a></li>
+<li><a class="reference internal" href="#filtrado-de-lecturas">Filtrado de lecturas</a></li>
 </ul>
 </div>
             
@@ -142,7 +143,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li><em>Before we start</em></li>
+      <li>Introducción</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -161,82 +162,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="before-we-start">
-<h1><em>Before we start</em><a class="headerlink" href="#before-we-start" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>La sesión del día de hoy implica correr un par de comandos que tomarán algo de tiempo, en consecuencia, los correremos al inicio de la sesión y explicaremos su sintaxis y funcionamiento a lo largo de la sesión.</p>
-<div class="admonition important">
-<p class="admonition-title">Importante</p>
-<p>En los ambientes unix linux los programas no se instalan de la misma forma que en los ambientes windows o mac, en vez tenemos que descargar el código fuente de los programas, compilarlo cuando así sea necesario e instalarlo en algun lugar de nuestro sistema</p>
-<p>Los siguientes comandos nos permitirán instalar bwa en nuestro sistema:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-/home/vflorelo
-
-$ git clone https://github.com/lh3/bwa.git
-
-$ls
-bwa dia_01 dia_02 dia_03
-
-$ mkdir bin
-
-$ cd bwa
-
-$ make
-
-$ mv bwa /home/vflorelo/bin
-
-$ bwa index
-</pre></div>
-</div>
-</div>
-<div class="admonition-comandos-del-dia admonition">
-<p class="admonition-title">Comandos del día</p>
-<p>Recuerda copiar unicamente los comandos en las líneas marcadas con el signo “$”</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ ls
-/home/vflorelo
-
-$ ls
-dia_01
-dia_02
-dia_03
-
-$ <span class="nb">cd</span> dia_02
-
-$ ls -lh
-
-total 648M
--rwxrwxr-x <span class="m">1</span> vflorelo bioinformatics  81M Sep <span class="m">22</span> <span class="m">06</span>:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R1_001.fastq.gz
--rwxrwxr-x <span class="m">1</span> vflorelo bioinformatics  82M Sep <span class="m">22</span> <span class="m">06</span>:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L001_R2_001.fastq.gz
--rwxrwxr-x <span class="m">1</span> vflorelo bioinformatics  80M Sep <span class="m">22</span> <span class="m">06</span>:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L002_R1_001.fastq.gz
--rwxrwxr-x <span class="m">1</span> vflorelo bioinformatics  81M Sep <span class="m">22</span> <span class="m">06</span>:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L002_R2_001.fastq.gz
--rwxrwxr-x <span class="m">1</span> vflorelo bioinformatics  81M Sep <span class="m">22</span> <span class="m">06</span>:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L003_R1_001.fastq.gz
--rwxrwxr-x <span class="m">1</span> vflorelo bioinformatics  82M Sep <span class="m">22</span> <span class="m">06</span>:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L003_R2_001.fastq.gz
--rwxrwxr-x <span class="m">1</span> vflorelo bioinformatics  80M Sep <span class="m">22</span> <span class="m">06</span>:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L004_R1_001.fastq.gz
--rwxrwxr-x <span class="m">1</span> vflorelo bioinformatics  82M Sep <span class="m">22</span> <span class="m">06</span>:19 NA12878-TS1Exp-TiVAL3-rep5_S20_L004_R2_001.fastq.gz
-
-
-$ cat <span class="se">\*</span>R1_001.fastq.gz &gt; ../dia_03/forward_reads.fastq.gz
-
-$ cat <span class="se">\*</span>R2_001.fastq.gz &gt; ../dia_03/reverse_reads.fastq.gz
-
-$ <span class="nb">cd</span> ../dia_03
-
-$ bwa mem -M -t <span class="m">4</span> /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta forward_reads.fastq.gz reverse_reads.fastq.gz &gt; S1.sam <span class="p">&amp;</span>
-</pre></div>
-</div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Advertencia</p>
-<p>Es importante que antes de dar enter al último comando nos muestren sus pantallas para que podamos seguir, este último comando generará un archivo de ~15 Gb en ~1 h</p>
-</div>
-</div>
-<div class="section" id="introduccion">
+  <div class="section" id="introduccion">
 <h1>Introducción<a class="headerlink" href="#introduccion" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Ya tenemos nuestras secuencias en formato fastq y salieron bien de calidad. Qué hago con las secuencias para el llamado de variantes?</p>
 <p>El siguiente paso es alinear dichas lecturas sobre un genoma de referencia que nos permita detectar variaciones <strong>con respecto de ese genoma</strong></p>
 <div class="admonition important">
 <p class="admonition-title">Importante</p>
 <p>En llamado de variantes es de suma importancia especificar cual fue la referencia que se empleó</p>
-<p>La secuencia de referencia del genoma humano no es la misma en 2020 que la que se liberó en Mayo de 2000, en total ha sufrido 19 revisiones para un total de 20 versiones.</p>
+<p>La secuencia de referencia del genoma humano no es la misma en 2021 que la que se liberó en Mayo de 2000, en total ha sufrido 19 revisiones para un total de 20 versiones.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
@@ -246,15 +179,180 @@ $ bwa mem -M -t <span class="m">4</span> /usr/local/bioinformatics/databases/gen
 <p class="admonition-title">Importante</p>
 <p>En este taller emplearemos la versión GRCh38 (hg38) del genoma humano.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>No obstante Illumina y otras compañias no han migrado aún sus archivos hacia la nueva versión del genoma, por lo que tenemos que hacer un par de transformaciones antes de iniciar</p>
+</div>
+<ol class="arabic simple">
+<li><p>Creamos un directorio donde vamos a albergar archivos de soporte</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir 00_other
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Descargamos el archivo de coordenadas que provee el fabricante de nuestro kit de secuenciación</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME/00_other
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/trusight/trusight-one-expanded-file-for-ucsc-browser-v2-0-bed.zip
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ unzip trusight-one-expanded-file-for-ucsc-browser-v2-0-bed.zip
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Descargamos el programa liftOver que nos permite transformar sets de coordenadas entre ensamble GRCh37 y GRCh38</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/bin
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME/bin
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod 775 liftOver
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Descargamos el archivo <em>chain</em> para que liftOver sepa como transformar entre coordenadas</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME/00_other
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget ftp://hgdownload.soe.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gunzip hg19ToHg38.over.chain.gz
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Transformamos nuestro archivo de coordenadas para actualizarlo a la última versión del genoma</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ liftOver &quot;TSOne Expanded BED v2.0.txt&quot; hg19ToHg38.over.chain TSO_xt_hg38.bed unmapped
+</pre></div>
+</div>
+</div>
+<div class="section" id="y-donde-esta-el-genoma">
+<h1>Y dónde está el genoma?<a class="headerlink" href="#y-donde-esta-el-genoma" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En este taller vamos a emplear el genoma de referencia GRCh38 que viene incluido en el paquete de trabajo de GATK (<em>bundle</em>).</p>
+<div class="toggle admonition">
+<p class="admonition-title">Nota</p>
+<blockquote>
+<div><p>Este <em>bundle</em> pesa mucho y puede llevar tiempo descargarlo, de modo que en este taller <strong>no lo vamos a descargar</strong>, no obstante, de dejamos los comandos para que puedas descargarlo en tu computadora (~40 Gb)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip3 install gsutil
+
+$ mkdir -p /usr/local/bioinformatics/bundle
+
+$ mkdir -p /usr/local/bioinformatics/db/GRCh38/clinvar
+
+$ mkdir -p /usr/local/bioinformatics/db/GRCh38/dbSnp
+
+$ cd /usr/local/bioinformatics/bundle
+
+$ gsutil -m cp -r \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/1000G.phase3.integrated.sites_only.no_MATCHED_REV.hg38.vcf&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/1000G.phase3.integrated.sites_only.no_MATCHED_REV.hg38.vcf.idx&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/1000G_omni2.5.hg38.vcf.gz&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/1000G_omni2.5.hg38.vcf.gz.tbi&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/1000G_phase1.snps.high_confidence.hg38.vcf.gz&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/1000G_phase1.snps.high_confidence.hg38.vcf.gz.tbi&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz.tbi&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf.idx&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dict&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.alt&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.amb&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.ann&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.bwt&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.pac&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.64.sa&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.fasta.fai&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.known_indels.vcf.gz&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.known_indels.vcf.gz.tbi&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz.tbi&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/hapmap_3.3.hg38.vcf.gz&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/hapmap_3.3.hg38.vcf.gz.tbi&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/scattered_calling_intervals/&quot; \
+  &quot;gs://genomics-public-data/resources/broad/hg38/v0/wgs_calling_regions.hg38.interval_list&quot; \
+  .
+
+$ conda activate gatk
+
+$ cd /usr/local/bioinformatics/db/GRCh38/clinvar
+
+$ wget ftp://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz
+
+$ bgzip --reindex clinvar.vcf.gz
+
+$ tabix -p vcf clinvar.vcf.gz
+
+$ cd /usr/local/bioinformatics/db/GRCh38/dbSnp
+
+$ wget ftp://ftp.ncbi.nih.gov/snp/organisms/human_9606/VCF/00-All.vcf.gz
+
+$ bgzip --reindex 00-All.vcf.gz
+
+$ tabix -p vcf 00-All.vcf.gz
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="alineamiento-de-lecturas-sobre-un-genoma">
 <h1>Alineamiento de lecturas sobre un genoma<a class="headerlink" href="#alineamiento-de-lecturas-sobre-un-genoma" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Existen cientos de estrategias con las que se pueden alinear secuencias sobre un genoma de referencia, no obstante muchas de ellas son imprácticas cuando se trata de datos voluminosos</p>
 <p>En esta sesión veremos una de las estrategias más ampliamente utilizadas en bioinformática (no solamente en llamado de variantes): Alineamiento basado en la transformada de Burrows-Wheeler</p>
 <p>Este procedimiento consta de dos etapas</p>
-<ol class="arabic simple">
-<li><p>Construcción de la transformada de Burrows-Wheeler de nuestra secuencia genómica</p></li>
-<li><p>Busqueda de las posiciones de las lecturas sobre la secuencia genómica mediante backtracking</p></li>
+<ol class="arabic">
+<li><p>Construcción de la transformada de Burrows-Wheeler de nuestra secuencia genómica</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Este procedimiento se omite ya que el <em>bundle</em> de GATK incluye un índice del genoma</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Busqueda de las posiciones de las lecturas sobre la secuencia genómica mediante backtracking</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Procedimiento:</p></li>
+</ul>
+<p>2.1. Preparamos el escenario</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME
+
+$ mkdir 03_bwa
+
+$ cd 03_bwa
+</pre></div>
+</div>
+<p>2.2. Concatenamos las lecturas</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat $HOME/01_reads/*R1*.gz &gt; fwd_reads.fastq.gz
+
+$ cat $HOME/01_reads/*R2*.gz &gt; rev_reads.fastq.gz
+</pre></div>
+</div>
+<p>2.3. Copiamos nuestro archivo de coordenadas</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp $HOME/00_other/TSO_xt_hg38.bed .
+</pre></div>
+</div>
+<p>2.4. Mapeamos las lecturas al genoma (en este paso debes tener activo el entorno gatk -&gt; <code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">gatk</span></code> )</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nohup bwa mem -M -t 4 /usr/local/bioinformatics/bundle/Homo_sapiens_assembly38.fasta fwd_reads.fastq.gz rev_reads.fastq.gz &gt; S3.sam 2&gt; S3.err &amp;
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Con el comando <code class="code docutils literal notranslate"><span class="pre">nohup</span></code> nos aseguramos que el programa esté corriendo en el fondo y mientras eso ocurre, podemos cerrar nuestras terminales para la parte teórica</p>
+</div>
+</div></blockquote>
+</li>
 </ol>
 </div>
 <div class="section" id="transformada-de-burrows-wheeler">
@@ -680,6 +778,29 @@ $ bwa mem -M -t <span class="m">4</span> /usr/local/bioinformatics/databases/gen
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="section" id="filtrado-de-lecturas">
+<h1>Filtrado de lecturas<a class="headerlink" href="#filtrado-de-lecturas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Una vez que entendemos cómo está estructurado el formato SAM, podemos ahora hacer manipulación de nuestros archivos para que sólo conservemos la información util</p>
+<ol class="arabic simple" start="0">
+<li><p>Recuerda tener tu entorno gatk activado <code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">gatk</span></code></p></li>
+<li><p>Transformamos nuestro archivo SAM a un formato más amigable: formato BAM</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ samtools view -b -h -@ 4 -f 3 -L TSO_xt_hg38.bed -o S3.tmp.bam S3.sam
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Ordenamos por coordenadas nuestro archivo BAM</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ samtools sort -l 9 -@ 4 -o S3.bam S3.bam
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Indexamos nuestro archivo sorteado</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ samtools index S3.bam
+</pre></div>
 </div>
 </div>
 
