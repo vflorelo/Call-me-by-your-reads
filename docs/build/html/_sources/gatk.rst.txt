@@ -1,123 +1,88 @@
-*Before we start*
------------------
+Introducción
+------------
+Ya tenemos nuestras lecturas alineadas, ya nos quitamos las regiones problemáticas. Es hora de llamar variantes!
 
-.. note::
 
-	En los ambientes unix linux los programas no se instalan de la misma forma que en los ambientes windows o mac, en vez tenemos que descargar el código fuente de los programas, compilarlo cuando así sea necesario e instalarlo en algun lugar de nuestro sistema
+Instalación de GATK
+-------------------
 
-	Los siguientes comandos nos permitirán instalar htslib, samtools y gatk en nuestra carpeta :code:`$HOME/bin`
+1. Vamos a nuestro directorio, as usual
 
-.. admonition:: htslib
-	:class: toggle
+::
 
-		::
+	$ cd $HOME
 
-			$ pwd
-			/home/vflorelo
+2. Bajamos la versión actual de GATK4
 
-			$ git clone https://github.com/samtools/htslib.git
+.. important::
 
-			$ cd /home/vflorelo/htslib
-
-			$ autoheader
-
-			$ autoconf
-
-			$ ./configure --prefix=/home/vflorelo
-
-			$ make
-
-			$ make install
-
-			$ cd /home/vflorelo
-
-.. admonition:: samtools
-	:class: toggle
-
-		::
-
-			$ pwd
-			/home/vflorelo
-
-			$ git clone https://github.com/samtools/samtools.git
-
-			$ cd /home/vflorelo/samtools
-
-			$ autoheader
-
-			$ autoconf
-
-			$ ./configure --prefix=/home/vflorelo
-
-			$ make
-
-			$ make install
-
-			$ cd /home/vflorelo
-
-.. admonition:: GATK4
-	:class: toggle
-
-		::
-
-			$ pwd
-			/home/vflorelo
-
-			$ wget https://github.com/broadinstitute/gatk/releases/download/4.1.8.1/gatk-4.1.8.1.zip
-
-			$ unzip gatk-4.1.8.1.zip
-
-			$ cd /home/vflorelo/gatk-4.1.8.1
-
-			$ mv * /home/vflorelo/bin
-
-			$ cd /home/vflorelo
-
-			$ chmod -R 775 /home/vflorelo/bin
-
-Comandos del día 4
-------------------
-
-0. Preparamos el escenario, abramos nuestra terminal, nos vamos a la carpeta del día 4 y ponemos en ella el archivo en formato SAM que generamos el día 3, adicionalmente tendremos que copiar el archivo :code:`TruSight_One_xt_GRCh38.bed` que vive en la carpeta :code:`/usr/local/bioinformatics/databases`
+	Algunos comandos cambian ligeramente entre versiones, de modo que si quieres replicar los comandos de esta documentación, debes bajar la versión 4.1.9.0 de GATK
 
 	::
 
-		$ pwd
-		/home/vflorelo
+		$ wget https://github.com/broadinstitute/gatk/releases/download/4.1.9.0/gatk-4.1.9.0.zip
 
-		$ mkdir dia_04
+3. Descomprimimos
 
-		$ ls
-		dia_01 dia_02 dia_03 dia_04
+::
 
-		$ mv dia_03/S1.sam dia_04/
+	$ unzip gatk-4.1.9.0.zip
 
-		$ cp /usr/local/bioinformatics/databases/TruSight_One_xt_GRCh38.bed dia_04/
+4. Agregamos la carpeta de GATK a nuestro PATH
 
-		$ cd dia_04
+.. danger::
 
-		$ ls
-		S1.sam TruSight_One_xt_GRCh38.bed
-
-1. Primer paso: transformar nuestro archivo SAM a formato BAM, esencialmente son la misma cosa pero los archivos BAM están comprimidos y en binario
+	Recuerda que los cambios al PATH son potencialmente peligrosos, estos comandos debes ejecutarlos una sola vez
 
 	::
 
-		samtools view \
-			-@ 4 \
-			-b \
-			-h \
-			-o S1.tmp.bam \
-			-f 3 \
-			-L TruSight_One_xt_GRCh38.bed S1.sam
+		$ echo "PATH=\$HOME/gatk-4.1.9.0:\$PATH" >> $HOME/.bashrc
 
-	.. important::
+	::
 
-		Si todo sale bien, podemos eliminar nuestro archivo SAM para ahorrarnos espacio::
+		$ echo "export PATH" >> $HOME/.bashrc
 
-			rm S1.sam
+	::
 
-2. Posteriormente agregaremos un `readgroup`_ a nuestro archivo BAM para indicarle
+		$ echo "source \$HOME/gatk-4.1.9.0/gatk-completion.sh" >> $HOME/.bashrc
+
+5. Reiniciamos sesión en la instancia
+
+
+Moviendole a los alineamientos
+------------------------------
+
+Antes de realizar el llamado de variantes, debemos hacer algunos pasos de recalibración, esto es importante ya que en aplicaciones de salud debemos ser capaces de garantizar que los hallazgos son de buena calidad y que pueden ser accionables.
+
+
+1. Preparamos el escenario
+
+::
+
+	$ mkdir -p $HOME/04_gatk
+
+::
+
+	$ cd $HOME/04_gatk
+
+2. Necesitamos el archivo de coordenadas para que GATK sepa donde buscar
+
+::
+
+	$ cp $HOME/00_other/TSO_xt_hg38.bed .
+
+
+3. Necesitamos el archivo de alineamiento de lecturas y también su índice
+
+::
+
+	$ ln -s $HOME/03_bwa/S3.bam .
+
+::
+
+	$ ln -s $HOME/03_bam/S3.bam.bai .
+
+4. Primero agregamos un *readgroup* a nuestro archivo BAM para que en este archivo quede explicito:
 
 * El identificador del *readgroup*
 * El nombre de la biblioteca
@@ -125,267 +90,238 @@ Comandos del día 4
 * El nombre de la muestra
 * La unidad de la plataforma (barcodes)
 
-	::
+::
 
-		gatk AddOrReplaceReadGroups --INPUT S1.tmp.bam --OUTPUT S1.rg.bam --RGLB S1 --RGID S1 --RGPL Illumina --RGSM S1 --RGPU S1
+	$ gatk AddOrReplaceReadGroups \
+	  --INPUT S3.bam \
+	  --OUTPUT S3.rg.bam \
+	  --RGLB S3 \
+	  --RGID S3 \
+	  --RGPL Illumina \
+	  --RGSM S3 \
+	  --RGPU S3
 
-3. Hecho esto, ordenamos con base en las posiciones genómicas nuestro archivo BAM
+.. admonition:: Readgroups?
+	:class: toggle
 
-	::
+		"There is no formal definition of what a 'read group' is, however in practice this term refers to a set of reads that are generated from a single run of a sequencing instrument."
 
-		gatk SortSam --INPUT S1.rg.bam --OUTPUT S1.sorted.bam --SORT_ORDER coordinate
+		Aquí te dejamos un `link <https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups>`_ con más información.
 
-4. Paso importante (ó no). Marcado de duplicados
+5. Ya que tenemos nuestro bam con readgroup, volvemos a ordenar nuestras lecturas
 
-	::
+::
 
-		gatk MarkDuplicates --INPUT S1.sorted.bam --OUTPUT S1.dupmarked.bam --METRICS_FILE S1.dupmarked.txt
+	$ gatk SortSam \
+	  --INPUT S3.rg.bam \
+	  --OUTPUT S3.sorted.bam \
+	  --SORT_ORDER coordinate
 
-5. Recalibración de los scores de calidad
+6. La importancia de ser único y diferente
 
-	::
+.. image:: dedup.png
+	:width: 600px
 
-		gatk BaseRecalibrator \
-			--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-			--input S1.dupmarked.bam \
-			--known-sites /usr/local/bioinformatics/databases/GATK4/dbsnp_146.hg38.vcf.gz \
-			--known-sites /usr/local/bioinformatics/databases/GATK4/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
-			--output S1_recal-data.table \
-			--intervals TruSight_One_xt_GRCh38.bed
+Con el siguiente comando podemos eliminar duplicados ópticos o de PCR
 
-6. Obtención de lecturas recalibradas
+::
 
-	::
+	$ gatk MarkDuplicates \
+	  --INPUT S3.sorted.bam \
+	  --OUTPUT S3.dupmarked.bam \
+	  --METRICS_FILE S3.dupmarked.txt \
+	  --CREATE_INDEX true
 
-		gatk ApplyBQSR \
-			--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-			--input S1.dupmarked.bam \
-			--bqsr-recal-file S1_recal-data.table \
-			--output S1_recal-reads.bam \
-			--intervals TruSight_One_xt_GRCh38.bed
+.. warning::
 
-7. Obtención de scores de calidad de las lecturas recalibradas
+	En paneles de secuenciación dirigida, en análisis de genoma mitocondrial, en búsqueda de variantes de número de copia, y en GBS; el paso de desduplicación no se recomienda!
 
-	::
+7. Si trabajamos con organismos módelo, si tenemos estudios previos de llamado de variantes, podemos mejorar muchísimo el desempeño de los programas indicándoles el camino a seguir
 
-		gatk BaseRecalibrator \
-			--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-			--input S1_recal-reads.bam \
-			--known-sites /usr/local/bioinformatics/databases/GATK4/dbsnp_146.hg38.vcf.gz \
-			--known-sites /usr/local/bioinformatics/databases/GATK4/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
-			--output S1_post-recal-data.table \
-			--intervals TruSight_One_xt_GRCh38.bed
+7.1 Análisis de la distribución de scores de calidad
 
-8. Comparación de los scores de calidad
+::
 
-	::
+	$ gatk BaseRecalibrator \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --input S3.dupmarked.bam \
+	  --known-sites $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf \
+	  --known-sites $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
+	  --output S3_recal-data.table \
+	  --intervals TSO_xt_hg38.bed
 
-		gatk AnalyzeCovariates \
-			--before-report-file S1_recal-data.table \
-			--after-report-file S1_post-recal-data.table \
-			--plots-report-file S1_recal-plots.pdf
+7.2 Recalibración de los scores de calidad
 
-Comandos del día 5
-------------------
+::
 
-9. Llamado de variantes **crudas**
+	$ gatk ApplyBQSR \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --input S3.dupmarked.bam \
+	  --bqsr-recal-file S3_recal-data.table \
+	  --output S3_recal-reads.bam \
+	  --intervals TSO_xt_hg38.bed
 
-	9.1 Llamado de variantes de línea germinal por individuo en modo *single-sample*
+7.3 Análisis de la distribución de scores de calidad post recalibración
 
-		::
+::
 
-			gatk HaplotypeCaller \
-				--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-				--input S1_recal-reads.bam \
-				--intervals TruSight_One_xt_GRCh38.bed \
-				--stand-call-conf 10.0 \
-				--output S1_raw-vars.vcf 	\
-				--native-pair-hmm-threads 4
+	$ gatk BaseRecalibrator \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --input S3_recal-reads.bam \
+	  --known-sites $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf \
+	  --known-sites $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
+	  --output S3_post-recal-data.table \
+	  --intervals TSO_xt_hg38.bed
 
-	9.2 Llamado de variantes de línea germinal por individuo para joint-genotype
+7.4 Verificación del efecto de la recalibración
 
-		::
+::
 
-			gatk HaplotypeCaller \
-				--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-				--input S1_recal-reads.bam \
-				--intervals TruSight_One_xt_GRCh38.bed \
-				--stand-call-conf 10.0 \
-				--output S1_raw-vars.g.vcf \
-				--native-pair-hmm-threads 4 \
-				--emit-ref-confidence GVCF \
-				--output-mode EMIT_ALL_CONFIDENT_SITES
+	$ gatk AnalyzeCovariates \
+	  --before-report-file S3_recal-data.table \
+	  --after-report-file S3_post-recal-data.table \
+	  --plots-report-file S3_recal-plots.pdf
 
-			gatk HaplotypeCaller \
-				--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-				--input S2_recal-reads.bam \
-				--intervals TruSight_One_xt_GRCh38.bed \
-				--stand-call-conf 10.0 \
-				--output S2_raw-vars.g.vcf \
-				--native-pair-hmm-threads 4 \
-				--emit-ref-confidence GVCF \
-				--output-mode EMIT_ALL_CONFIDENT_SITES
+.. warning::
 
-			gatk HaplotypeCaller \
-				--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-				--input S3_recal-reads.bam \
-				--intervals TruSight_One_xt_GRCh38.bed \
-				--stand-call-conf 10.0 \
-				--output S3_raw-vars.g.vcf \
-				--native-pair-hmm-threads 4 \
-				--emit-ref-confidence GVCF \
-				--output-mode EMIT_ALL_CONFIDENT_SITES
+	Si no tienes datos previos, si tu reacción de secuenciación salio de libro de texto, si trabajas con organismos no módelo, este paso es omisible
 
-			gatk GenomicsDBImport \
-				--variant S1.g.vcf \
-				--variant S2.g.vcf \
-				--variant S3.g.vcf \
-				--genomicsdb-workspace-path my_database \
-				--intervals 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT
+Llamado de variantes, finally (?)
+---------------------------------
 
-			gatk GenotypeGVCFs \
-				--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-				--variant gendb://my_database \
-				--use-new-qual-calculator \
-				--output joint_raw-vars.vcf
+Una vez que tenemos las lecturas listas, recalibradas, marcadas, desduplicadas, etc. Podemos ahora si llamar las variantes
 
-	9.3 Llamado de variantes somáticas por individuo en modo tumor-control
+1. Obtención de variantes crudas
 
-		::
+::
 
-			gatk Mutect2 \
-				--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-				--input S2_recal-reads.bam \
-				--tumor-sample S2 \
-				--input S1_recal-reads.bam \
-				--normal-sample S1 \
-				--germline-resource /usr/local/bioinformatics/databases/af-only-gnomad.hg38.vcf.gz \
-				--panel-of-normals /usr/local/bioinformatics/databases/1000g_pon.hg38.vcf.gz \
-				--intervals ClearSeq_Comprehensive_Cancer_GRCh38.bed \
-				--output S2_S1.vcf.gz
+	$ gatk HaplotypeCaller \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --input S3_recal-reads.bam \
+	  --intervals TSO_xt_hg38.bed \
+	  --stand-call-conf 10.0 \
+	  --output S3_raw-vars.vcf
 
-	9.4 Llamado de variantes somáticas por individuo en modo tumor-only
+2. Si trabajamos con organismos módelo, si tenemos estudios previos de llamado de variantes, podemos mejorar muchísimo el desempeño de los programas indicándoles el camino a seguir
 
-		::
+2.1 Análisis de la distribución de scores de calidad: SNVs
 
-			gatk Mutect2 \
-			--reference /usr/local/bioinformatics/databases/genome/Homo_sapiens_GRCh38.fasta \
-			--input S2_recal-reads.bam \
-			--tumor-sample S2 \
-			--germline-resource /usr/local/bioinformatics/databases/af-only-gnomad.hg38.vcf.gz \
-			--panel-of-normals /usr/local/bioinformatics/databases/1000g_pon.hg38.vcf.gz \
-			--intervals ClearSeq_Comprehensive_Cancer_GRCh38.bed \
-			--output S2.vcf.gz
+::
 
-10. Recalibración de SNVs
+	$ gatk VariantRecalibrator \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --variant S3_raw-vars.vcf \
+	  --intervals TSO_xt_hg38.bed \
+	  --resource:hapmap,known=false,training=true,truth=true,prior=15.0 $HOME/bundle/hapmap_3.3.hg38.vcf.gz \
+	  --resource:omni,known=false,training=true,truth=true,prior=12.0 $HOME/bundle/1000G_omni2.5.hg38.vcf.gz \
+	  --resource:1000G,known=false,training=true,truth=false,prior=10.0 $HOME/bundle/1000G_phase1.snps.high_confidence.hg38.vcf.gz \
+	  --resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf \
+	  --use-annotation QD \
+	  --use-annotation FS \
+	  --use-annotation SOR \
+	  --use-annotation MQ \
+	  --use-annotation MQRankSum \
+	  --use-annotation ReadPosRankSum \
+	  --mode SNP \
+	  --truth-sensitivity-tranche 100.0 \
+	  --truth-sensitivity-tranche 99.9 \
+	  --truth-sensitivity-tranche 99.0 \
+	  --truth-sensitivity-tranche 90.0 \
+	  --max-gaussians 1 \
+	  --max-negative-gaussians 1 \
+	  --output S3_recalibrate-SNP.recal \
+	  --tranches-file S3_recalibrate-SNP.tranches \
+	  --rscript-file S3_recalibrate-SNP-plots.R
 
-	::
+2.2 Recalibración de variantes: SNVs
 
-		gatk VariantRecalibrator \
-			--reference /usr/local/bioinformatics/databases/Genome/Homo_sapiens_GRCh38.fasta \
-			--variant S1_raw-vars.vcf \
-			--intervals TruSight_One_xt_GRCh38.bed \
-			--resource:hapmap,known=false,training=true,truth=true,prior=15.0 /usr/local/bioinformatics/databases/GATK4/hapmap_3.3.hg38.vcf.gz \
-			--resource:omni,known=false,training=true,truth=true,prior=12.0 /usr/local/bioinformatics/databases/GATK4/1000G_omni2.5.hg38.vcf.gz \
-			--resource:1000G,known=false,training=true,truth=false,prior=10.0 /usr/local/bioinformatics/databases/GATK4/1000G_phase1.snps.high_confidence.hg38.vcf.gz \
-			--resource:dbsnp,known=true,training=false,truth=false,prior=2.0 /usr/local/bioinformatics/databases/GATK4/dbsnp_146.hg38.vcf.gz \
-			--use-annotation QD \
-			--use-annotation FS \
-			--use-annotation SOR \
-			--use-annotation MQ \
-			--use-annotation MQRankSum \
-			--use-annotation ReadPosRankSum \
-			--mode SNP \
-			--truth-sensitivity-tranche 100.0 \
-			--truth-sensitivity-tranche 99.9 \
-			--truth-sensitivity-tranche 99.0 \
-			--truth-sensitivity-tranche 90.0 \
-			--max-gaussians 1 \
-			--max-negative-gaussians 1 \
-			--output S1_recalibrate-SNP.recal \
-			--tranches-file S1_recalibrate-SNP.tranches \
-			--rscript-file S1_recalibrate-SNP-plots.R
-		gatk ApplyVQSR \
-			--reference /usr/local/bioinformatics/databases/Genome/Homo_sapiens_GRCh38.fasta \
-			--variant S1_raw-vars.vcf \
-			--intervals TruSight_One_xt_GRCh38.bed \
-			--mode SNP \
-			--truth-sensitivity-filter-level 99.0 \
-			--recal-file S1_recalibrate-SNP.recal \
-			--tranches-file S1_recalibrate-SNP.tranches \
-			--output S1_recal-snps_raw-indels.vcf
+::
 
-11. Recalibración de InDels
+	$ gatk ApplyVQSR \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --variant S3_raw-vars.vcf \
+	  --intervals TSO_xt_hg38.bed \
+	  --mode SNP \
+	  --truth-sensitivity-filter-level 99.0 \
+	  --recal-file S3_recalibrate-SNP.recal \
+	  --tranches-file S3_recalibrate-SNP.tranches \
+	  --output S3_recal-snps_raw-indels.vcf
 
-	::
+2.3 Análisis de la distribución de scores de calidad: InDels
 
-		gatk VariantRecalibrator \
-			--reference /usr/local/bioinformatics/databases/Genome/Homo_sapiens_GRCh38.fasta \
-			--variant S1_recal-snps_raw-indels.vcf \
-			--intervals TruSight_One_xt_GRCh38.bed \
-			--resource:mills,known=true,training=true,truth=true,prior=12.0 /usr/local/bioinformatics/databases/GATK4/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
-			--use-annotation QD \
-			--use-annotation FS \
-			--use-annotation SOR \
-			--use-annotation MQRankSum \
-			--use-annotation ReadPosRankSum \
-			--mode INDEL \
-			--truth-sensitivity-tranche 100.0 \
-			--truth-sensitivity-tranche 99.9 \
-			--truth-sensitivity-tranche 99.0 \
-			--truth-sensitivity-tranche 90.0 \
-			--max-gaussians 1 \
-			--max-negative-gaussians 1 \
-			--output S1_recalibrate-INDEL.recal \
-			--tranches-file S1_recalibrate-INDEL.tranches \
-			--rscript-file S1_recalibrate-INDEL-plots.R
-		gatk ApplyVQSR \
-			--reference /usr/local/bioinformatics/databases/Genome/Homo_sapiens_GRCh38.fasta \
-			--variant S1_recal-snps_raw-indels.vcf \
-			--intervals TruSight_One_xt_GRCh38.bed \
-			--mode INDEL \
-			--truth-sensitivity-filter-level 99.0 \
-			--recal-file S1_recalibrate-INDEL.recal \
-			--tranches-file S1_recalibrate-INDEL.tranches \
-			--output S1_recalibrated_variants.vcf
+::
 
-12. Anotación de variantes: ID
+	$ gatk VariantRecalibrator \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --variant S3_recal-snps_raw-indels.vcf \
+	  --intervals TSO_xt_hg38.bed \
+	  --resource:mills,known=true,training=true,truth=true,prior=12.0 $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
+	  --use-annotation QD \
+	  --use-annotation FS \
+	  --use-annotation SOR \
+	  --use-annotation MQRankSum \
+	  --use-annotation ReadPosRankSum \
+	  --mode INDEL \
+	  --truth-sensitivity-tranche 100.0 \
+	  --truth-sensitivity-tranche 99.9 \
+	  --truth-sensitivity-tranche 99.0 \
+	  --truth-sensitivity-tranche 90.0 \
+	  --max-gaussians 1 \
+	  --max-negative-gaussians 1 \
+	  --output S3_recalibrate-INDEL.recal \
+	  --tranches-file S3_recalibrate-INDEL.tranches \
+	  --rscript-file S3_recalibrate-INDEL-plots.R
 
-	::
+2.4 Recalibración de variantes: InDels
 
-		gatk VariantAnnotator \
-			--reference /usr/local/bioinformatics/databases/Genome/Homo_sapiens_GRCh38.fasta \
-			--variant S1_recalibrated_variants.vcf \
-			--intervals TruSight_One_xt_GRCh38.bed \
-			--dbsnp /usr/local/bioinformatics/databases/dbSNP/dbSNP.vcf.gz \
-			--output S1_annotated_variants.vcf \
-			--annotation Coverage
+::
 
-13. Selección de variantes
+	$ gatk ApplyVQSR \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --variant S3_recal-snps_raw-indels.vcf \
+	  --intervals TSO_xt_hg38.bed \
+	  --mode INDEL \
+	  --truth-sensitivity-filter-level 99.0 \
+	  --recal-file S3_recalibrate-INDEL.recal \
+	  --tranches-file S3_recalibrate-INDEL.tranches \
+	  --output S3_recalibrated_variants.vcf
 
-	::
+Análisis preliminar de mis variantes
+------------------------------------
 
-		gatk SelectVariants \
-			--reference /usr/local/bioinformatics/databases/Genome/Homo_sapiens_GRCh38.fasta \
-			--variant S1_annotated_variants.vcf \
-			--output S1_annotated_qd_dp_filtered_variants.vcf \
-			--selectExpressions "QD > 5.0 && DP > 10.0"
+Ahora que tenemos nuestras variantes con los scores de calidad adecuados, qué sigue?
+El primer paso es ponerles nombre y apellido a las variantes que encontremos
 
-14. Anotación funcional de variantes
+1. Annotación inicial: GATK + dbSNP
 
-	::
+::
 
-		gatk Funcotator \
-			--variant S1_annotated_qd_dp_filtered_variants.vcf \
-			--data-sources-path /usr/local/bioinformatics/databases/funcotator_dataSources \
-			--output-file-format VCF \
-			--reference /usr/local/bioinformatics/databases/Genome/Homo_sapiens_GRCh38.fasta \
-			--ref-version hg38 \
-			--output S1_func_annotated_qd_dp_filtered_variants.vcf
+	$ gatk VariantAnnotator \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --variant S3_recalibrated_variants.vcf \
+	  --intervals TSO_xt_hg38.bed \
+	  --dbsnp $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf \
+	  --output S3_annotated_variants.vcf \
+	  --annotation Coverage
 
-	.. important::
+Selección de variantes
+----------------------
 
-		Para descargar fuentes de anotación, es necesario entrar al servidor `ftp`_ del Broad Institute con nombre de usuario :code:`gsapubftp-anonymous` y contraseña :code:`gsapubftp-anonymous`
+Tradicionalmente cuando eliminamos elementos de un dataset, llamamos a este proceso como "filtrado" ya que eliminamos elementos que cumplan cierto critero.
+
+En el argot de GATK las cosas son distintas, para GATK, el filtrado de las variantes implica unicamente etiquetar los elementos que cumplan tal o cual característica.
+
+Después de este largo camino, tenemos variantes, pero no todas son de buena calidad, a pesar de que empleamos muchos puntos de control.
+
+1. Selección de variantes de buena calidad y de buena profundidad
+
+::
+
+	$ gatk SelectVariants \
+	  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+	  --variant S3_annotated_variants.vcf \
+	  --output S3_annotated_qd_dp_filtered_variants.vcf \
+	  --selectExpressions "QD > 5.0 && DP > 10.0"
 
 Formatos... formatos everywhere
 -------------------------------
@@ -565,5 +501,4 @@ Formatos... formatos everywhere
 
 
 .. _`BED`: https://genome.ucsc.edu/FAQ/FAQformat.html#format1
-.. _`readgroup`: https://www.biostars.org/p/43897/
 .. _`ftp`: ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/

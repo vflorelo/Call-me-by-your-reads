@@ -554,7 +554,7 @@ Una vez que entendemos cómo está estructurado el formato SAM, podemos ahora ha
 
 ::
 
-	$ samtools sort -l 9 -@ 4 -o S3.bam S3.bam
+	$ samtools sort -l 9 -@ 4 -o S3.bam S3.tmp.bam
 
 3. Indexamos nuestro archivo sorteado
 

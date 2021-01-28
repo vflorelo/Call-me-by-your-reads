@@ -58,16 +58,20 @@ En este curso aprenderás a usar comandos básicos de linux y `GATK4`_ para el l
 .. include:: parsing.rst
 
 :doc:`Conda </conda>`
-===========================
+=====================
 .. include:: conda.rst
 
 :doc:`NGS </ngs>`
-===========================
+=================
 .. include:: ngs.rst
 
 :doc:`BWA </bwa>`
-===========================
+=================
 .. include:: bwa.rst
+
+:doc:`GATK </gatk>`
+===================
+.. include:: gatk.rst
 
 Contacto
 --------
@@ -79,7 +83,7 @@ Contacto
 
 
 .. _ATGenomics: https://atgenomics.com
-.. _@dianolasa: https://twitter.com/Miss_dianolasa
+.. _@dianolasa: https://twitter.com/dianolasa
 .. _@zorbax:    https://twitter.com/zorbax
 .. _@vflorelo:  https://twitter.com/vflorelo
 .. _virus: https://pubmed.ncbi.nlm.nih.gov/29618499/

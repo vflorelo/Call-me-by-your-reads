@@ -89,4 +89,4 @@ texinfo_documents = [(master_doc, "Call me by your reads", "Call me by your name
 def setup(app):
     app.add_css_file('custom.css')
 copybutton_prompt_text = "$ "
-copybutton_only_copy_prompt_lines = True
+copybutton_only_copy_prompt_lines = False

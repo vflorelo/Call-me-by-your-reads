@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Before we start &mdash; documentación de Call me by your reads - 0.0.1</title>
+  <title>Introducción &mdash; documentación de Call me by your reads - 0.0.1</title>
   
 
   
@@ -89,9 +89,12 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#"><em>Before we start</em></a></li>
-<li><a class="reference internal" href="#comandos-del-dia-4">Comandos del día 4</a></li>
-<li><a class="reference internal" href="#comandos-del-dia-5">Comandos del día 5</a></li>
+<li><a class="reference internal" href="#">Introducción</a></li>
+<li><a class="reference internal" href="#instalacion-de-gatk">Instalación de GATK</a></li>
+<li><a class="reference internal" href="#moviendole-a-los-alineamientos">Moviendole a los alineamientos</a></li>
+<li><a class="reference internal" href="#llamado-de-variantes-finally">Llamado de variantes, finally (?)</a></li>
+<li><a class="reference internal" href="#analisis-preliminar-de-mis-variantes">Análisis preliminar de mis variantes</a></li>
+<li><a class="reference internal" href="#seleccion-de-variantes">Selección de variantes</a></li>
 <li><a class="reference internal" href="#formatos-formatos-everywhere">Formatos… formatos everywhere</a></li>
 </ul>
 </div>
@@ -138,7 +141,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li><em>Before we start</em></li>
+      <li>Introducción</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -157,420 +160,301 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="before-we-start">
-<h1><em>Before we start</em><a class="headerlink" href="#before-we-start" title="Enlazar permanentemente con este título">¶</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>En los ambientes unix linux los programas no se instalan de la misma forma que en los ambientes windows o mac, en vez tenemos que descargar el código fuente de los programas, compilarlo cuando así sea necesario e instalarlo en algun lugar de nuestro sistema</p>
-<p>Los siguientes comandos nos permitirán instalar htslib, samtools y gatk en nuestra carpeta <code class="code docutils literal notranslate"><span class="pre">$HOME/bin</span></code></p>
+  <div class="section" id="introduccion">
+<h1>Introducción<a class="headerlink" href="#introduccion" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Ya tenemos nuestras lecturas alineadas, ya nos quitamos las regiones problemáticas. Es hora de llamar variantes!</p>
 </div>
-<div class="toggle admonition">
-<p class="admonition-title">htslib</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-/home/vflorelo
-
-$ git clone https://github.com/samtools/htslib.git
-
-$ cd /home/vflorelo/htslib
-
-$ autoheader
-
-$ autoconf
-
-$ ./configure --prefix=/home/vflorelo
-
-$ make
-
-$ make install
-
-$ cd /home/vflorelo
+<div class="section" id="instalacion-de-gatk">
+<h1>Instalación de GATK<a class="headerlink" href="#instalacion-de-gatk" title="Enlazar permanentemente con este título">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Vamos a nuestro directorio, as usual</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME
 </pre></div>
 </div>
-</div></blockquote>
-</div>
-<div class="toggle admonition">
-<p class="admonition-title">samtools</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-/home/vflorelo
-
-$ git clone https://github.com/samtools/samtools.git
-
-$ cd /home/vflorelo/samtools
-
-$ autoheader
-
-$ autoconf
-
-$ ./configure --prefix=/home/vflorelo
-
-$ make
-
-$ make install
-
-$ cd /home/vflorelo
-</pre></div>
-</div>
-</div></blockquote>
-</div>
-<div class="toggle admonition">
-<p class="admonition-title">GATK4</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-/home/vflorelo
-
-$ wget https://github.com/broadinstitute/gatk/releases/download/4.1.8.1/gatk-4.1.8.1.zip
-
-$ unzip gatk-4.1.8.1.zip
-
-$ cd /home/vflorelo/gatk-4.1.8.1
-
-$ mv * /home/vflorelo/bin
-
-$ cd /home/vflorelo
-
-$ chmod -R 775 /home/vflorelo/bin
-</pre></div>
-</div>
-</div></blockquote>
-</div>
-</div>
-<div class="section" id="comandos-del-dia-4">
-<h1>Comandos del día 4<a class="headerlink" href="#comandos-del-dia-4" title="Enlazar permanentemente con este título">¶</a></h1>
-<ol class="arabic" start="0">
-<li><p>Preparamos el escenario, abramos nuestra terminal, nos vamos a la carpeta del día 4 y ponemos en ella el archivo en formato SAM que generamos el día 3, adicionalmente tendremos que copiar el archivo <code class="code docutils literal notranslate"><span class="pre">TruSight_One_xt_GRCh38.bed</span></code> que vive en la carpeta <code class="code docutils literal notranslate"><span class="pre">/usr/local/bioinformatics/databases</span></code></p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pwd
-/home/vflorelo
-
-$ mkdir dia_04
-
-$ ls
-dia_01 dia_02 dia_03 dia_04
-
-$ mv dia_03/S1.sam dia_04/
-
-$ cp /usr/local/bioinformatics/databases/TruSight_One_xt_GRCh38.bed dia_04/
-
-$ cd dia_04
-
-$ ls
-S1.sam TruSight_One_xt_GRCh38.bed
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Primer paso: transformar nuestro archivo SAM a formato BAM, esencialmente son la misma cosa pero los archivos BAM están comprimidos y en binario</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">view</span> \
-        <span class="o">-@</span> <span class="mi">4</span> \
-        <span class="o">-</span><span class="n">b</span> \
-        <span class="o">-</span><span class="n">h</span> \
-        <span class="o">-</span><span class="n">o</span> <span class="n">S1</span><span class="o">.</span><span class="n">tmp</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">-</span><span class="n">f</span> <span class="mi">3</span> \
-        <span class="o">-</span><span class="n">L</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> <span class="n">S1</span><span class="o">.</span><span class="n">sam</span>
-</pre></div>
-</div>
+<ol class="arabic simple" start="2">
+<li><p>Bajamos la versión actual de GATK4</p></li>
+</ol>
 <div class="admonition important">
 <p class="admonition-title">Importante</p>
-<p>Si todo sale bien, podemos eliminar nuestro archivo SAM para ahorrarnos espacio:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="n">S1</span><span class="o">.</span><span class="n">sam</span>
+<p>Algunos comandos cambian ligeramente entre versiones, de modo que si quieres replicar los comandos de esta documentación, debes bajar la versión 4.1.9.0 de GATK</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/broadinstitute/gatk/releases/download/4.1.9.0/gatk-4.1.9.0.zip
 </pre></div>
 </div>
 </div>
-</div></blockquote>
-</li>
-<li><p>Posteriormente agregaremos un <a class="reference external" href="https://www.biostars.org/p/43897/">readgroup</a> a nuestro archivo BAM para indicarle</p></li>
+<ol class="arabic simple" start="3">
+<li><p>Descomprimimos</p></li>
 </ol>
-<ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ unzip gatk-4.1.9.0.zip
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Agregamos la carpeta de GATK a nuestro PATH</p></li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Peligro</p>
+<p>Recuerda que los cambios al PATH son potencialmente peligrosos, estos comandos debes ejecutarlos una sola vez</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;PATH=\$HOME/gatk-4.1.9.0:\$PATH&quot; &gt;&gt; $HOME/.bashrc
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;export PATH&quot; &gt;&gt; $HOME/.bashrc
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;source \$HOME/gatk-4.1.9.0/gatk-completion.sh&quot; &gt;&gt; $HOME/.bashrc
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Reiniciamos sesión en la instancia</p></li>
+</ol>
+</div>
+<div class="section" id="moviendole-a-los-alineamientos">
+<h1>Moviendole a los alineamientos<a class="headerlink" href="#moviendole-a-los-alineamientos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Antes de realizar el llamado de variantes, debemos hacer algunos pasos de recalibración, esto es importante ya que en aplicaciones de salud debemos ser capaces de garantizar que los hallazgos son de buena calidad y que pueden ser accionables.</p>
+<ol class="arabic simple">
+<li><p>Preparamos el escenario</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p $HOME/04_gatk
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd $HOME/04_gatk
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Necesitamos el archivo de coordenadas para que GATK sepa donde buscar</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp $HOME/00_other/TSO_xt_hg38.bed .
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Necesitamos el archivo de alineamiento de lecturas y también su índice</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ln -s $HOME/03_bwa/S3.bam .
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ln -s $HOME/03_bam/S3.bam.bai .
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Primero agregamos un <em>readgroup</em> a nuestro archivo BAM para que en este archivo quede explicito:</p></li>
+</ol>
+<ul class="simple">
 <li><p>El identificador del <em>readgroup</em></p></li>
 <li><p>El nombre de la biblioteca</p></li>
 <li><p>La plataforma de secuenciación</p></li>
 <li><p>El nombre de la muestra</p></li>
-<li><p>La unidad de la plataforma (barcodes)</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">AddOrReplaceReadGroups</span> <span class="o">--</span><span class="n">INPUT</span> <span class="n">S1</span><span class="o">.</span><span class="n">tmp</span><span class="o">.</span><span class="n">bam</span> <span class="o">--</span><span class="n">OUTPUT</span> <span class="n">S1</span><span class="o">.</span><span class="n">rg</span><span class="o">.</span><span class="n">bam</span> <span class="o">--</span><span class="n">RGLB</span> <span class="n">S1</span> <span class="o">--</span><span class="n">RGID</span> <span class="n">S1</span> <span class="o">--</span><span class="n">RGPL</span> <span class="n">Illumina</span> <span class="o">--</span><span class="n">RGSM</span> <span class="n">S1</span> <span class="o">--</span><span class="n">RGPU</span> <span class="n">S1</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
+<li><p>La unidad de la plataforma (barcodes)</p></li>
 </ul>
-<ol class="arabic" start="3">
-<li><p>Hecho esto, ordenamos con base en las posiciones genómicas nuestro archivo BAM</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">SortSam</span> <span class="o">--</span><span class="n">INPUT</span> <span class="n">S1</span><span class="o">.</span><span class="n">rg</span><span class="o">.</span><span class="n">bam</span> <span class="o">--</span><span class="n">OUTPUT</span> <span class="n">S1</span><span class="o">.</span><span class="n">sorted</span><span class="o">.</span><span class="n">bam</span> <span class="o">--</span><span class="n">SORT_ORDER</span> <span class="n">coordinate</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk AddOrReplaceReadGroups \
+  --INPUT S3.bam \
+  --OUTPUT S3.rg.bam \
+  --RGLB S3 \
+  --RGID S3 \
+  --RGPL Illumina \
+  --RGSM S3 \
+  --RGPU S3
 </pre></div>
 </div>
-</div></blockquote>
-</li>
-<li><p>Paso importante (ó no). Marcado de duplicados</p>
+<div class="toggle admonition">
+<p class="admonition-title">Readgroups?</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">MarkDuplicates</span> <span class="o">--</span><span class="n">INPUT</span> <span class="n">S1</span><span class="o">.</span><span class="n">sorted</span><span class="o">.</span><span class="n">bam</span> <span class="o">--</span><span class="n">OUTPUT</span> <span class="n">S1</span><span class="o">.</span><span class="n">dupmarked</span><span class="o">.</span><span class="n">bam</span> <span class="o">--</span><span class="n">METRICS_FILE</span> <span class="n">S1</span><span class="o">.</span><span class="n">dupmarked</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
+<div><p>«There is no formal definition of what a “read group” is, however in practice this term refers to a set of reads that are generated from a single run of a sequencing instrument.»</p>
+<p>Aquí te dejamos un <a class="reference external" href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups">link</a> con más información.</p>
 </div></blockquote>
-</li>
-<li><p>Recalibración de los scores de calidad</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">BaseRecalibrator</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S1</span><span class="o">.</span><span class="n">dupmarked</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">known</span><span class="o">-</span><span class="n">sites</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="n">dbsnp_146</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">known</span><span class="o">-</span><span class="n">sites</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="n">Mills_and_1000G_gold_standard</span><span class="o">.</span><span class="n">indels</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">table</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span>
-</pre></div>
 </div>
-</div></blockquote>
-</li>
-<li><p>Obtención de lecturas recalibradas</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">ApplyBQSR</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S1</span><span class="o">.</span><span class="n">dupmarked</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">bqsr</span><span class="o">-</span><span class="n">recal</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">table</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Obtención de scores de calidad de las lecturas recalibradas</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">BaseRecalibrator</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">known</span><span class="o">-</span><span class="n">sites</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="n">dbsnp_146</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">known</span><span class="o">-</span><span class="n">sites</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="n">Mills_and_1000G_gold_standard</span><span class="o">.</span><span class="n">indels</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_post</span><span class="o">-</span><span class="n">recal</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">table</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Comparación de los scores de calidad</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">AnalyzeCovariates</span> \
-        <span class="o">--</span><span class="n">before</span><span class="o">-</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">table</span> \
-        <span class="o">--</span><span class="n">after</span><span class="o">-</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_post</span><span class="o">-</span><span class="n">recal</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">table</span> \
-        <span class="o">--</span><span class="n">plots</span><span class="o">-</span><span class="n">report</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">plots</span><span class="o">.</span><span class="n">pdf</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
+<ol class="arabic simple" start="5">
+<li><p>Ya que tenemos nuestro bam con readgroup, volvemos a ordenar nuestras lecturas</p></li>
 </ol>
-</div>
-<div class="section" id="comandos-del-dia-5">
-<h1>Comandos del día 5<a class="headerlink" href="#comandos-del-dia-5" title="Enlazar permanentemente con este título">¶</a></h1>
-<ol class="arabic" start="9">
-<li><p>Llamado de variantes <strong>crudas</strong></p>
-<blockquote>
-<div><p>9.1 Llamado de variantes de línea germinal por individuo en modo <em>single-sample</em></p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">HaplotypeCaller</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">stand</span><span class="o">-</span><span class="n">call</span><span class="o">-</span><span class="n">conf</span> <span class="mf">10.0</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_raw</span><span class="o">-</span><span class="nb">vars</span><span class="o">.</span><span class="n">vcf</span>        \
-        <span class="o">--</span><span class="n">native</span><span class="o">-</span><span class="n">pair</span><span class="o">-</span><span class="n">hmm</span><span class="o">-</span><span class="n">threads</span> <span class="mi">4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk SortSam \
+  --INPUT S3.rg.bam \
+  --OUTPUT S3.sorted.bam \
+  --SORT_ORDER coordinate
 </pre></div>
 </div>
-</div></blockquote>
-<p>9.2 Llamado de variantes de línea germinal por individuo para joint-genotype</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">HaplotypeCaller</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">stand</span><span class="o">-</span><span class="n">call</span><span class="o">-</span><span class="n">conf</span> <span class="mf">10.0</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_raw</span><span class="o">-</span><span class="nb">vars</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">native</span><span class="o">-</span><span class="n">pair</span><span class="o">-</span><span class="n">hmm</span><span class="o">-</span><span class="n">threads</span> <span class="mi">4</span> \
-        <span class="o">--</span><span class="n">emit</span><span class="o">-</span><span class="n">ref</span><span class="o">-</span><span class="n">confidence</span> <span class="n">GVCF</span> \
-        <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">mode</span> <span class="n">EMIT_ALL_CONFIDENT_SITES</span>
-
-<span class="n">gatk</span> <span class="n">HaplotypeCaller</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S2_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">stand</span><span class="o">-</span><span class="n">call</span><span class="o">-</span><span class="n">conf</span> <span class="mf">10.0</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S2_raw</span><span class="o">-</span><span class="nb">vars</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">native</span><span class="o">-</span><span class="n">pair</span><span class="o">-</span><span class="n">hmm</span><span class="o">-</span><span class="n">threads</span> <span class="mi">4</span> \
-        <span class="o">--</span><span class="n">emit</span><span class="o">-</span><span class="n">ref</span><span class="o">-</span><span class="n">confidence</span> <span class="n">GVCF</span> \
-        <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">mode</span> <span class="n">EMIT_ALL_CONFIDENT_SITES</span>
-
-<span class="n">gatk</span> <span class="n">HaplotypeCaller</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S3_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">stand</span><span class="o">-</span><span class="n">call</span><span class="o">-</span><span class="n">conf</span> <span class="mf">10.0</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S3_raw</span><span class="o">-</span><span class="nb">vars</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">native</span><span class="o">-</span><span class="n">pair</span><span class="o">-</span><span class="n">hmm</span><span class="o">-</span><span class="n">threads</span> <span class="mi">4</span> \
-        <span class="o">--</span><span class="n">emit</span><span class="o">-</span><span class="n">ref</span><span class="o">-</span><span class="n">confidence</span> <span class="n">GVCF</span> \
-        <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">mode</span> <span class="n">EMIT_ALL_CONFIDENT_SITES</span>
-
-<span class="n">gatk</span> <span class="n">GenomicsDBImport</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S1</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S2</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S3</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">genomicsdb</span><span class="o">-</span><span class="n">workspace</span><span class="o">-</span><span class="n">path</span> <span class="n">my_database</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">MT</span>
-
-<span class="n">gatk</span> <span class="n">GenotypeGVCFs</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">gendb</span><span class="p">:</span><span class="o">//</span><span class="n">my_database</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">qual</span><span class="o">-</span><span class="n">calculator</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">joint_raw</span><span class="o">-</span><span class="nb">vars</span><span class="o">.</span><span class="n">vcf</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>9.3 Llamado de variantes somáticas por individuo en modo tumor-control</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">Mutect2</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S2_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">tumor</span><span class="o">-</span><span class="n">sample</span> <span class="n">S2</span> \
-        <span class="o">--</span><span class="nb">input</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-        <span class="o">--</span><span class="n">normal</span><span class="o">-</span><span class="n">sample</span> <span class="n">S1</span> \
-        <span class="o">--</span><span class="n">germline</span><span class="o">-</span><span class="n">resource</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">af</span><span class="o">-</span><span class="n">only</span><span class="o">-</span><span class="n">gnomad</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">panel</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">normals</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="mi">1000</span><span class="n">g_pon</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">ClearSeq_Comprehensive_Cancer_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S2_S1</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>9.4 Llamado de variantes somáticas por individuo en modo tumor-only</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">Mutect2</span> \
-<span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-<span class="o">--</span><span class="nb">input</span> <span class="n">S2_recal</span><span class="o">-</span><span class="n">reads</span><span class="o">.</span><span class="n">bam</span> \
-<span class="o">--</span><span class="n">tumor</span><span class="o">-</span><span class="n">sample</span> <span class="n">S2</span> \
-<span class="o">--</span><span class="n">germline</span><span class="o">-</span><span class="n">resource</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">af</span><span class="o">-</span><span class="n">only</span><span class="o">-</span><span class="n">gnomad</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-<span class="o">--</span><span class="n">panel</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">normals</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="mi">1000</span><span class="n">g_pon</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-<span class="o">--</span><span class="n">intervals</span> <span class="n">ClearSeq_Comprehensive_Cancer_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-<span class="o">--</span><span class="n">output</span> <span class="n">S2</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span>
-</pre></div>
-</div>
-</div></blockquote>
-</div></blockquote>
-</li>
-<li><p>Recalibración de SNVs</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">VariantRecalibrator</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">Genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S1_raw</span><span class="o">-</span><span class="nb">vars</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">resource</span><span class="p">:</span><span class="n">hapmap</span><span class="p">,</span><span class="n">known</span><span class="o">=</span><span class="n">false</span><span class="p">,</span><span class="n">training</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">truth</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">prior</span><span class="o">=</span><span class="mf">15.0</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="n">hapmap_3</span><span class="o">.</span><span class="mf">3.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">resource</span><span class="p">:</span><span class="n">omni</span><span class="p">,</span><span class="n">known</span><span class="o">=</span><span class="n">false</span><span class="p">,</span><span class="n">training</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">truth</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">prior</span><span class="o">=</span><span class="mf">12.0</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="mi">1000</span><span class="n">G_omni2</span><span class="o">.</span><span class="mf">5.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">resource</span><span class="p">:</span><span class="mi">1000</span><span class="n">G</span><span class="p">,</span><span class="n">known</span><span class="o">=</span><span class="n">false</span><span class="p">,</span><span class="n">training</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">truth</span><span class="o">=</span><span class="n">false</span><span class="p">,</span><span class="n">prior</span><span class="o">=</span><span class="mf">10.0</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="mi">1000</span><span class="n">G_phase1</span><span class="o">.</span><span class="n">snps</span><span class="o">.</span><span class="n">high_confidence</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">resource</span><span class="p">:</span><span class="n">dbsnp</span><span class="p">,</span><span class="n">known</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">training</span><span class="o">=</span><span class="n">false</span><span class="p">,</span><span class="n">truth</span><span class="o">=</span><span class="n">false</span><span class="p">,</span><span class="n">prior</span><span class="o">=</span><span class="mf">2.0</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="n">dbsnp_146</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">QD</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">FS</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">SOR</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">MQ</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">MQRankSum</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">ReadPosRankSum</span> \
-        <span class="o">--</span><span class="n">mode</span> <span class="n">SNP</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="n">tranche</span> <span class="mf">100.0</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="n">tranche</span> <span class="mf">99.9</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="n">tranche</span> <span class="mf">99.0</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="n">tranche</span> <span class="mf">90.0</span> \
-        <span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">gaussians</span> <span class="mi">1</span> \
-        <span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">negative</span><span class="o">-</span><span class="n">gaussians</span> <span class="mi">1</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">SNP</span><span class="o">.</span><span class="n">recal</span> \
-        <span class="o">--</span><span class="n">tranches</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">SNP</span><span class="o">.</span><span class="n">tranches</span> \
-        <span class="o">--</span><span class="n">rscript</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">SNP</span><span class="o">-</span><span class="n">plots</span><span class="o">.</span><span class="n">R</span>
-<span class="n">gatk</span> <span class="n">ApplyVQSR</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">Genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S1_raw</span><span class="o">-</span><span class="nb">vars</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">mode</span> <span class="n">SNP</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="nb">filter</span><span class="o">-</span><span class="n">level</span> <span class="mf">99.0</span> \
-        <span class="o">--</span><span class="n">recal</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">SNP</span><span class="o">.</span><span class="n">recal</span> \
-        <span class="o">--</span><span class="n">tranches</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">SNP</span><span class="o">.</span><span class="n">tranches</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">snps_raw</span><span class="o">-</span><span class="n">indels</span><span class="o">.</span><span class="n">vcf</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Recalibración de InDels</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">VariantRecalibrator</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">Genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">snps_raw</span><span class="o">-</span><span class="n">indels</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">resource</span><span class="p">:</span><span class="n">mills</span><span class="p">,</span><span class="n">known</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">training</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">truth</span><span class="o">=</span><span class="n">true</span><span class="p">,</span><span class="n">prior</span><span class="o">=</span><span class="mf">12.0</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">GATK4</span><span class="o">/</span><span class="n">Mills_and_1000G_gold_standard</span><span class="o">.</span><span class="n">indels</span><span class="o">.</span><span class="n">hg38</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">QD</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">FS</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">SOR</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">MQRankSum</span> \
-        <span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">annotation</span> <span class="n">ReadPosRankSum</span> \
-        <span class="o">--</span><span class="n">mode</span> <span class="n">INDEL</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="n">tranche</span> <span class="mf">100.0</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="n">tranche</span> <span class="mf">99.9</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="n">tranche</span> <span class="mf">99.0</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="n">tranche</span> <span class="mf">90.0</span> \
-        <span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">gaussians</span> <span class="mi">1</span> \
-        <span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">negative</span><span class="o">-</span><span class="n">gaussians</span> <span class="mi">1</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">INDEL</span><span class="o">.</span><span class="n">recal</span> \
-        <span class="o">--</span><span class="n">tranches</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">INDEL</span><span class="o">.</span><span class="n">tranches</span> \
-        <span class="o">--</span><span class="n">rscript</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">INDEL</span><span class="o">-</span><span class="n">plots</span><span class="o">.</span><span class="n">R</span>
-<span class="n">gatk</span> <span class="n">ApplyVQSR</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">Genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S1_recal</span><span class="o">-</span><span class="n">snps_raw</span><span class="o">-</span><span class="n">indels</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">mode</span> <span class="n">INDEL</span> \
-        <span class="o">--</span><span class="n">truth</span><span class="o">-</span><span class="n">sensitivity</span><span class="o">-</span><span class="nb">filter</span><span class="o">-</span><span class="n">level</span> <span class="mf">99.0</span> \
-        <span class="o">--</span><span class="n">recal</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">INDEL</span><span class="o">.</span><span class="n">recal</span> \
-        <span class="o">--</span><span class="n">tranches</span><span class="o">-</span><span class="n">file</span> <span class="n">S1_recalibrate</span><span class="o">-</span><span class="n">INDEL</span><span class="o">.</span><span class="n">tranches</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_recalibrated_variants</span><span class="o">.</span><span class="n">vcf</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Anotación de variantes: ID</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">VariantAnnotator</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">Genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S1_recalibrated_variants</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">intervals</span> <span class="n">TruSight_One_xt_GRCh38</span><span class="o">.</span><span class="n">bed</span> \
-        <span class="o">--</span><span class="n">dbsnp</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">dbSNP</span><span class="o">/</span><span class="n">dbSNP</span><span class="o">.</span><span class="n">vcf</span><span class="o">.</span><span class="n">gz</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_annotated_variants</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">annotation</span> <span class="n">Coverage</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Selección de variantes</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">SelectVariants</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">Genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S1_annotated_variants</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_annotated_qd_dp_filtered_variants</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">selectExpressions</span> <span class="s2">&quot;QD &gt; 5.0 &amp;&amp; DP &gt; 10.0&quot;</span>
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Anotación funcional de variantes</p>
-<blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gatk</span> <span class="n">Funcotator</span> \
-        <span class="o">--</span><span class="n">variant</span> <span class="n">S1_annotated_qd_dp_filtered_variants</span><span class="o">.</span><span class="n">vcf</span> \
-        <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">sources</span><span class="o">-</span><span class="n">path</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">funcotator_dataSources</span> \
-        <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">file</span><span class="o">-</span><span class="nb">format</span> <span class="n">VCF</span> \
-        <span class="o">--</span><span class="n">reference</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">Genome</span><span class="o">/</span><span class="n">Homo_sapiens_GRCh38</span><span class="o">.</span><span class="n">fasta</span> \
-        <span class="o">--</span><span class="n">ref</span><span class="o">-</span><span class="n">version</span> <span class="n">hg38</span> \
-        <span class="o">--</span><span class="n">output</span> <span class="n">S1_func_annotated_qd_dp_filtered_variants</span><span class="o">.</span><span class="n">vcf</span>
-</pre></div>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Importante</p>
-<p>Para descargar fuentes de anotación, es necesario entrar al servidor <a class="reference external" href="ftp://gsapubftp-anonymous&#64;ftp.broadinstitute.org/bundle/">ftp</a> del Broad Institute con nombre de usuario <code class="code docutils literal notranslate"><span class="pre">gsapubftp-anonymous</span></code> y contraseña <code class="code docutils literal notranslate"><span class="pre">gsapubftp-anonymous</span></code></p>
-</div>
-</div></blockquote>
-</li>
+<ol class="arabic simple" start="6">
+<li><p>La importancia de ser único y diferente</p></li>
 </ol>
+<a class="reference internal image-reference" href="_images/dedup.png"><img alt="_images/dedup.png" src="_images/dedup.png" style="width: 600px;" /></a>
+<p>Con el siguiente comando podemos eliminar duplicados ópticos o de PCR</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk MarkDuplicates \
+  --INPUT S3.sorted.bam \
+  --OUTPUT S3.dupmarked.bam \
+  --METRICS_FILE S3.dupmarked.txt \
+  --CREATE_INDEX true
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>En paneles de secuenciación dirigida, en análisis de genoma mitocondrial, en búsqueda de variantes de número de copia, y en GBS; el paso de desduplicación no se recomienda!</p>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Si trabajamos con organismos módelo, si tenemos estudios previos de llamado de variantes, podemos mejorar muchísimo el desempeño de los programas indicándoles el camino a seguir</p></li>
+</ol>
+<p>7.1 Análisis de la distribución de scores de calidad</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk BaseRecalibrator \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --input S3.dupmarked.bam \
+  --known-sites $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf \
+  --known-sites $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
+  --output S3_recal-data.table \
+  --intervals TSO_xt_hg38.bed
+</pre></div>
+</div>
+<p>7.2 Recalibración de los scores de calidad</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk ApplyBQSR \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --input S3.dupmarked.bam \
+  --bqsr-recal-file S3_recal-data.table \
+  --output S3_recal-reads.bam \
+  --intervals TSO_xt_hg38.bed
+</pre></div>
+</div>
+<p>7.3 Análisis de la distribución de scores de calidad post recalibración</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk BaseRecalibrator \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --input S3_recal-reads.bam \
+  --known-sites $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf \
+  --known-sites $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
+  --output S3_post-recal-data.table \
+  --intervals TSO_xt_hg38.bed
+</pre></div>
+</div>
+<p>7.4 Verificación del efecto de la recalibración</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk AnalyzeCovariates \
+  --before-report-file S3_recal-data.table \
+  --after-report-file S3_post-recal-data.table \
+  --plots-report-file S3_recal-plots.pdf
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si no tienes datos previos, si tu reacción de secuenciación salio de libro de texto, si trabajas con organismos no módelo, este paso es omisible</p>
+</div>
+</div>
+<div class="section" id="llamado-de-variantes-finally">
+<h1>Llamado de variantes, finally (?)<a class="headerlink" href="#llamado-de-variantes-finally" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Una vez que tenemos las lecturas listas, recalibradas, marcadas, desduplicadas, etc. Podemos ahora si llamar las variantes</p>
+<ol class="arabic simple">
+<li><p>Obtención de variantes crudas</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk HaplotypeCaller \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --input S3_recal-reads.bam \
+  --intervals TSO_xt_hg38.bed \
+  --stand-call-conf 10.0 \
+  --output S3_raw-vars.vcf
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Si trabajamos con organismos módelo, si tenemos estudios previos de llamado de variantes, podemos mejorar muchísimo el desempeño de los programas indicándoles el camino a seguir</p></li>
+</ol>
+<p>2.1 Análisis de la distribución de scores de calidad: SNVs</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk VariantRecalibrator \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --variant S3_raw-vars.vcf \
+  --intervals TSO_xt_hg38.bed \
+  --resource:hapmap,known=false,training=true,truth=true,prior=15.0 $HOME/bundle/hapmap_3.3.hg38.vcf.gz \
+  --resource:omni,known=false,training=true,truth=true,prior=12.0 $HOME/bundle/1000G_omni2.5.hg38.vcf.gz \
+  --resource:1000G,known=false,training=true,truth=false,prior=10.0 $HOME/bundle/1000G_phase1.snps.high_confidence.hg38.vcf.gz \
+  --resource:dbsnp,known=true,training=false,truth=false,prior=2.0 $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf \
+  --use-annotation QD \
+  --use-annotation FS \
+  --use-annotation SOR \
+  --use-annotation MQ \
+  --use-annotation MQRankSum \
+  --use-annotation ReadPosRankSum \
+  --mode SNP \
+  --truth-sensitivity-tranche 100.0 \
+  --truth-sensitivity-tranche 99.9 \
+  --truth-sensitivity-tranche 99.0 \
+  --truth-sensitivity-tranche 90.0 \
+  --max-gaussians 1 \
+  --max-negative-gaussians 1 \
+  --output S3_recalibrate-SNP.recal \
+  --tranches-file S3_recalibrate-SNP.tranches \
+  --rscript-file S3_recalibrate-SNP-plots.R
+</pre></div>
+</div>
+<p>2.2 Recalibración de variantes: SNVs</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk ApplyVQSR \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --variant S3_raw-vars.vcf \
+  --intervals TSO_xt_hg38.bed \
+  --mode SNP \
+  --truth-sensitivity-filter-level 99.0 \
+  --recal-file S3_recalibrate-SNP.recal \
+  --tranches-file S3_recalibrate-SNP.tranches \
+  --output S3_recal-snps_raw-indels.vcf
+</pre></div>
+</div>
+<p>2.3 Análisis de la distribución de scores de calidad: InDels</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk VariantRecalibrator \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --variant S3_recal-snps_raw-indels.vcf \
+  --intervals TSO_xt_hg38.bed \
+  --resource:mills,known=true,training=true,truth=true,prior=12.0 $HOME/bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
+  --use-annotation QD \
+  --use-annotation FS \
+  --use-annotation SOR \
+  --use-annotation MQRankSum \
+  --use-annotation ReadPosRankSum \
+  --mode INDEL \
+  --truth-sensitivity-tranche 100.0 \
+  --truth-sensitivity-tranche 99.9 \
+  --truth-sensitivity-tranche 99.0 \
+  --truth-sensitivity-tranche 90.0 \
+  --max-gaussians 1 \
+  --max-negative-gaussians 1 \
+  --output S3_recalibrate-INDEL.recal \
+  --tranches-file S3_recalibrate-INDEL.tranches \
+  --rscript-file S3_recalibrate-INDEL-plots.R
+</pre></div>
+</div>
+<p>2.4 Recalibración de variantes: InDels</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk ApplyVQSR \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --variant S3_recal-snps_raw-indels.vcf \
+  --intervals TSO_xt_hg38.bed \
+  --mode INDEL \
+  --truth-sensitivity-filter-level 99.0 \
+  --recal-file S3_recalibrate-INDEL.recal \
+  --tranches-file S3_recalibrate-INDEL.tranches \
+  --output S3_recalibrated_variants.vcf
+</pre></div>
+</div>
+</div>
+<div class="section" id="analisis-preliminar-de-mis-variantes">
+<h1>Análisis preliminar de mis variantes<a class="headerlink" href="#analisis-preliminar-de-mis-variantes" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Ahora que tenemos nuestras variantes con los scores de calidad adecuados, qué sigue?
+El primer paso es ponerles nombre y apellido a las variantes que encontremos</p>
+<ol class="arabic simple">
+<li><p>Annotación inicial: GATK + dbSNP</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk VariantAnnotator \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --variant S3_recalibrated_variants.vcf \
+  --intervals TSO_xt_hg38.bed \
+  --dbsnp $HOME/bundle/Homo_sapiens_assembly38.dbsnp138.vcf \
+  --output S3_annotated_variants.vcf \
+  --annotation Coverage
+</pre></div>
+</div>
+</div>
+<div class="section" id="seleccion-de-variantes">
+<h1>Selección de variantes<a class="headerlink" href="#seleccion-de-variantes" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Tradicionalmente cuando eliminamos elementos de un dataset, llamamos a este proceso como «filtrado» ya que eliminamos elementos que cumplan cierto critero.</p>
+<p>En el argot de GATK las cosas son distintas, para GATK, el filtrado de las variantes implica unicamente etiquetar los elementos que cumplan tal o cual característica.</p>
+<p>Después de este largo camino, tenemos variantes, pero no todas son de buena calidad, a pesar de que empleamos muchos puntos de control.</p>
+<ol class="arabic simple">
+<li><p>Selección de variantes de buena calidad y de buena profundidad</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gatk SelectVariants \
+  --reference $HOME/bundle/Homo_sapiens_assembly38.fasta \
+  --variant S3_annotated_variants.vcf \
+  --output S3_annotated_qd_dp_filtered_variants.vcf \
+  --selectExpressions &quot;QD &gt; 5.0 &amp;&amp; DP &gt; 10.0&quot;
+</pre></div>
+</div>
 </div>
 <div class="section" id="formatos-formatos-everywhere">
 <h1>Formatos… formatos everywhere<a class="headerlink" href="#formatos-formatos-everywhere" title="Enlazar permanentemente con este título">¶</a></h1>

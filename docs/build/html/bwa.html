@@ -793,7 +793,7 @@ $ cat $HOME/01_reads/*R2*.gz &gt; rev_reads.fastq.gz
 <ol class="arabic simple" start="2">
 <li><p>Ordenamos por coordenadas nuestro archivo BAM</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ samtools sort -l 9 -@ 4 -o S3.bam S3.bam
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ samtools sort -l 9 -@ 4 -o S3.bam S3.tmp.bam
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
