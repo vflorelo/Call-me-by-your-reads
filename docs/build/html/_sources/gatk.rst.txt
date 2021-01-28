@@ -59,6 +59,14 @@ Antes de realizar el llamado de variantes, debemos hacer algunos pasos de recali
 
 ::
 
+	$ cd $HOME
+
+::
+
+	$ ln -s /usr/local/bioinformatics/bundle .
+
+::
+
 	$ mkdir -p $HOME/04_gatk
 
 ::
