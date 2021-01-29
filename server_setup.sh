@@ -8,8 +8,8 @@ fi
 add-apt-repository universe
 apt-get update
 apt-get upgrade
-apt-get install apache2 autoconf automake build-essential certbot cmake firewalld gcc gfortran git libblas-dev libbz2-dev libcurl4-gnutls-dev liblapack-dev libltdl-dev liblzma-dev libncurses5-dev libssl-dev libxrender-dev libxtst-dev make openjdk-8-jre openjdk-11-jre parallel perl pigz rename tree unzip zlib1g-dev python3-testresources r-base python3-pip unzip
-R -e "install.packages(c('gplots','gsalib'))"
+apt-get install autoconf automake build-essential cmake gcc gfortran libblas-dev libbz2-dev libcurl4-gnutls-dev liblapack-dev libltdl-dev liblzma-dev libncurses5-dev libxrender-dev libxtst-dev make openjdk-8-jre openjdk-11-jre parallel perl pigz rename tree unzip zlib1g-dev python3-testresources r-base python3-pip unzip
+R -e "install.packages(c('gplots','gsalib','ggplot2'))"
 cd /usr/bin
 ln -s python3 python
 pip3 install powerline-shell

@@ -6,7 +6,7 @@ Ya tenemos nuestras lecturas alineadas, ya nos quitamos las regiones problemáti
 Instalación de GATK
 -------------------
 
-1. Vamos a nuestro directorio, as usual
+1. Vamos a nuestro directorio :code:`$HOME`, as usual
 
 ::
 
@@ -88,7 +88,7 @@ Antes de realizar el llamado de variantes, debemos hacer algunos pasos de recali
 
 ::
 
-	$ ln -s $HOME/03_bam/S3.bam.bai .
+	$ ln -s $HOME/03_bwa/S3.bam.bai .
 
 4. Primero agregamos un *readgroup* a nuestro archivo BAM para que en este archivo quede explicito:
 
