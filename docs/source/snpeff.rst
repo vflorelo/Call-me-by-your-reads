@@ -55,6 +55,8 @@ En este taller emplearemos snpEff y Ensembl VEP
 Instalación de snpEff
 ---------------------
 
+En este paso necesitamos tener el entorno de gatk activado :code:`conda activate gatk`
+
 1. Vamos a nuestro directorio :code:`$HOME`, as usual
 
 ::
