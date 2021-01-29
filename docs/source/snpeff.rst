@@ -192,11 +192,11 @@ Anotación de las variantes con snpEff
 
 ::
 
-	$ java -jar SnpSift.jar filter "ANN[*].GENE = 'RYR1'" S3_snpEff_dbsnp_clinvar.vcf > S3_RYR1.vcf
+	$ java -jar $HOME/snpEff/SnpSift.jar filter "ANN[*].GENE = 'RYR1'" S3_snpEff_dbsnp_clinvar.vcf > S3_RYR1.vcf
 
 ::
 
-	$ java -jar SnpSift.jar filter "ANN[*].GENE = 'RYR2'" S3_snpEff_dbsnp_clinvar.vcf > S3_RYR2.vcf
+	$ java -jar $HOME/snpEff/SnpSift.jar filter "ANN[*].GENE = 'RYR2'" S3_snpEff_dbsnp_clinvar.vcf > S3_RYR2.vcf
 
 6. Visualizamos nuestra variante y sus efectos en `Ensembl VEP <https://www.ensembl.org/info/docs/tools/vep/index.html>`_
 
