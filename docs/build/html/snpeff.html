@@ -240,6 +240,7 @@
 </div>
 <div class="section" id="instalacion-de-snpeff">
 <h1>Instalación de snpEff<a class="headerlink" href="#instalacion-de-snpeff" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En este paso necesitamos tener el entorno de gatk activado <code class="code docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">gatk</span></code></p>
 <ol class="arabic simple">
 <li><p>Vamos a nuestro directorio <code class="code docutils literal notranslate"><span class="pre">$HOME</span></code>, as usual</p></li>
 </ol>
@@ -362,10 +363,10 @@ $ mkdir -p $HOME/snpEff/db/GRCh38/dbSnp/
 <ol class="arabic simple" start="5">
 <li><p>Obtenemos variantes asociadas a un gen que nos interese</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar SnpSift.jar filter &quot;ANN[*].GENE = &#39;RYR1&#39;&quot; S3_snpEff_dbsnp_clinvar.vcf &gt; S3_RYR1.vcf
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar $HOME/snpEff/SnpSift.jar filter &quot;ANN[*].GENE = &#39;RYR1&#39;&quot; S3_snpEff_dbsnp_clinvar.vcf &gt; S3_RYR1.vcf
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar SnpSift.jar filter &quot;ANN[*].GENE = &#39;RYR2&#39;&quot; S3_snpEff_dbsnp_clinvar.vcf &gt; S3_RYR2.vcf
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar $HOME/snpEff/SnpSift.jar filter &quot;ANN[*].GENE = &#39;RYR2&#39;&quot; S3_snpEff_dbsnp_clinvar.vcf &gt; S3_RYR2.vcf
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
